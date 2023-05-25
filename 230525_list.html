@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Level Elements &amp; Inline Level Elements</title>
+  </head>
+  <body>
+    <!--
+    < ol(Ordered List) 태그 >
+    - 순번이 있는 글머리 항목 생성. ol 태그 내부에 li 태그를 두어 항목의 내용을 표시.
+      type 과 start 속성 지정이 가능하여 type 속성의 값에는 "1, a, A, i, I" 등의 글머리
+      기호를 결정하되 미설정 시 디폴트로 숫자 글머리 설정. 또한 start 속성에는 글머리
+      기호가 시작할 번호(차수) 지정.
+      ol 태그의 자식 태그는 li 태그 외의 다른 태그가 직접 올 수 없지만, li 태그의 자식
+      태그로 다른 태그의 설정은 가능.
+      실질적인 항목을 표시하는 li 태그는 기본적으로 들여쓰기가 적용.
+    -->
+    <ol type="i" start="1">
+      <li>HTML 문서 생성</li>
+      <li>HTML 기본 구조</li>
+      <li>body 태그</li>
+    </ol>
+    <hr />
+
+    <ol type="a" start="2">
+      <li>HTML 기본 구조</li>
+      <li>body 태그</li>
+    </ol>
+    <hr />
+
+    <!--
+    < ul(Unordered List) 태그 >            
+    - 순번이 없는 글머리 항목 생성.
+      ul 태그의 자식 태그는 li 태그 외의 다른 태그가 직접 올 수 없지만,
+      li 태그의 자식 태그로 다른 태그의 설정은 가능.
+      ol 태그와 동일하게 ul 태그 내 li 태그는 기본적으로 들여쓰기가 적용.
+    -->
+    <ul>
+      <li>HTML5</li>
+      <li>CSS</li>
+      <!--
+        < List 의 중첩 >
+        - 어떤 임의 리스트에 하위 리스트를 설정하는 경우 아래와 같이 리스트 내에
+          ol, ul, dl 등의 리스트 관련 태그를 다시 지정함으로써 중첩 리스트 생성 가능.
+          ol, ul, dl 등의 리스트 관련 태그의 하위 자식 태그에는 li 태그 외에 다른
+          태그가 올 수 없으므로 중첩 리스트 생성 시에는 반드시 li 태그 내에 다른
+          리스트 관련 태그가 와야함에 주의.
+        -->
+      <li>
+        Javascript
+        <ul>
+          <li>VSCODE 자바스크립트 실행 환경 구축</li>
+          <li>기본 출력 및 실행 테스트</li>
+          <li>자료형과 변수</li>
+        </ul>
+      </li>
+    </ul>
+    <hr />
+
+    <!--
+    < dl(Definition List) >
+    - 어떠한 용어나 주제에 대한 설명을 다는 형식으로써 dl 태그 내 dt(Definition Term)
+      태그를 이용하여 용어(주제)를 정의하고 dd(Definition Description) 태그를 이용하여
+      용어(dt)에 대한 설명을 기술.
+      dl 태그의 자식 태그는 dt, dd 태그 외의 다른 태그가 직접 올 수 없지만, dt 와 dd
+      태그의 자식 태그로 다른 태그의 설정은 가능.
+      dl 태그 내 dd 태그는 기본적으로 들여쓰기가 적용.
+    -->
+    <dl>
+      <dt>HTML</dt>
+      <dd>HyperText Markup Language</dd>
+    </dl>
+  </body>
+</html>
