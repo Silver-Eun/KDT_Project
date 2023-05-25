@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Level Elements &amp; Inline Level Elements</title>
+  </head>
+  <body>
+    <!--
+< Block Level Elements >
+- https://developer.mozilla.org/ko/docs/Web/HTML/Block-level_elements 참조
+- 웹 페이지의 수평 전체를 요소의 너비로 가지며(브라우저 가로(width) 화면 영역을 100% 차지)
+- 블럭이 끝나는 지점에서 자동 개행되는 특성.
+- 블럭 레벨 요소는 다른 블럭 레벨 요소나 인라인 레벨 요소를 포함 가능.
+
+< Inline Level Elements >
+- https://developer.mozilla.org/ko/docs/Web/HTML/Inline_elements 참조
+- 개행되지 않고 지정된 해당 컨텐츠가 차지하는 영역의 너비(width)와 높이(height)만큼만 표시되는 특성을
+  가지는 요소.
+- 인라인 레벨 요소는 다른 인라인 레벨 요소를 포함 가능하나 블럭 레벨 요소는 포함 불가.
+-->
+    <hr />
+    <h1>블럭 레벨 요소</h1>
+    <h3>
+      <strong>블럭내 인라인 레벨 요소</strong>
+      <strong>블럭내 인라인 레벨 요소</strong>
+    </h3>
+
+    <strong>인라인 레벨 요소</strong>
+    <strong>인라인 레벨 요소</strong>
+    <hr />
+
+    <!-- 
+    일반적으로 블럭 레벨 요소는 다른 블럭 레벨 요소를 포함할 수 있지만
+    p 태그의 경우 인라인 요소만 포함 가능함에 주의.
+    -->
+  </body>
+</html>
