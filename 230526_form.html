@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form 태그와 submit</title>
+  </head>
+
+  <body>
+    <!-- 
+    < form 태그  >
+    - 입력 컨트롤을 이용해 사용자로부터 입력 받은 데이터를 서버에 전송하기 위해 입력 컨트롤
+      요소들을 그룹화하고 서버측에 전송할 입력 데이터 연결을 위한 실질적인 중간 매개체 역할을 담당.
+      input, button, select, textarea 태그 등으로 구성.
+
+    ===================================================================================================================
+
+    < form 태그의 속성 >
+
+    - action : 사용자로부터 입력된 데이터를 전송할 서버 URL 등을 지정.
+    - name : 서버에서 인식 가능한 식별자 지정.
+             서버에서의 식별자는 name 속성만 가능하며, id 는 CSS 나 자바스크립트등에서 구분하기 위한 식별자임에 유의.
+    - method : 데이터 전송 방식을 구분.( get, post )    
+        > get : 검색어와 같이 소량의 빠른 데이터 전송에 유리하나 post방식에 비해 보안에 취약.
+                 ( method 속성 생략 시 디폴트 )
+        > post : 아이디, 패스워드, 개인정보등과 같이 보안이 필요되는 데이터나 대량의 데이터 전송에 대하여 적합.
+    - novalidate : form 그룹에 속해 있는 모든 태그 및 속성에 대한 유효성 검사 해제.
+                   form 태그에 novalidate 속성을 지정함으로써 브라우저 별로 제공되는 유효성 텍스트와 같은 인터페이스를
+                   차후 학습할 스크립트를 통해 일관된 인터페이스로 통합하기 위해 form 그룹 차원에서 임시로 지정.
+
+    ===================================================================================================================
+
+    < input 태그의 type 속성 값이 submit 인 경우 >
+    - 폼 내에 입력되거나 설정되어진 값들을 폼태그에 설정된 action 속성의 위치로 전송 역할을 하는 버튼 생성.
+        > value : submit 버튼에 표시할 텍스트 지정.
+    - method 생략 시 default 는 get 방식.-->
+
+    <h3>method 생략(get)</h3>
+    <form action="./html/server.html" name="studentInfo">
+      <div>
+        <label for="named1">이름 :</label>
+        <input
+          type="text"
+          id="named1"
+          name="named1"
+          minlength="3"
+          maxlength="5"
+        />
+      </div>
+
+      <div>
+        <label for="stNum1">학번 :</label>
+        <input
+          type="text"
+          id="stNum1"
+          name="stNum1"
+          placeholder="2자리만 입력 가능"
+          minlength="2"
+          maxlength="2"
+        />
+      </div>
+
+      <input type="submit" name="transBtn" value="전송" />
+    </form>
+    <hr />
+    <!-- 
+    < input 태그의 required 속성 >
+    - input 태그의 type 지정을 통한 해당 컨틀롤들이 사용자의 직접적인 데이터 입력과 관련된 형식인 경우, 반드시 입력
+      되어야 할 필수 입력임을 지정. required 속성이 지정된 입력 인터페이스를 비워진 상태로 전송(submit)을 하면 전송이
+      되지 않으며 브라우저 별로 지원되는 유효성 텍스트 툴팁 창이 표시.    
+     -->
+    <h3>method get, required</h3>
+    <form action="./html/server.html" name="studentInfo" method="get">
+      <div>
+        <label for="named2">이름 :</label>
+        <input
+          type="text"
+          id="named2"
+          name="named2"
+          minlength="3"
+          maxlength="5"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="stNum2">학번 :</label>
+        <input
+          type="text"
+          id="stNum2"
+          name="stNum2"
+          placeholder="2자리만 입력 가능"
+          minlength="2"
+          maxlength="2"
+          required
+        />
+      </div>
+
+      <input type="submit" name="transBtn" value="전송" />
+    </form>
+    <hr />
+
+    <!-- novalidate 속성 지정을 통한 form 그룹 차원에서의 유효성 검사 해제. -->
+    <h3>method get, novalidate, required</h3>
+    <form
+      action="./html/server.html"
+      name="studentInfo"
+      method="get"
+      novalidate
+    >
+      <div>
+        <label for="named3">이름 :</label>
+        <input
+          type="text"
+          id="named3"
+          name="named3"
+          minlength="3"
+          maxlength="5"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="stNum3">학번 :</label>
+        <input
+          type="text"
+          id="stNum3"
+          name="stNum3"
+          placeholder="2자리만 입력 가능"
+          minlength="2"
+          maxlength="2"
+          required
+        />
+      </div>
+
+      <input type="submit" name="transBtn" value="전송" />
+    </form>
+    <hr />
+    <!--
+        form 태그의 method 속성을 post 로 지정함으로써 전송 데이터가 암호화되어
+        전송 시 get 방식과 달리 주소창에 전송 정보가 표시되지 않음을 확인 가능.
+        단, action 속성을 통해 실제 서버와 연결을 해야만 실제 작동되므로 당 예제
+        에서는 실제 작동되지는 않음에 주의.
+    -->
+    <h3>method post, required</h3>
+    <form action="./html/server.html" name="studentInfo" method="post">
+      <div>
+        <label for="named4">이름 :</label>
+        <input
+          type="text"
+          id="named4"
+          name="named4"
+          minlength="3"
+          maxlength="5"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="stNum4">학번 :</label>
+        <input
+          type="text"
+          id="stNum4"
+          name="stNum4"
+          placeholder="2자리만 입력 가능"
+          minlength="2"
+          maxlength="2"
+          required
+        />
+      </div>
+
+      <input type="submit" name="transBtn" value="전송" />
+    </form>
+  </body>
+</html>
