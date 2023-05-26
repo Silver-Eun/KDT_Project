@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>체인점 권역</title>
+  </head>
+
+  <body>
+    <h1>체인점 권역</h1>
+
+    <!-- 
+    < Image Map Generator > - https://www.image-map.net
+    - 이미지를 원하는 형태로 분할하여 좌표가 생성된 링크 코드를 자동 완성하여 제공해주는 유틸 사이트.
+      Rect(Rectangle), Poly(Polygon), Circle 형태로 이미지를 분할 가능.
+      단, 상대 경로를 지정하는 경우 분할 이미지에 대한 링크 설정 시 사이트에서 지정하는 것보다는 링크
+      코드를 로드할 파일에서 직접 링크를 설정하는 것이 안전.
+
+    ※ Image Map Generator 메뉴얼은 엑셀 파일 참조.
+       ( 4-HTML5-10-5_Image_Map_Generator.xlsx )
+
+     -->
+    <img
+      src="../image/paldal-gu_map_img.jpg"
+      alt="체인점 권역 지도"
+      usemap="#image-map"
+    />
+
+    <map name="image-map">
+      <area
+        target="_blank"
+        alt="ingye-dong"
+        title="ingye-dong"
+        href="../chain_store/ingye-dong_chain.html"
+        coords="312,207,306,220,304,231,310,238,309,246,304,259,308,272,314,283,319,286,383,304,391,309,385,318,382,328,392,337,412,349,421,337,430,321,432,308,442,299,442,284,405,272,405,260,422,254,428,244,425,232,430,226,417,214,425,206,432,204,439,210,445,208,420,196,399,189,385,185"
+        shape="poly"
+      />
+      <area
+        target="_blank"
+        alt="uman1-dong"
+        title="uman1-dong"
+        href="../chain_store/uman1-dong_chain.html"
+        coords="351,112,367,134,374,149,379,167,387,184,396,175,396,158,410,148,427,142,438,133,443,141,451,147,471,132,478,122,471,109,463,98,452,84,433,78,414,74,394,86,376,88"
+        shape="poly"
+      />
+    </map>
+  </body>
+</html>
