@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>button 태그</title>
+
+    <style>
+      .btn_img_size {
+        width: 30px;
+        height: 30px;
+      }
+
+      button {
+        border: none;
+        background: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form action="../html/server.html" name="studentInfo">
+      <div>
+        <label for="named">이름 :</label>
+        <input
+          type="text"
+          id="named"
+          name="named"
+          minlength="3"
+          maxlength="5"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="stNum">학번 :</label>
+        <input
+          type="text"
+          id="stNum"
+          name="stNum"
+          placeholder="2자리만 입력 가능"
+          minlength="2"
+          maxlength="2"
+          required
+        />
+      </div>
+
+      <!-- 
+        < input 태그의 type 속성 값이 image 인 경우 >
+        - input 태그의 type 속성이 submit 인 경우의 기본적인 버튼 형태 대신에 다른
+          이미지를 이용하여 submit 과 동일한 기능을 구현.
+          img 태그와 동일한 src 속성과 alt 속성을 지정하여 이미지 경로와 대체 텍스트 지정.
+
+        =====================================================================================
+
+        < iconfinder.com > - https://www.iconfinder.com/
+        - 유/무료 아이콘 제공.
+
+        ※ 엑셀 파일 참조 - 4-HTML5-11__4_submit 과 button(iconfinder).xlsx
+
+         -->
+
+      <!-- 이미지의 너비와 높이 조정은 CSS 에서 지정. -->
+      <input
+        type="image"
+        class="btn_img_size"
+        src="../image/submit_btn.png"
+        alt="전송 버튼"
+      />
+      <input
+        type="image"
+        class="btn_img_size"
+        src="../image/cancel_btn.png"
+        alt="취소버튼"
+      />
+      <input
+        type="image"
+        class="btn_img_size"
+        src="../image/paldal-gu_map_img.jpg"
+        alt="home"
+      />
+      <input
+        type="image"
+        class="btn_img_size"
+        src="../image/hamburger_img.jpg"
+        alt="eat"
+      />
+    </form>
+    <hr />
+
+    <form action="../html/server.html" method="post" name="parents">
+      <div>
+        <label
+          >아빠 :
+          <input
+            type="text"
+            name="father"
+            placeholder="아빠이름"
+            minlength="3"
+            maxlength="5"
+            required
+          />
+        </label>
+      </div>
+
+      <div>
+        <label
+          >엄마 :
+          <input
+            type="text"
+            name="mother"
+            placeholder="엄마이름"
+            minlength="3"
+            maxlength="5"
+            required
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          동생 :
+          <input
+            type="text"
+            name="brother"
+            placeholder="동생이름"
+            minlength="2"
+            maxlength="6"
+            required
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          형 :
+          <input
+            type="text"
+            name="brother"
+            placeholder="형이름"
+            minlength="3"
+            maxlength="5"
+            required
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          할머니 :
+          <input
+            type="text"
+            name="grandma"
+            placeholder="할머니이름"
+            minlength="2"
+            maxlength="6"
+            required
+          />
+        </label>
+      </div>
+      <!-- 
+        < button 태그 >
+        - input 태그의 type 속성 값이 submit, button, reset 등인 경우와 동일한 동작이 구현 가능.
+          input 태그의 경우 닫는 태그가 없어 지정된 속성 외에는 별도의 컨텐츠를 포함시킬 수 없지만
+          button 태그는 닫는 태그가 있어 button 태그 내에 다른 컨텐츠를 포함 가능하여 좀 더 유연한
+          확장이 가능.
+          input 태그와 같이 type 속성 지정이 가능하며 submit, button, menu, reset 등 할당 가능.
+          ( type 속성 미지정시 default는 submit )
+
+          버튼에 이미지를 포함시키는 경우 input 태그의 type 속성에 image 값을 지정하는 것과는 달리 이미지를
+          둘러싸는 기본적인 테두리(border)와 배경색(background)이 button 태그에 지정되어 표시되는 것을 확인
+          가능하며 이는 CSS 에서 조정.
+          또한 이 경우 버튼화된 이미지의 크기는 button 태그가 아닌 img 태그를 조정해야 함에 주의.
+        -->
+      <button>
+        <img
+          class="btn_img_size"
+          src="./image/submit_btn.png"
+          alt="전송 버튼"
+        />
+      </button>
+
+      <button type="reset">
+        <img
+          class="btn_img_size"
+          src="./image/cancel_btn.png"
+          alt="초기화 버튼"
+        />
+      </button>
+
+      <button type="menu">
+        <img
+          class="btn_img_size"
+          src="./image/hamburger_img.jpg"
+          alt="먹는 버튼"
+        />
+      </button>
+
+      <button>
+        <img
+          class="btn_img_size"
+          src="./image/paldal-gu_map_img.jpg"
+          alt="팔달구"
+        />
+      </button>
+    </form>
+  </body>
+</html>
