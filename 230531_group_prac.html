@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    h1 {
+      font-size: 50px;
+    }
+
+    h1,
+    h2 {
+      color: orange;
+      background-color: gray;
+      text-align: center;
+    }
+
+    .y2021 {
+      color: blue;
+      background-color: bisque;
+    }
+
+    .y2021 > li > ul > li {
+      color: deeppink;
+    }
+
+    .y2020 {
+      color: red;
+      background-color: darkseagreen;
+    }
+
+    .y2020 > li > ul > li {
+      color: red;
+    }
+
+    .y2020 > li + li {
+      color: yellow;
+    }
+
+    h2,
+    li + li + li > ol > li + li {
+      font-size: 30px;
+    }
+
+    li + li + li > ol > li {
+      color: green;
+    }
+
+    li + li + li > ol > li + li {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <h1>중고차</h1>
+    <hr />
+
+    <h2>2021년식</h2>
+    <ul class="y2021">
+      <li>
+        세단
+        <ul>
+          <li>그렌져</li>
+          <li>소나타</li>
+          <li>아반떼</li>
+          <li>
+            K7
+            <ol type="1">
+              <li>가솔린</li>
+              <li><strong>디젤</strong></li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+      <li>SUV</li>
+      <li>트럭</li>
+      <li>봉고</li>
+    </ul>
+    <hr />
+
+    <h2>2020년식</h2>
+    <ul class="y2020">
+      <li>세단</li>
+      <li>
+        SUV
+        <ul>
+          <li>산타페</li>
+          <li>
+            소렌토
+            <ol type="1">
+              <li><em>가솔린</em></li>
+              <li>디젤</li>
+            </ol>
+          </li>
+          <li>셀토스</li>
+        </ul>
+      </li>
+      <li>트럭</li>
+      <li>봉고</li>
+    </ul>
+  </body>
+</html>

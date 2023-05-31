@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    ol {
+      color: blue;
+      background-color: pink;
+    }
+
+    ul {
+      background-color: red;
+      background-color: skyblue;
+    }
+
+    li > ul {
+      color: yellow;
+      background-color: black;
+    }
+
+    dl {
+      font-size: 36px;
+    }
+
+    dt {
+      color: blue;
+      background-color: antiquewhite;
+    }
+
+    dd {
+      color: yellow;
+      background-color: red;
+    }
+
+    /* .colorYellow {
+      color: yellow;
+    }
+    .colorOrange {
+      color: orange;
+    }
+    .colorBlue {
+      color: blue;
+    }
+
+    .bgPink {
+      background-color: pink;
+    }
+    .bgBlack {
+      background-color: black;
+    }
+    .bgRed {
+      background-color: red;
+    }
+    .bgSky {
+      background-color: skyblue;
+    }
+    .bgAntiquewhite {
+      background-color: antiquewhite;
+    }
+    .fontBig {
+      font-size: 36px;
+    } */
+  </style>
+  <body>
+    <ol class="colorBlue bgPink">
+      <li>HTML 문서 생성</li>
+      <li>HTML 기본 구조</li>
+      <li>body 태그</li>
+    </ol>
+    <hr />
+
+    <ul class="colorOrange bgSky">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>
+        Javascript
+        <ul class="colorYellow bgBlack">
+          <li>VSCODE 자바스크립트 실험 환경 구축</li>
+          <li>기본 출략 및 실행 테스트</li>
+          <li>자료형과 변수</li>
+        </ul>
+      </li>
+    </ul>
+    <hr />
+
+    <dl class="fontBig">
+      <dt class="colorBlue bgAntiquewhite">HTML</dt>
+      <dd class="colorYellow bgRed">HyperText Markup Language</dd>
+    </dl>
+  </body>
+</html>

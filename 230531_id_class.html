@@ -1,0 +1,72 @@
+<!--
+< 태그(or Type) 선택자(Selector) >
+- 개별 태그에 대한 속성들을 미리 정의함으로써 본문에 적용된 태그에 자동으로 스타일 적용. 
+
+    > 선택자 형식 : 태그명 { 속성 정의  }
+
+================================================================================================================
+
+< 클래스 선택자(Selector) >
+- 하나 이상의 태그에 복수 적용이 가능한 클래스명(식별자)을 지정함으로써 다중 태그를 그룹화하여 해당 태그들의
+  스타일을 그룹핑하여 적용하는 형식.
+  특정 태그에 다중 클래스 식별자 지정도 가능하며 다중 클래스 선택자 지정도 가능.
+
+    > 선택자 형식 : .클래스명 { 속성 정의 }
+                    .클래스명1.클래스명2.클래스명3 { 속성 정의 } - 다중 클래스 선택자
+
+    > 식별자 형식 : < 특정태그명  class = "클래스명" >
+                   < 특정태그명  class = "클래스명1  클래스명2  클래스명3" >
+
+================================================================================================================
+
+< class 선택자(Selector) >
+- 클래스 선택자와 달리 본문의 특정 단일 태그에만 class 식별자 지정이 가능하며 특정 태그에 다중 class 식별자 지정도
+  불가. 여러 태그에 class 식별자 지정 시 당장은 적용 가능하지만, 차후 태그에 대한 동적 기능을 부여 시 최초 할당
+ class 식별자가 적용된 태그에만 적용되는 문제 발생. 또한 특정 태그에 다중 class 식별자 지정 또한 class 의 고유성 조건이
+  충족되지 않아 모든 스타일 속성 지정이 실현되지 않음. 특정 태그에 클래스 식별자와 class 식별자를 동시 적용시키는
+  것도 가능한데 이 때에는 중복되는 속성에 대하여 class 식별자가 우선 적용.
+ class 선택자는 a 태그를 이용한 페이지 내부 링크나 form 태그 내 label 태그에 적용하는 것 외에는 사용을 최소화하는
+  것을 권장.
+            
+    > 선택자 형식 : #id명 { 속성 정의 }
+
+    > 식별자 형식 : < 특정태그명  class = "id명" >            
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>태그, class, 클래스 선택자</title>
+
+    <style>
+      .color_red {
+        color:red;
+      }
+      .color_green {
+        color:green;
+      }
+      .color_blue {
+        color: blue;
+      }
+
+      .textCenter{
+        text-align: center;
+      }
+      .textRight {
+        text-align: right;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <ul>
+        <li class="color_red">빨강</li>
+        <li class="color_red textCenter">빨강 가운데 정렬</li>
+        <li class="color_green">녹색</li>
+        <li class="textCenter">가운데 정렬</li>
+        <li class="color_red textRight">빨강 오른쪽 정렬</li>
+        <li class="color_blue textCenter">파랑 가운데 정렬</li>
+    </ul>
+  </body>
+</html>

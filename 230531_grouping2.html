@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>일반 형제 결합자(General sibling combinator)</title>
+
+    <style>
+      /*
+        < 일반 형제 결합자(General sibling combinator) >
+        - 부모가 동일한 인접 형제 요소에 대하여 선행 요소를 제외한 "~" 뒤에 지정된
+          모든 요소에 대하여 스타일 적용.
+        */
+      h1 ~ hr {
+        border: dotted;
+      }
+
+      h2 ~ h3 {
+        color: aqua;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>일반 형제 결합자</h1>
+    <hr />
+
+    <h2>CSS</h2>
+    <h3>인라인 스타일 시트</h3>
+    <h3>내부 스타일 시트</h3>
+    <h3>외부 스타일 시트</h3>
+    <hr />
+
+    <dl>
+      <dt>일반 형제 결합자(General sibling combinator)</dt>
+      <dd>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non sed autem
+        assumenda itaque ipsum, distinctio error dolores ipsa tempore nam enim,
+        eos voluptates consequuntur modi sit voluptatum, velit magnam natus!
+      </dd>
+    </dl>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인접 형제 결합자(Adjacent Sibling Combinator)</title>
+
+    <style>
+      /*
+    < 인접 형제 결합자(Adjacent Sibling Combinator) >                                             
+    - adjacent(어제이슨트:인접한,가까운), sibling(시블링:형제자매)
+    - 부모가 동일한 인접 형제 요소에 대하여   선행 요소의 "+" 결합자 이후에 결합되는 최종
+      형제 요소에 스타일 적용.
+      선행 요소와 "+" 결합자 뒤에 명시되는 형제 요소의 명칭이나 순서가 일치해야만 적용
+      되며 최종 우변 형제 요소에만 스타일 적용.
+    */
+
+      h2 + h3 + h3 {
+        color: red;
+      }
+
+      dt + dd {
+        color: blue;
+      }
+
+      h3 + h3 + h3 {
+        background-color: aqua;
+      }
+
+      h3 + dl {
+        background-color: yellow;
+      }
+
+      h3 + hr + dl {
+        color: deeppink;
+      }
+
+      /* 
+        h1 태그와 h2 태그는 형제 태그가 맞지만 그 중간에 hr 태그가 포함되어 결합 형식이
+        일치하지 않으므로 스타일 미적용.
+        */
+      h1 + h2 {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>인접 형제 결합자</h1>
+    <hr />
+
+    <h2>CSS</h2>
+    <h3>인라인 스타일 시트</h3>
+    <h3>h2 + h3 + h3 color:red</h3>
+    <h3>h3 + h3 + h3 color:aqua</h3>
+    <hr />
+
+    <dl>
+      <dt>h3 + hr + dl color:deeppink</dt>
+      <dd>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non sed autem
+        assumenda itaque ipsum, distinctio error dolores ipsa tempore nam enim,
+        eos voluptates consequuntur modi sit voluptatum, velit magnam natus!
+      </dd>
+    </dl>
+  </body>
+</html>

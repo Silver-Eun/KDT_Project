@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자식 결합자(Child combinator)</title>
+
+    <style>
+      /*
+    < 자식 결합자(Child combinator) >
+    - 결합자 ">" 로 부모와 자식요소를 구분하여 지정된 자식요소를 포함한
+      직계 서브 요소에 스타일링 적용.
+      단, 상속이 적용되는 속성은 상속 규칙에 의거 동일한 스타일링 적용.
+
+      형식 : 부모요소 > 자식요소
+
+    < 자손(하위) 결합자(Descendant combinator) >
+    - 부모와 자식요소를 공백 결합자로 구분하여 지정된 자식요소를 포함한
+      직계 서브 요소뿐만 아니라, 직계가 아닌 해당 자손요소도 포함하여
+      스타일링 적용.
+
+      형식 : 조상요소  자손요소
+    */
+
+      body ul {
+        color: blue;
+      }
+
+      body > ul {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>자손 결합자</h1>
+    <hr />
+
+    <h2>조부모</h2>
+    <ul>
+      <li>할아버지</li>
+      <li>할머니</li>
+    </ul>
+    <hr />
+
+    <div>
+      <h2>부모님</h2>
+      <ul>
+        <li>아빠</li>
+        <li>엄마</li>
+      </ul>
+    </div>
+  </body>
+</html>
