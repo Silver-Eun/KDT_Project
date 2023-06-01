@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가상 클래스 선택자(Pseduo-class Selectors)</title>
+
+    <!-- 
+    < 가상 클래스 선택자(Pseduo-class Selectors) >
+    - 선택자에 의해 지정된 요소가 특정 상태일 때 스타일링 적용.
+      가상이라 함은 HTML 코드가 실제 존재하지 않는 상태에서 지정함을 의미.
+    -->
+    <style>
+      /*
+        :hover
+        - 지정된 요소에 마우스 포인터를 올리면 스타일 적용.
+        */
+      h1:hover {
+        background-color: aqua;
+        color: beige;
+      }
+
+      form button:hover {
+        color: red;
+      }
+
+      form:hover label {
+        font-style: italic;
+        font-weight: bold;
+      }
+
+      /* 
+      :focus
+      - 링크, 입력상자, 버튼등에 마우스나 TAB 키로 포커스가 맺혔을 때 스타일 적용.
+        웹페이지에서는 손이나 팔이 불편한 장애자를 위해 링크, 입력상자, 버튼등에 TAB 키로
+        포커스를 맞출수 있게 하는 기능이 제공되는데, 이 때의 상태를 규정함으로써 사용자에게
+        편의를 제공.
+        */
+      a:focus,
+      input:focus,
+      button:focus {
+        outline: none;
+        background-color: darkgrey;
+      }
+
+      /* 
+      :active
+      - 링크나 버튼 등을 눌렀을 때 스타일 적용.
+        */
+      a:active {
+        background-color: orange;
+      }
+
+      /* 
+      :visited
+      - 이미 방문한 링크인 경우에 스타일 적용.
+        */
+      a:visited {
+        color: red;
+      }
+
+      /* 
+      :checked
+      - radio 나 checkbox 버튼 등이 체크되었을 때 스타일 적용.
+        단, radio 나 checkbox 버튼의 모양에 대한 직접적인 스타일 적용은 불가.
+      ※ radio 나 checkbox 버튼 모양은 직접적인 형태 변경이 불가하여 다른
+        형태로 재구현하는 것이 일반적.
+        */
+      input:checked + label {
+        background-color: bisque;
+      }
+
+      /* 
+      :target
+      - 페이지 내부 링크에 의해 지목된 id 를 가진 요소에 대한 스타일 적용.
+        */
+      #title:target {
+        text-decoration: underline;
+      }
+
+      /* 
+      :enabled
+      - 텍스트 입력상자나 버튼 등이 활성화된 상태일 때 스타일 적용.
+        */
+      button:enabled {
+        font-weight: bold;
+      }
+
+      /* 
+      :disabled
+      - 텍스트 입력상자나 버튼 등이 비활성화된 상태일 때 스타일 적용.
+        */
+      button:disabled {
+        font-size: 10px;
+      }
+
+      /* 
+      :not( 선택자 )
+      - not 에 지정된 선택자가 아닌 요소에 스타일 적용.
+        */
+
+      /* form 태그의  자손 요소중 button 태그가 아닌 태그에 스타일 적용. */
+      form :not(button) {
+        background-color: chartreuse;
+      }
+
+      /* ol 태그의 자손이 되는 li 태그 요소중 id 속성 값이 "kt"가 아닌 요소에 스타일 적용. */
+      ol li:not([id="kt"]) {
+        font-weight: bold;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 id="title">가상 클래스 선택자</h1>
+    <hr />
+
+    <ul>
+      <li id="naver"><a href="http://www.naver.com">네이버</a></li>
+      <li id="daum"><a href="http://www.daum.net" target="_self">다음</a></li>
+      <li id="google">
+        <a href="http://www.google.com" target="_blank">구글</a>
+      </li>
+    </ul>
+    <hr />
+
+    <ol>
+      <li id="samsung"><a href="https://www.samsung.com">삼성</a></li>
+      <li id="lg"><a href="https://www.lge.co.kr">LG</a></li>
+      <li id="kt"><a href="https://www.kt.com">KT</a></li>
+      <li><a href="https://www.hyundai.com">현대자동차</a></li>
+      <li><a href="https://www.hanwha.co.kr">한화</a></li>
+    </ol>
+    <hr />
+
+    <form action="#">
+      <div>
+        <label for="name" class="fontStyle color">이름</label>
+        <input type="text" id="name" placeholder="이름을 입력하세요" />
+      </div>
+
+      <div>
+        <label class="color fontSize"
+          >주소
+          <input type="text" placeholder="주소를 입력하세요" />
+        </label>
+      </div>
+
+      <!-- 
+        선택자에서는 부모 요소나 이전 발생한 형제 요소를 지정되는 방법은 제공되지 않음.
+        따라서 아래 예시에서 radio 버튼을 클릭했을 때 label 태그에 대한 스타일링 적용 불가.
+         -->
+      <div>
+        <label for="gender">남</label>
+        <input type="radio" name="gender" id="gender" value="man" />
+
+        <label for="woman">여</label>
+        <input type="radio" name="gender" id="woman" value="woman" />
+      </div>
+
+      <!-- 
+        아래 예시에서와 같이 label 태그와 input 태그의 순서를 바꾸는 트릭을 적용함으로써
+        radio 버튼을 체크했을 때의 label 태그에 대한 스타일링 적용 가능.
+        이렇게 처리를 하면 당장은 label 과 radio 버튼의 순서가 바뀌는 문제가 발생되지만,
+        차후 기본적인 radio 버튼은 삭제하고 다른 형태로 적용하는 것이 일반적.
+        -->
+      <div>
+        <input
+          type="radio"
+          name="housing-type"
+          id="homeowner"
+          value="homeowner"
+        />
+        <label for="homeowner">자가</label>
+
+        <input
+          type="radio"
+          name="housing-type"
+          id="rental-house"
+          value="rental-house"
+        />
+        <label for="rental-house">임대</label>
+      </div>
+
+      <!-- 
+        < disabled 속성 >
+        - 텍스트 입력상자나 버튼 등을 비활성화하는 속성.
+        -->
+      <button type="reset" disabled>초기화</button>
+      <button>전송</button>
+    </form>
+    <hr />
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam debitis
+      velit beatae quasi quia dolorem, quos et voluptatem amet illo. Nesciunt
+      minima cumque consectetur iusto ratione necessitatibus debitis quia
+      impedit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam
+      debitis velit beatae quasi quia dolorem, quos et voluptatem amet illo.
+      Nesciunt minima cumque consectetur iusto ratione necessitatibus debitis
+      quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Totam debitis velit beatae quasi quia dolorem, quos et voluptatem amet
+      illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit. Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Totam debitis velit beatae quasi quia dolorem, quos et voluptatem
+      amet illo. Nesciunt minima cumque consectetur iusto ratione necessitatibus
+      debitis quia impedit.
+    </p>
+
+    <a href="#title">제목으로</a>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      트리 구조 가상 클래스 선택자(Tree-structural poseduo-class Selectors)
+    </title>
+
+    <!-- 
+    < 트리 구조 가상 클래스 선택자(Tree-structural poseduo-class Selectors) >
+    - HTML 문서 내에서 임의 부모 요소를 기준으로 자식 관계가 성립되는 형제 요소에 대한
+      위치와 관련된 스타일링 적용.
+
+    -->
+    <style>
+      /* 
+    < first-child, last-of-type, nth-of-type >
+    - 부모 요소를 기준으로 서로 다른 형제 요소들을 포함한 순번에서의 지정된 위치와 지정된
+      요소가 모두 일치해야만 스타일 적용.
+        */
+
+      /* 첫 번째 자식 요소가 li 태그이면 스타일 적용. */
+      li:first-child {
+        background-color: antiquewhite;
+      }
+
+      /* 마지막 자식 요소가 li 태그이면 스타일 적용. */
+      li:last-child {
+        background-color: chocolate;
+        text-decoration: none;
+        opacity: 0.5;
+      }
+
+      /* 첫 번째 자식 요소가 p 태그이면 스타일 적용. */
+      p:first-child {
+        color: red;
+      }
+
+      /* 3 번째 자식 요소가 li 태그이면 스타일 적용. */
+      li:nth-child(3) {
+        font-size: 20px;
+      }
+
+      /* 끝에서 3번째 자식 요소가 li 태그이면 스타일 적용.  */
+      li:nth-last-child(3) {
+        font-size: 10px;
+      }
+
+      /* 마지막 자식 요소가 아닌 모든 li 태그의 자손 요소인 a 태그에 스타일 적용. */
+      li:not(:last-child) a {
+        color: red;
+      }
+
+      /*
+    li 태그의 인접 형제가 되는 li 태그에 마우스를 올리면 자손 태그인 a 태그에 스타일 적용.
+    결과적으로 연속적으로 발생되는 동일한 li 태그중 첫 번째 자식 요소를 제외한 모든 자식
+    요소에 스타일이 적용되는 효과.
+    */
+      li + li:hover a {
+        color: white;
+      }
+
+      /*
+      < nth-child(An + B)  
+      - 구분자 소괄호 내에서 산술 연산을 통한 자식 요소의 선택이 가능.
+        n 을 0 부터 카운팅을 늘리면서 *, +, - 연산과 부호 적용을 통한
+        다중 선택과 범위 지정 선택이 가능.
+        단, * 연산자는 생략해야 하며 연산에 의해 결정된 자식 요소는
+        0 이 아닌 첫 번째(1) 요소부터 카운팅되어 선택됨에 주의.
+      */
+
+      /* div 태그의 자식 요소중 2의 배수(짝수) 번째에 해당하는 요소가 p 태그이면 스타일 적용. */
+      div p:nth-child(2n) {
+        background-color: darkgrey;
+      }
+
+      /* div 태그의 자식 요소중 홀수 번째에 해당하는 요소가 p 태그이면 스타일 적용. */
+      div p:nth-child(2n + 1) {
+        background-color: yellow;
+      }
+
+      /*
+      홀수 번째에 해당하는 자식 요소가 li 태그이면서 그 자손이 되는 a 태그에 스타일 적용.
+      ( 짝수에 1 을 더하나 1 을 빼나 결과는 홀수 )
+      */
+      li:nth-child(2n-1) a {
+        text-decoration: none;
+      }
+
+      /* 짝수 번째에 해당하는 자식 요소가 li 태그이면 스타일 적용. */
+      li:nth-child(even) {
+        list-style: square;
+      }
+
+      /* 홀수 번째에 해당하는 자식 요소가 li 태그이면 스타일 적용. */
+      li:nth-child(odd) {
+        list-style: circle;
+      }
+
+      /*
+    div 태그의 자식 요소중 4 번째(4 이상)부터 배치되는 요소가 p 태그이면 스타일 적용.
+    ( 4, 5, 6 순으로 요소 카운팅 )
+        */
+      div p:nth-child(n + 4) {
+        text-decoration: line-through;
+      }
+
+      /*
+    div 태그의 자식 요소중 3 번째(3 이하)부터 아래로 배치되는 요소가 p 태그이면 스타일 적용.
+    ( 3, 2, 1 순으로 요소 카운팅)
+        */
+      div p:nth-child(-n + 3) {
+        font-weight: bold;
+      }
+
+      /* 5 이상이면서 10 이하인 자식 요소가 p 태그이면 스타일 적용. */
+      p:nth-child(n + 5):nth-child(-n + 10) {
+        color: blue;
+      }
+
+      /* 
+      < first-of-type, last-of-type, nth-of-type >
+      - first-child, last-child, nth-child 등은 부모 요소를 기준으로 모든 다른 형제 요소들을
+        포함한 순번에서의 지정된 위치와 지정된 요소가 모두 일치해야만 스타일이 적용되지만,
+        type 은 지정된 동일 타입의 형제 요소들 중에서만 순번을 매칭시켜 스타일이 적용되는 특성.
+        */
+
+      /* 동일 계층의 다른 태그를 제외한 p 태그 중에서의 첫 번째 요소에 스타일 적용. */
+      p:first-of-type {
+        text-decoration: underline;
+      }
+
+      /* body 태그의 자식 요소 계층의 다른 태그를 제외한 p 태그 중에서의 마지막 요소에 스타일 적용. */
+      body > p:last-of-type {
+        background-color: green;
+      }
+
+      /* body 태그의 자식 요소 계층의 다른 태그를 제외한 p 태그 중에서의 2 이상이면서 5 이하인 요소에 스타일 적용. */
+      body > p:nth-of-type(n + 2):nth-of-type(-n + 5) {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      hr {
+        background-color: aqua;
+        width: 300px;
+        height: 5px;
+        border: 5px dotted red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>트리 구조 가상 클래스 선택자</h1>
+    <hr />
+
+    <ul>
+      <li id="naver"><a href="http://www.naver.com">네이버</a></li>
+      <li id="daum"><a href="http://www.daum.net" target="_self">다음</a></li>
+      <li id="google">
+        <a href="http://www.google.com" target="_blank">구글</a>
+      </li>
+      <li id="samsung"><a href="https://www.samsung.com">삼성</a></li>
+      <li id="lg"><a href="https://www.lge.co.kr">LG</a></li>
+      <li id="kt"><a href="https://www.kt.com">KT</a></li>
+      <li><a href="https://www.hyundai.com">현대자동차</a></li>
+      <li><a href="https://www.hanwha.co.kr">한화</a></li>
+    </ul>
+    <hr />
+
+    <!-- body 태그의 첫 번째 자식 요소는 h1 태그이지 p 태그가 아니므로 텍스트 색상(red) 스타일 미적용. -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <hr />
+
+    <div>
+      <!-- div 태그의 첫 번째 자식 요소가 p 태그이므로 텍스트 색상(red) 스타일 적용. -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </div>
+  </body>
+</html>

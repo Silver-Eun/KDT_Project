@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자 우선순위(Priority)</title>
+
+    <!-- 
+    < 선택자 우선순위(Priority) >
+    범용(*) 선택자 < 태그 선택자 < 클래스 선택자 < id 선택자 < 인라인 스타일 < !important
+
+    ※ 일반적인 선택자 우선순위는 계층이 동일한 경우 위에 명시된 순서로 우선순위가 적용되지만, 상속
+       계층간에서의 스타일 적용은 계층이 다른 경우 일반적인 선택자 우선순위가 무시되고 가장 가깝고
+       명시적 표현이 우선 적용.
+       #important 는 특별한 경우(다른 사용자의 스타일 코드를 차용하여 수정이 필용한 경우)를 제외하고는
+       사용을 지양.
+    -->
+    <style>
+      h1 {
+        color: black;
+      }
+
+      * {
+        color: brown;
+      }
+
+      p {
+        color: red;
+      }
+
+      /* 
+    동일한 선택자에 대한 동일 속성 스타일 지정 시 코드상 가장
+    나중에 명시한 선택자의 스타일로 스타일 지정.
+        */
+      p {
+        color: blue;
+      }
+
+      .classStyle {
+        color: green;
+      }
+
+      #idStyle {
+        color: aqua;
+      }
+
+      div {
+        color: chartreuse !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>CSS Priority</h1>
+
+    <h2>
+      CSS priority settings!!<br />
+      범용 선택자 스타일 우선 적용!!<br />
+      Complete!!
+    </h2>
+
+    <p>
+      CSS priority settings!!<br />
+      태그 선택자 스타일 우선 적용!!<br />
+      Complete!!
+    </p>
+
+    <p class="classStyle">
+      CSS priority settings!!<br />
+      클래스 선택자 스타일 우선 적용!!<br />
+      Complete!!
+    </p>
+
+    <p id="idStyle" class="classStyle">
+      CSS priority settings!!<br />
+      id 선택자 스타일 우선 적용!!<br />
+      Complete!!
+    </p>
+
+    <p class="classStyle" style="color: deeppink">
+      CSS priority settings!!<br />
+      인라인 스타일 우선 적용!!<br />
+      Complete!!
+    </p>
+
+    <div style="color: red">
+      CSS priority settings!!<br />
+      <em>!important</em> 우선 적용!!<br />
+      Complete!!
+    </div>
+
+    <!-- 
+    상속 계층간 우선순위 적용은 일반적인 선택자 우선순위에 영향을 받지 않고
+    항상 가장 가까운 계층이면서 명시적 표현이 우선 적용.
+    따라서 아래의 경우 일반적인 선택자 우선순위는 태그 선택자 보다 #important
+    가 우선 적용되지만, 부모(div)에 적용된 #important 보다 자식(p)에 적용된 태그
+    선택자가 더 가깝고 명시적 표현이므로 자식에 지정된 스타일이 우선 적용.
+    -->
+    <div>
+      <p>
+        CSS priority settings!!<br />
+        가장 가깝고 명식적 스타일 우선 적용!!<br />
+        Complete!!
+      </p>
+    </div>
+  </body>
+</html>

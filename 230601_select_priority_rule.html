@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>복합 선택자 우선순위 경쟁규칙</title>
+
+    <style>
+      #domain a {
+        color: red;
+      }
+
+      .naver > a {
+        color: blue;
+      }
+
+      /* ========================================================== */
+
+      ol > .samsung *,
+      ol > .lg *,
+      ol > .kt * {
+        color: aqua;
+      }
+
+      ol li[class] a {
+        color: coral;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>복합 선택자 우선순위 경쟁규칙</h1>
+    <hr />
+
+    <ul id="domain">
+      <li class="naver"><a href="http://www.naver.com">네이버</a></li>
+      <li class="daum">
+        <a href="http://www.daum.net" target="_self">다음</a>
+      </li>
+      <li class="google">
+        <a href="http://www.google.com" target="_blank">구글</a>
+      </li>
+    </ul>
+    <hr />
+
+    <ol>
+      <li class="samsung"><a href="https://www.samsung.com">삼성</a></li>
+      <li class="lg"><a href="https://www.lge.co.kr">LG</a></li>
+      <li class="kt"><a href="https://www.kt.com">KT</a></li>
+      <li><a href="https://www.hyundai.com">현대자동차</a></li>
+      <li><a href="https://www.hanwha.co.kr">한화</a></li>
+    </ol>
+    <hr />
+  </body>
+</html>

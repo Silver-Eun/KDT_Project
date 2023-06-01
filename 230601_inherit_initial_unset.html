@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>속성의 상속과 전역속성(inherit, initial, unset) 값</title>
+
+    <style>
+      div {
+        padding: 10px 20px;
+      }
+
+      /*
+        < 상속되는 속성 >
+        - color, font, text-align, white-space, word-spacing, list-style ... 등.
+
+        < 상속되지 않는 속성 >
+        - display, position, width, height, float, background, overflow, border ... 등.
+        */
+      .model2021 > div {
+        /* 상속 속성 */
+        color: red;
+
+        /* 비상속 속성 */
+        border: 1px solid blue;
+      }
+
+      /* ====================================================== */
+
+      /*
+        < initial >
+        - 상속되는 속성에 대하여 그 속성이 가지는 기본값으로 초기화.
+          여기서의 기본값은 태그별로 가지는 기본값이 아닌 속성이 가진
+          기본값임에 주의.
+        */
+      .model2021 > div:first-child > div {
+        /* color: initial; */
+      }
+
+      /* ====================================================== */
+
+      /*
+        < inherit >
+        - 상속되지 않는 속성에 대하여 부모 요소로터 상속되도록 지정.
+        */
+      .model2021 > div:first-child > div:nth-child(4) {
+        /* border: inherit; */
+        /* color: inherit; */
+      }
+
+      .model2021 > div:first-child > div:nth-child(4) > div {
+        /* border: inherit; */
+        /* color: initial; */
+      }
+
+      /* ====================================================== */
+
+      /*
+        < all >
+        - 모든 속성을 지칭하는 속성으로 initial, inherit, unset 등을 지정 가능.
+
+        < unset >
+        - 상속되는 속성에는 상속값을 적용하고 상속되지 않는 속성에는 initial 적용.
+          display 의 기본값은 inline 이며 div 태그가 가지는 display 속성의
+          기본값이 아닌 display 속성 자체가 가지는 기본값 속성이 적용.
+        */
+      .model2021 > div:first-child > div:nth-child(4) > div {
+        /* all:unset; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>속성의 상속과 전역속성(inherit, initial, unset) 값</h1>
+    <hr />
+
+    <h2>2021년식</h2>
+    <main class="model2021">
+      <div>
+        세단
+        <div>그랜저</div>
+        <div>소나타</div>
+        <div>아반떼</div>
+        <div>
+          K7
+          <div>가솔린</div>
+          <div>디젤</div>
+        </div>
+      </div>
+
+      <div>트럭</div>
+
+      <div>봉고</div>
+
+      <div>
+        SUV
+        <div>산타페</div>
+        <div>
+          쏘렌토
+          <div>가솔린</div>
+          <div>디젤</div>
+        </div>
+        <div>셀토스</div>
+      </div>
+    </main>
+    <hr />
+  </body>
+</html>

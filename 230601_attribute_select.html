@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>속성 선택자(Attribute Selectors)</title>
+
+    <!-- 
+    < 속성 선택자(Attribute Selectors) >
+    - 지정된 속성 또는 value 에 의해 요소를 결정하여 스타일링 적용.
+    -->
+    <style>
+      /* id 속성을 가진 요소. */
+      [id] {
+        background-color: deeppink;
+      }
+
+      /* input 태그 중 id 속성을 가진 요소. */
+      input[id] {
+        font-size: 24px;
+      }
+
+      /* id 속성이 value 인 요소. */
+      [id="lg"] {
+        list-style: georgian;
+      }
+
+      /* value 가 디폴트로 설정된 값이 있다하더라도 명시적 지정이 되어 있지 않으면 미적용. */
+      [target="_self"] {
+        background-color: aqua;
+      }
+
+      /* ol 태그 자손 요소중 href 속성을 가진 요소. */
+      ol [href] {
+        font-size: 25px;
+        color: yellowgreen;
+      }
+
+      /* href 속성과 target 속성을 가진 요소. */
+      [href][target] {
+        font-style: italic;
+      }
+
+      /* 지정된 value("font")로 시작되는 class 속성 값을 가진 요소. */
+      [class^="font"] {
+        color: navajowhite;
+      }
+
+      /* 지정된 value("Size")로 끝나는 class 속성 값을 가진 요소. 매칭 시 대소문자를 구분함에 주의. */
+      [class$="Size"] {
+        color: red;
+        background-color: coral;
+      }
+
+      /* 지정된 value("co.")가 포함되는 href 속성 값을 가진 요소. */
+      [href*="co."] {
+        text-decoration: line-through;
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>속성 선택자</h1>
+    <hr />
+
+    <!-- ul>(li[id]>a[target])*3 -->
+    <ul>
+      <li id="naver"><a href="http://www.naver.com">네이버</a></li>
+      <li id="daum"><a href="http://www.daum.net" target="_self">다음</a></li>
+      <li id="google">
+        <a href="http://www.google.com" target="_blank">구글</a>
+      </li>
+    </ul>
+    <hr />
+
+    <ol>
+      <li id="samsung"><a href="https://www.samsung.com">삼성</a></li>
+      <li id="lg"><a href="https://www.lge.co.kr">LG</a></li>
+      <li id="kt"><a href="https://www.kt.com">KT</a></li>
+      <li>현대</li>
+      <li>한화</li>
+    </ol>
+    <hr />
+
+    <form action="#">
+      <div>
+        <label for="name" class="fontStyle color">이름</label>
+        <input type="text" id="name" placeholder="이름을 입력하세요" />
+      </div>
+
+      <div>
+        <label class="color fontSize"
+          >주소
+          <input type="text" placeholder="주소를 입력하세요" />
+        </label>
+      </div>
+
+      <button>전송</button>
+    </form>
+  </body>
+</html>

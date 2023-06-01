@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가상 요소 선택자(Pasduo-element Seloctors)</title>
+    <script
+      src="https://kit.fontawesome.com/6c93ede5dc.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 
+    < 가상 요소 선택자(Pseduo-element Selectors) >
+    - 선택한 요소의 특정 부분에 특정 스타일이나 내용을 지정.
+      가상 클래스 선택자와 구분하기 위해 구분자로 단일콜론(:) 대신 이중콜론(::)을 사용.
+      단, 현재까지는 단일콜론(:)을 허용.
+    -->
+
+    <style>
+      li {
+        list-style: none;
+      }
+
+      li:first-child::before {
+        content: "♡ ";
+        color: red;
+        background-color: yellowgreen;
+      }
+
+      li:nth-child(1)::after {
+        content: "\f256";
+        font: var(--fa-font-solid);
+        color: red;
+      }
+
+      li:nth-child(2)::after {
+        content: "\f001";
+        font: var(--fa-font-solid);
+        color: red;
+      }
+
+      li:last-child::before,
+      li:last-child::after {
+        content: " ★ ";
+        color: blue;
+        background-color: lightsalmon;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>가상 요소 선택자</h1>
+    <hr />
+
+    <h2>커리큘럼</h2>
+    <ul>
+      <li>::before</li>
+      <li>::after</li>
+      <li>::before, after</li>
+    </ul>
+  </body>
+</html>

@@ -11,6 +11,24 @@
       font-size: 50px;
     }
 
+    /* h2,
+    li + li + li > ol > li + li {
+      font-size: 30px;
+    } */
+
+    /* li + li + li > ol > li + li {
+      text-decoration: underline;
+    } */
+
+    h2,
+    .y2021 ol li + li {
+      font-size: 30px;
+    }
+
+    .y2021 ol li + li {
+      text-decoration: underline;
+    }
+
     h1,
     h2 {
       color: orange;
@@ -19,38 +37,45 @@
     }
 
     .y2021 {
+      background-color: antiquewhite;
       color: blue;
-      background-color: bisque;
     }
 
-    .y2021 > li > ul > li {
+    /* .y2021 > li > ul > li {
+      color: deeppink;
+    } */
+
+    /* li + li + li > ol > li {
+      color: green;
+    } */
+
+    .y2021 ul {
       color: deeppink;
     }
 
-    .y2020 {
-      color: red;
-      background-color: darkseagreen;
-    }
-
-    .y2020 > li > ul > li {
-      color: red;
-    }
-
-    .y2020 > li + li {
-      color: yellow;
-    }
-
-    h2,
-    li + li + li > ol > li + li {
-      font-size: 30px;
-    }
-
-    li + li + li > ol > li {
+    .y2021 ul ol {
       color: green;
     }
 
-    li + li + li > ol > li + li {
-      text-decoration: underline;
+    .y2020 {
+      background-color: darkseagreen;
+      color: red;
+    }
+
+    /* .y2020 > li > ul > li {
+      color: red;
+    } */
+
+    /* .y2020 > li + li {
+      color: yellow;
+    } */
+
+    .y2020 li {
+      color: red;
+    }
+
+    .y2020 > li ~ li {
+      color: yellow;
     }
   </style>
   <body>
@@ -67,7 +92,7 @@
           <li>아반떼</li>
           <li>
             K7
-            <ol type="1">
+            <ol>
               <li>가솔린</li>
               <li><strong>디젤</strong></li>
             </ol>
