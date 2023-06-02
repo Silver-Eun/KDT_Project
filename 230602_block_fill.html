@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>% 와 블럭 요소 특성을 활용한 화면 채우기</title>
+
+    <style>
+      /* 
+    < 블럭요소의 특성 >
+    - 블럭요소는 너비에 대하여 수평 영역 전체를 차지하지만,
+      높이는 내부 컨텐트가 가지는 높이에 의하여 결정.
+
+    =============================================================
+
+    < % 단위의 특성 >
+    - % 는 부모 요소를 기준으로 부모 요소의 컨텐트 영역내에서의
+      상대적 백분율 적용.
+    */
+      p {
+        background-color: gray;
+
+        /*
+        브라우저에서 기본적으로 적용되는 p 태그의 마진 삭제.
+      */
+        /* margin: 0; */
+
+        /*
+        p 태그에 대한 100% 너비는 부모 요소 body 의 margin 영역을
+        제외한 컨텐트 너비 영역 전체를 차지.
+      */
+        /* width: 100%; */
+
+        /* 
+        태그는 블럭요소이므로 내부 컨텐트가 차지하는 높이에 의해 p 태그의 높이가
+        결정되는데, 부모 요소인 body 와 root 에 별도의 높이가 결정되지 않는 이상
+        p태그의 높이에 대한 100% 지정은 부모요소 내에서 그 크기가 상대적으로
+        결정되는 % 단위의 특성과 내부 컨텐트의 크기에 의하여 높이가 결정되는
+        body 와 html 등의 블럭요소 특성이 서로 상쇄되어 의미없는 높이 지정에 불과.
+      */
+        /* height: 100%; */
+      }
+
+      /* 
+      부모의 컨텐트 영역 내에서 상대적 비율이 적용되는 % 단위의 특성으로 인해 p 태그의
+      부모인 body 의 높이에 100% 비율을 적용하고 다시 root 요소인 html 태그의 높이에
+      100% 비율을 연쇄적으로 적용함으로써, html 태그의 부모가 되는 Viewport 영역 높이
+      전체를 차지.
+
+    ※ Viewport : 웹 페이지가 장치나 플랫폼에 따라 브라우저를 통해 화면에 표시되는
+                  디스플레이 영역.
+    */
+      body {
+        /* height: 100%; */
+        /* margin: 0; */
+      }
+
+      /* :root {
+        height: 300px;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <p>
+      Qui dolor voluptate duis laborum proident enim consectetur culpa nisi
+      laboris fugiat aute velit. Et adipisicing eu velit et veniam consectetur
+      magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim
+      officia consectetur anim ea non sit labore. Quis consequat qui esse
+      officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua
+      voluptate proident laborum duis ut sit consequat Lorem adipisicing non in.
+      Est nostrud tempor consectetur sit cupidatat.
+    </p>
+  </body>
+</html>
