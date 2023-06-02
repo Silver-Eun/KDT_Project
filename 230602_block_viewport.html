@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>블럭요소에 대한 100vw</title>
+
+    <style>
+      p {
+        background-color: gray;
+        /* margin: 0; */
+        /* height: 100vh;
+
+          /* 블록 요소인 p 태그에 대한 100vw 사용은 지양. */
+        /* width: 100vw; */
+      }
+
+      body {
+        /* margin: 0; */
+      }
+
+      /*
+        body 태그에 대한 마진을 삭제함으로써 body 와 p 태그의 크기를 viewport 크기로
+        일치시켜 p 태그가 화면 전체를 다 차지하는 화면 구성 가능.
+        하지만 p 태그는 블럭 요소이므로 수평에 대한 100vw 설정이 의미가 없으며, 오히려
+        100vw 설정으로 인한 문제발생 소지가 커짐.
+        이는 body 를 구성하는 수직 컨텐츠의 내용이 많아져 수직 스크롤이 생성되면 body 는
+        수직 스크롤바 영역을 포함하지 않는 수평 너비를 가지는 반면, 자식 요소인 p 태그는
+        100vw 설정으로 인해 수직 스크롤바 영역을 포함한 더 넓은 수평 너비를 가지게 됨으로써
+        부모인 body 의 수평 영역을 벗어나게 되어 수평 스크롤바가 생성되는 문제점 발생.
+        따라서 블럭요소에 대한 100vw 는 사용 지양.
+      */
+    </style>
+  </head>
+
+  <body>
+    <p>
+      Qui dolor voluptate duis laborum proident enim consectetur culpa nisi
+      laboris fugiat aute velit. Et adipisicing eu velit et veniam consectetur
+      magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim
+      officia consectetur anim ea non sit labore. Quis consequat qui esse
+      officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua
+      voluptate proident laborum duis ut sit consequat Lorem adipisicing non in.
+      Est nostrud tempor consectetur sit cupidatat.
+    </p>
+  </body>
+</html>
