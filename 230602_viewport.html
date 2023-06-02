@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vw, vh 단위</title>
+
+    <style>
+      /* 
+    < Viewport >
+    - 웹 페이지가 장치나 플랫폼에 따라 브라우저를 통해 화면에 표시되는 디스플레이 영역.
+      뷰포트는 브라우저 영역에서 스크롤바 영역까지를 모두 포함.
+      단, body 의 영역은 스크롤바 영역을 포함하지 않음에 주의.
+
+    < vw(viewport width) >
+    - 뷰포트 영역에서의 너비에 대한 백분율 지정 단위.
+
+    < vh(viewport height) >
+    - 뷰포트 영역에서의 높이에 대한 백분율 지정 단위.
+    */
+      p {
+        background-color: gray;
+        /*
+      블럭요소 p 태그로 브라우저 화면 전체를 채우기 위해
+      p 태그에 브라우저에서 기본적으로 지정되는 상/하 마진 삭제.
+      */
+        /* margin: 0;
+        width: 100vw;
+        height: 100vh; */
+      }
+
+      /* 
+      body는 별도의 크기 설정을 하지 않는 이상 스크롤 바를 제외한 viewport 영역 내에서 그 크기가
+      결정되고 브라우저에서 기본적으로 지정되는 margin으로 인해 기본적으로 viewport 영역 보다는
+      작을 수 밖에 없는 것이 일반적.
+      따라서 p 태그에 대한 100vw, 100vh는 브라우저 디스플레이 영역 전체 너비와 높이를 영역으로
+      할당함으로써 부모가 되는 body 태그보다 영역이 더 커지는 현상으로 인해 화면영역을 벗어나게
+      되고 이는 수평과 수직에 대한 스크롤바가 생성되는 문제점 야기.
+    */
+      /* body {
+        margin: 0;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <p>
+      Qui dolor voluptate duis laborum proident enim consectetur culpa nisi
+      laboris fugiat aute velit. Et adipisicing eu velit et veniam consectetur
+      magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim
+      officia consectetur anim ea non sit labore. Quis consequat qui esse
+      officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua
+      voluptate proident laborum duis ut sit consequat Lorem adipisicing non in.
+      Est nostrud tempor consectetur sit cupidatat.
+    </p>
+  </body>
+</html>
