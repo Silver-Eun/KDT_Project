@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>max-width, max-height, min-width, min-height</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      p {
+        background-color: gray;
+        margin: 0;
+
+        /* 
+            < min-width > - 이상
+            - 요소가 가질 수 있는 최소 너비를 지정.
+              단, 이는 요소의 최소 너비를 지정하는 것이지 브라우저 창의 너비를 늘인다
+              해서 그 최대 크기를 제한하지는 않음.
+              즉, 브라우저 창의 너비가 min-width 보다 작은 경우에는 요소의 최소 크기를
+              제한함으로서 스크롤이 생성되지만, 브라우저 창의 너비가 min-width 보다 큰
+              경우에는 요소의 최대 크기를 제한하지는 않음에 주의.
+            */
+
+        /* 요소의 너비를 700px 이상으로 설정. */
+        /* min-width: 700px; */
+      }
+
+      p {
+        /* 
+            < max-width > - 이하
+            - 요소가 가질 수 있는 최대 너비를 지정.
+              브라우저 창의 너비를 늘여도 요소의 너비가 max-width 로 제한.
+            */
+
+        /* 요소의 너비를 1000px 이하로 설정. */
+        /* max-width: 1000px; */
+      }
+
+      p {
+        /* 
+            < min-height > - 이상
+            - 요소가 가질 수 있는 최소 높이를 지정.
+              브라우저 창의 높이를 줄여도 요소의 높이가 min-height 로 제한.
+            */
+
+        /* 요소의 높이를 500px 이상으로 설정. */
+        /* min-height: 500px; */
+      }
+
+      p {
+        /* 
+            < max-height > - 이하
+            - 요소가 가질 수 있는 최대 높이를 지정.
+              요소의 컨텐츠의 양이 많아져도 요소의 높이가 max-height 로 제한.
+            */
+
+        /* 요소의 높이를 700px 이하로 설정.. */
+        /* max-height: 700px; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      Qui dolor voluptate duis laborum proident enim consectetur culpa nisi
+      laboris fugiat aute velit. Et adipisicing eu velit et veniam consectetur
+      magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim
+      officia consectetur anim ea non sit labore.
+
+      <!-- 하기 컨텐츠는 max-height 에서만 주석을 풀고 테스트 -->
+
+      <!-- Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        velit et veniam consectetur magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim officia
+        consectetur anim ea non sit labore.
+
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        velit et veniam consectetur magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim officia
+        consectetur anim ea non sit labore.
+
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        velit et veniam consectetur magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim officia
+        consectetur anim ea non sit labore.
+
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        velit et veniam consectetur magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim officia
+        consectetur anim ea non sit labore.
+
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        velit et veniam consectetur magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim officia
+        consectetur anim ea non sit labore.
+
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat.
+        Qui dolor voluptate duis laborum proident enim consectetur culpa nisi laboris fugiat aute velit. Et adipisicing
+        eu
+        velit et veniam consectetur magna aliqua Lorem excepteur eiusmod aliqua. Commodo dolor amet minim officia
+        consectetur anim ea non sit labore.
+
+        Quis consequat qui esse officia sit. Adipisicing ut dolor velit qui est voluptate. In aliqua voluptate proident
+        laborum duis ut sit consequat Lorem adipisicing non in. Est nostrud tempor consectetur sit cupidatat. -->
+    </p>
+  </body>
+</html>

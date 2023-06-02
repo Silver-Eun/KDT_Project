@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>margin, padding 에 대한 백분율</title>
+
+    <style>
+      .box1,
+      .box2 {
+        width: 500px;
+        height: 300px;
+      }
+
+      .box1 {
+        background-color: blue;
+      }
+
+      .box2 {
+        background-color: red;
+      }
+
+      .box div {
+        width: 50%;
+        height: 50%;
+        background-color: black;
+        color: white;
+      }
+
+      /* 
+        < margin, padding 에 대한 백분율 적용 >
+        - 백분율(%)은 부모 요소에 대한 비율로 결정되는데, 주의할 것은 margin과 padding 은
+          부모요소의 높이가 아닌 너비에 대한 백분율로 결정됨에 유의.
+        */
+      .box1 div {
+        margin: 10%;
+      }
+
+      .box2 div {
+        padding: 10%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>margin, padding 에 대한 백분율</h1>
+    <hr />
+
+    <div class="box box1">
+      <div>box1 의 자식</div>
+    </div>
+    <hr />
+    <div class="box box2">
+      <div>box2 의 자식</div>
+    </div>
+  </body>
+</html>
