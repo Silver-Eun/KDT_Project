@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>색상(Color) 지정</title>
+
+    <style>
+      /*
+        body 의 자식이면서 h1, ul 이 아닌 태그.
+        브라우저 호환성 측면에서는 body>:not(h1):not(ul) 형식을 사용하는 것을 권장.
+      */
+      body > :not(h1, ul) {
+        color: gold;
+      }
+
+      li {
+        font-size: 20px;
+      }
+
+      /*
+      < 1. 색상명 지정 >
+      - 약속되어 있는 고유한 색상명을 직접 지정하는 형식.
+      ※ VSCODE 에서는 색상 지정후 값에 마우스 포인터를 가져가면 RGB VIEW 를 통해 직접 지정 가능.
+
+      < 불투명도(opacity) >
+      - 모든 색상 지정 방식은 opacity 속성을 이용하여 별도의 불투명도 설정 가능.
+        opacity 는 0 ~ 1.0 범위의 값으로 지정 가능하며 값이 낮을 수록 투명도가 높아지고 값이 높을
+        수록 불투명도가 높아지는 특성.
+        opacity 는 색상의 명도가 아닌 다른 요소와 겹쳤을 때의 투명하게 비추일 수 있는 특성임에 주의.
+      */
+
+      ul:first-of-type li:first-child {
+        background-color: red;
+      }
+
+      ul:first-of-type li:nth-child(2) {
+        background-color: green;
+        /* opacity:0.7; */
+      }
+
+      ul:first-of-type li:last-child {
+        background-color: blue;
+        color: white;
+        /* opacity:0.7; */
+      }
+
+      /*
+      < 2. RGB 16진수 값 지정 >
+      - 접두사 # 뒤에 RGB 색상 값을 3byte 16진수 총 6자리로 표현하되, Red, Green, Blue 를 각각 1byte
+        16진수 2자리씩 묶어서 혼합하는 형태로 지정하는 형식.
+        16진수 값이 클 수록 빛의 세기가 증가함으로써 명도가 증가하고, 16진수 값이 작아질 수록 빛의
+        세기가 감소함으로써 명도가 낮아지는 특성.
+        따라서 #ffffff 는 흰색, #000000 은 검은색을 표현.
+        각각 2자리 RGB 값의 쌍이 동일한 값인 경우에는 한 자리로 압축하여 표현 가능.
+        단, 각 자리 값의 쌍이 모두 동일한 경우에만 적용 가능.
+        또한, 6자리 16진수 표기 이후에 2자리 16진수 자리를 추가하여 opacity 값 설정 가능.
+
+      형식    :    #   ff     ff     ff   [   ff    ]
+                      red   green   blue  [ opacity ]
+
+
+      ※ RGB 16진수 표현 이나 rgb, rgba 함수를 이용한 opacity 설정은 background-color 나 color 속성에
+         대한 개별적인 투명도를 지정하는 반면, 별도의 opacity 속성으로 지정한 경우에는 배경이나 텍스트
+         모두에 투명도가 적용.
+      */
+      ul:nth-of-type(2) li:first-child {
+        background-color: #ff0000;
+        /* background-color: #f00; */
+      }
+
+      ul:nth-of-type(2) li:nth-child(2) {
+        background-color: #0f0;
+      }
+
+      ul:nth-of-type(2) li:nth-child(3) {
+        background-color: #00f;
+        color: white;
+      }
+
+      ul:nth-of-type(2) li:nth-child(4) {
+        background-color: #000;
+        color: #fff;
+        /* 글자색이 흰색이므로 글머리 기호도 표시되지 않음에 주의 */
+      }
+
+      ul:nth-of-type(2) li:last-child {
+        background-color: #00f3;
+      }
+
+      /*
+      < 3. 함수형 RGB 값 지정 >
+      - RGB 색상 값을 1byte 로 표현된 10진수 총 3자리 또는 백분율로 표현.
+        RGB 표기에 10진수와 백분율 혼용 불가.
+        10진수 3자리 뒤에 백분율로 표기하는 형식 또는 0 ~ 1.0 범위의 값으로 opacity 추가 가능.
+        RGB 를 공백으로 구분하는 경우 opacity 앞에는 슬러쉬(/)로 구분.
+
+      형식    :    rgb( 255 ,  255 ,  255 )            - 쉼표(,) 구분자로 구분
+                        red  green   blue
+                   rgb( 255    255    255 )            - 공백으로 구분
+
+                   rgb( 100%  100%   100% )            - 백분율로 RGB 지정
+
+                   rgb( 255 ,  255 ,  255 ,  100% )    - opacity 는 백분율 또는 0 ~ 1.0 범위의
+                                                         값으로 지정 가능
+
+                   rgb( 255    255    255  /    1 )    - RGB 를 공백으로 구분하는 경우
+                                                         opacity 앞에는 슬러쉬(/)로 구분
+      */
+
+      ul:nth-of-type(3) li:first-child {
+        color: rgb(255, 0, 0);
+        /* color: rgb(255 0 0); */
+      }
+
+      ul:nth-of-type(3) li:nth-child(2) {
+        color: rgb(0, 255, 0);
+        /* color: rgb(0%, 100%, 0%); */
+      }
+      ul:nth-of-type(3) li:nth-child(3) {
+        color: rgb(0, 0, 255);
+      }
+
+      ul:nth-of-type(3) li:last-child {
+        color: rgb(255, 0, 0, 50%);
+        /* color: rgb(255 0 0 / 50%); */
+      }
+
+      /*
+      < 4. 함수형 RGBA(Red Green Blue Alpha) >
+      - CSS Colors Level 4 부터 함수 rgb() 와 동일하게 동작.
+
+      형식    :    rgba( 255 ,  255 ,  255 , 0.8 )
+                        red  green   blue  opacity
+                   rgba( 255    255    255 / 0.8 )    - 공백으로 구분 시 opacity 앞 슬러쉬(/)로 구분
+
+                   rgba( 255    255    255 / 80% )    - opacity 는 백분율 또는 0 ~ 1.0 범위의
+                                                        값으로 지정 가능
+      */
+
+      ul:nth-of-type(4) li:first-child {
+        background-color: rgba(255, 0, 0, 1);
+        /* background-color: rgba(255, 0, 0, 100%); */
+        /* background-color: rgba(255, 0, 0); */
+      }
+
+      ul:nth-of-type(4) li:nth-child(2) {
+        background-color: rgba(255, 0, 0, 0.7);
+      }
+
+      ul:nth-of-type(4) li:last-child {
+        background-color: rgba(255, 0, 0, 0.3);
+        /* background-color: rgba(100%, 0%, 0%, 30%); */
+        /* background-color: rgba(255 0 0 / .3); */
+        /* background-color: rgba(255 0 0 / 30%); */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>색상 지정</h1>
+    <hr />
+
+    <h2>1. 색상명 지정</h2>
+    <ul>
+      <li>Red</li>
+      <li>Green</li>
+      <li>Blue</li>
+    </ul>
+    <hr />
+
+    <h2>2. RGB 16진수 값 지정</h2>
+    <ul>
+      <li>Red</li>
+      <li>Green</li>
+      <li>Blue</li>
+      <li>black &amp; white</li>
+      <li>blue - opacity</li>
+    </ul>
+    <hr />
+
+    <h2>3. 함수형 RGB 값 지정</h2>
+    <ul>
+      <li>Red</li>
+      <li>Green</li>
+      <li>Blue</li>
+      <li>Red - opacity</li>
+    </ul>
+    <hr />
+
+    <h2>4. 함수형 RGBA(Red Green Blue Alpha)</h2>
+    <ul>
+      <li>Red - opacity 100%</li>
+      <li>Red- opacity 70%</li>
+      <li>Red- opacity 30%</li>
+    </ul>
+  </body>
+</html>
