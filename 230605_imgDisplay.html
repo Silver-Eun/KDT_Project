@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>display(none), visibility(hidden, visible)</title>
+
+    <style>
+      /* 
+        이미지에 대한 크기는 width 나 height 중 하나만 변경 해도 원본
+        이미지에 맞추어 자동으로 다른 속성의 비율이 조정.
+            */
+      img[src="../image/jeep_logo.png"] {
+        width: 150px;
+
+        /* 
+        < display : none >
+        - 해당 요소가 컨텐트 영역을 차지하지 않으면서 숨김.
+          스크린 리더에 읽히지 않고 봇에 의해 검색도 되지 않음.
+        */
+        display: none;
+      }
+
+      h2:nth-of-type(1):hover + img {
+        display: inline-block;
+      }
+
+      img[src="../image/starbucks_logo.jpg"] {
+        width: 200px;
+        /* 
+        < visibility >
+        - hidden : 해당 요소가 컨텐트 영역을 차지한 상태로 숨김.
+                   스크린 리더에 읽히진 않지만 봇에 의한 검색은 가능.    
+        - visible : visibility 속성의 디폴트 값.
+
+        */
+        visibility: hidden;
+      }
+
+      h2:nth-of-type(2):hover + img {
+        visibility: visible;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>display(none), visibility(hidden, visible)</h1>
+    <hr />
+
+    <h2>JEEP</h2>
+    <img src="../image/jeep_logo.png" alt="JEEP LOGO" />
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis ullam
+      fuga rem natus modi non porro alias esse cum deserunt ut, facere
+      voluptatibus tenetur in ea repellat, asperiores suscipit laborum.
+    </p>
+    <hr />
+
+    <h2>STARBUCKS</h2>
+    <img src="../image/starbucks_logo.jpg" alt="STARBUCKS LOGO" />
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis ullam
+      fuga rem natus modi non porro alias esse cum deserunt ut, facere
+      voluptatibus tenetur in ea repellat, asperiores suscipit laborum.
+    </p>
+  </body>
+</html>
