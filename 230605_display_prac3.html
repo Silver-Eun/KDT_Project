@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/230605_display_prac.css" />
+
+    <!-- 
+< 문제 >
+1) 이미지와 페이지 네이션은 페이지의 수평 중앙에 배치.    
+2) 이미지의 너비와 높이는 500 px 로 지정.
+3) 페이지 네이션의 너비와 높이는 30 px 로 지정.
+4) 페이지 네이션의 넘버링은 수평, 수직 모두 중앙에 배치.
+5) 내부 스타일 시트로 적용.
+6) 클래스, ID 선택자 사용 금지.
+
+-->
+    <style>
+      div {
+        text-align: center;
+      }
+
+      img {
+        width: 500px;
+        height: 500px;
+      }
+
+      a {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background-color: gray;
+        text-decoration: none;
+        opacity: 0.5;
+      }
+
+      [href*="#"] {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Page Nation</h1>
+    <hr />
+    <div>
+      <img src="../image/bg3.jpg" alt="bg3" />
+    </div>
+
+    <div>
+      <a href="./230605_display_prac1.html">1</a>
+      <a href="./230605_display_prac2.html">2</a>
+      <a href="#">3</a>
+      <a href="./230605_display_prac4.html">4</a>
+      <a href="./230605_display_prac5.html">5</a>
+    </div>
+  </body>
+</html>
