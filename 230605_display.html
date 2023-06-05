@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inline, block, inline-block</title>
+
+    <!-- 
+    < inline, block, inline-block 특성 >
+
+  - inline : 기본적으로 텍스트 속성을 가져 인라인 요소간 수평 나열이 가능하지만 크기 지정은 불가.
+
+  - block : 높이는 내부 컨텐트에 의해 결정되지만 너비는 수평 영역 전체를 차지하는 특성으로 인해
+            블럭요소간 수평 나열이 불가.
+            단, 크기 지정은 가능한데 수평 영역 전체는 그대로 차지한 상태에서 컨텐트 영역을 제외한
+            나머지 부분은 마진 영역으로 채워지는 특성.
+  
+  - inline-block : 인라인 요소와 같이 컨텐트 영역만을 차지함으로써 인라인 특성을 가지는 요소간 수평
+                   나열이 가능하면서도 블럭요소와 같이 크기 지정이 가능한 특성.
+                   ( 대표적 인라인 블럭요소 : img )
+                   또한 인라인 블럭 요소 내 다른 블럭요소의 포함이 가능.
+   -->
+    <style>
+      em,
+      p,
+      a,
+      div {
+        background-color: greenyellow;
+        color: red;
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+
+      em {
+        display: block;
+      }
+
+      /*
+            line-height 로 높이를 결정하였으므로 height 는 생략 가능.
+        */
+      em {
+        width: 5em;
+        height: 5em;
+        text-align: center;
+        line-height: 5em;
+      }
+
+      /* p {
+        width: 5em;
+        height: 5em;
+      } */
+
+      /* p {
+        display: inline;
+      } */
+
+      a {
+        display: inline-block;
+        width: 5em;
+        height: 5em;
+        text-align: center;
+        line-height: 5em;
+      }
+
+      div {
+        display: inline-block;
+        width: 5em;
+        height: 5em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>display 속성</h1>
+    <hr />
+
+    <h2>inline &rArr; block</h2>
+    <em>Test1</em>
+    <hr />
+
+    <h2>block &rArr; inline</h2>
+    <p>Test2</p>
+    <hr />
+
+    <h2>inline &rArr; inline-block</h2>
+    <a href="#">Test3</a>
+    <hr />
+
+    <h2>inline-block &gt; block</h2>
+    <div>
+      <h3>Test4</h3>
+      <h3>Test4</h3>
+    </div>
+  </body>
+</html>
