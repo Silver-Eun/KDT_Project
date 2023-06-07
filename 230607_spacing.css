@@ -1,0 +1,56 @@
+p {
+    border: 1px solid blue;
+}
+
+/* 
+< letter spacing>
+- 글자 간 간격
+*/
+h2:nth-of-type(1):hover + p{
+    letter-spacing: 5px;
+}
+
+/* 
+< word-spacing>
+- 단어 간 간격
+*/
+h2:nth-of-type(2):hover + p {
+    word-spacing: 5px; 
+}
+
+/* 
+< line-height >
+- 글자 중앙선을 기준으로 위와 아래 사이의 높이.
+  부모 요소에 지정하면 자식에게 상속
+*/
+h2:nth-of-type(3):hover + p {
+    line-height: 50px;
+}
+
+h2:nth-of-type(4):hover + p {
+    text-align: center;
+    line-height: 50px;
+}
+
+h2:nth-of-type(5):hover + p {
+    text-align: center;
+    line-height: 50px;
+}
+
+/* 
+< line-height >
+- 해당 요소의 font-size에 % 적용. 지정 없을시 16px가 기준.
+*/
+h2:nth-of-type(6):hover + div p {
+    text-align: center;
+    line-height: 500%;
+}
+
+/* 
+< line-height >
+- normal : default 값의 line-height 적용
+*/
+h2:nth-of-type(7):hover + div p {
+    text-align: center;
+    line-height: normal;
+}
