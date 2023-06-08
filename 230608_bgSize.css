@@ -1,0 +1,72 @@
+body {
+    background-image: url(../image/starbucks_logo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+/* 
+< background-attachment >
+- 백그라운드 배경이 해당 요소에 자체에 고정되는지 또는 뷰포트에 고정
+  되는지의 여부를 결정.
+
+< scroll >
+- 미지정 시의 디폴트 값으로 백그라운드 배경이 해당 요소 전체에 고정되어
+  해당 요소의 내용이 뷰포트 영역을 넘쳐 스크롤이 되어도 요소 전체에 고정.
+     
+   */
+   /* background-attachment: scroll; */
+}
+
+/* 
+< fixed >
+- 백그라운드 배경이 해당 요소가 아닌 뷰포트를 기준으로 고정되어 요소가 
+  스크롤되어도 요소와 함께 이동하지 않고 뷰포트에 고정되어 표시.
+*/
+body {
+    /* background-attachment: fixed; */
+}
+
+/* 
+< background-size >
+- 단위를 이용하여 원본 사이즈를 조정.
+  이때 사이즈는 이미지 원본 크기와 관계없이 이미지 전체 크기를 background-size 에
+  할당한 크기 내에서 표현.
+  단, 이미지 원본의 실제 크기가 이를 포함하는 컨테이너 보다 작은 경우에는 컨터이너
+  전체를 백그라운드 이미지로 다 채우지는 못할 수 있음에 주의.
+*/
+body {
+    /* 수평, 수직 크기를 동시 지정. */
+    /* background-size: 100vw; */
+
+    /* 아래와 같이 수평, 수직 크기를 순서대로 별도 지정 가능. */
+    /* background-size: 300px 500px; */
+}
+
+/* 
+< background >
+- background-repeat, background-position, background-attachment, background-color
+  background-size, background-image 등을 하나로 통합 표현 가능.
+  단, background-position 과 background-size 는 '/' 구분자를 기준으로 순서대로
+  각각 구분되어야 하지만, 다른 속성들과의 순서는 상관없음.
+*/
+body {
+    /* background: url(../image/starbucks_logo.jpg) no-repeat center left/30vw yellow; */
+}
+
+body {
+    /* height: 100vh; */
+    /* background: url(../image/starbucks_logo.jpg) center/50% 50%; */
+
+    /* 
+< background-size - cover >
+- 이미지를 컨테이너에 가득 채우되 컨터이너 크기 변화에 따른 수평과 수직에
+  대한 이미지 늘림과 줄임으로 인한 이미지 원본 왜곡 현상을 최소화함으로써
+  좀 더 자연스로운 배경 표현 가능.
+  단, 컨터이너를 확장하는 경우 이미지에 대한 늘림 대신 확대가 적용됨으로써
+  수평과 수직에 대한 이미지 잘림 현상 발생.
+  이때 position 의 위치는 이미지 확대시의 기준점이 되어 포지션을 0 또는
+  center 로 지정을 함으로써 이미지 확대시 이미지의 중앙을 기준으로 확대,
+  축소가 가능.
+    */
+    /* background: url(../image/starbucks_logo.jpg) center/cover; */
+    /* background: url(../image/starbucks_logo.jpg) top/cover; */
+}
