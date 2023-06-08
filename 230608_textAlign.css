@@ -1,0 +1,56 @@
+p {
+    border: 1px solid blue;
+    width: 500px;
+}
+
+/* 
+< text-align >
+- 부모가 되는 블럭요소나 테이블요소에 정렬 속성을 지정함으로써 부모요소 내에서의
+  인라인 또는 인라인 블럭 요소들에 대한 수평 정렬 지정.
+
+※ justify : 양쪽 정렬. 문장이 해당 영역의 너비를 넘어가 개행되는 경우, 오른쪽
+             끝 경계에 단어가 걸리면 단어를 깨지않고 경계에 걸리는 단어부터
+             어절을 개행하고, 개행되지 않는 문장의 수평 양쪽 끝을 정렬시키기 위해
+             단어간 간격(공백)을 영역 너비에 따라 자동으로 조정.
+             이에 따라 경계에 걸리는 단어가 음절이 긴 단어인 경우 그 단어가 개행됨
+             으로써 개행되지 않은 문장의 단어 사이 간격이 너무 넓게 벌어지는 현상
+             발생 가능.   
+*/
+
+p:nth-of-type(1) {
+    text-align: left;
+} 
+
+p:nth-of-type(2) {
+    text-align: right;
+}
+
+p:nth-of-type(3) {
+    text-align: center;
+}
+
+p:nth-of-type(4) {
+    text-align: justify;
+}
+
+/* 
+< word-break:break-all >
+- justify 에서 단어를 깨지않고 개행되어 발생 가능한 넓은 공백이 생기는 문제에
+  대하여 단어의 어절을 끝 경계에서 깸으로써, 자동 정렬로 인한 늘어진 공백이
+  발생되는 문제점 해소.
+  
+*/
+
+p:nth-of-type(4):hover {
+    word-break: break-all;
+}
+
+div {
+    background-color: bisque;
+    text-align: center;
+}
+
+div:hover p {
+    display: inline-block;
+    width: 200px;
+}
