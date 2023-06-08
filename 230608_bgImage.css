@@ -1,0 +1,61 @@
+.bg_image {
+    border: 1px solid blue;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+
+/* 
+< background-image >
+- url 함수에 경로를 지정하여 백그라운드 이미지 지정.
+*/
+    background-image: url(../image/hamburger_img.JPG);
+}
+
+/* 
+< background-repeat >
+- 백그라운드 이미지의 반복 여부 지정. 디폴트는 repeat.
+
+※ 이미지 패턴에 대한 전체 이미지가 아닌 부분 조각이미지로 반복하여
+   패턴을 완성함으로써 메모리 낭비 최소화.
+
+*/
+.repeat {
+    background-repeat: repeat;
+}
+
+.no-repeat {
+    background-repeat: no-repeat;
+}
+
+
+/* repeat-x : 수평 방향으로 이미지 반복. */
+.repeat-x {
+    background-repeat: repeat-x;
+}
+
+/* repeat-y : 수직 방향으로 이미지 반복. */
+.repeat-y {
+    background-repeat: repeat-y;
+}
+
+/* 
+< background-position >
+- 수평과 수직에 대한 이미지 배치.
+
+형식
+- background-position : 수평 수직;
+- 수평 : left, center, right
+- 수직 : top, center, bottom
+   
+※ px, %, em 등의 단위로도 수평, 수직 위치 지정 가능.
+*/
+.position_cc {
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* background-position: center; */
+}
+
+.position_rb {
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
