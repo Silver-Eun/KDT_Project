@@ -1,0 +1,39 @@
+h2 {
+    color: red;
+}
+
+p {
+    border: 1px solid blue;
+    font-size: 2em;
+}
+
+/*
+< font-weight>
+- 글자의 두께 설정. lighter(300), normal(400), bold(700) 등의 가중치 명이나
+또는 1 ~ 1000 범위에서의 가중치 값 적용 가능. ( normal 이 디폴트 ) 단, 개별
+브라우저나 폰트마다 가중치 명이나 가중치 값에 대한 지원 여부가 다를 수 있음에
+주의. */
+
+.lighter {
+    font-weight: lighter;
+}
+
+.lighter-num {
+    font-weight: 300;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.normal-num {
+    font-weight: 400;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bold-num {
+    font-weight: 700;
+}
