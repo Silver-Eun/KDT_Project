@@ -1,0 +1,52 @@
+table {
+/* 
+< border-collapse >
+- separate : 개별 셀을 독립적으로 분리하여 셀들 간의 간격 발생. 디폴트 값.
+- collapse : 셀들간의 간격을 없애서 경계를 통합.
+   
+- 셀 간 간격을 유지할 것인지 없앨 것인지를 결정. 각 셀은 별도의 독립된 borderline 설정이
+  가능하며 각 셀의 경계에는 일정한 간격이 존재하여 별도의 설정을 지정하지 않은 상태로
+  보더라인을 지정하면 각 셀간의 borderline 경계로 일정한 간격이 발생되는 것을 확인 가능.
+  따라서 이러한 간격을 없애고 각 셀의 borderline이 하나로 중첩되어 통합되도록
+  collapse 값을 지정.
+  단, 이 때 부모 요소가 되는 table 태그에 border-collapse 속성을 지정해야만 부모 자신을
+  포함한 하위 태그들에 대한 속성값이 적용됨에 주의.
+
+  ※ 테이블은 블럭 요소임에 주의.
+*/
+
+border-collapse: collapse;
+/* border-collapse: separate; */
+}
+
+td,
+th {
+/*
+테이블의 테두리 라인을 지정할 때 table 자체에 보더를 적용하면 외곽 테두리 라인만
+적용되는데 반해, th 나 td 태그에 보더라인을 적용시키면, 각 요소마다 테두리가 적용되어
+전체적인 테두리 완성 가능.
+*/
+    border: solid 2px red;
+    width: 150px;
+}
+
+th {
+    color: blue;
+}
+
+td {
+    height: 100px;
+    text-align: center;
+}
+
+.ver-top {
+    vertical-align: top;
+}
+
+.ver-middle {
+    vertical-align: middle;
+}
+
+.ver-bottom {
+    vertical-align: bottom;
+}
