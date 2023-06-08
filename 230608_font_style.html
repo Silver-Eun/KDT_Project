@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글자 장식, 글자 스타일, 글자 변형</title>
+    <link rel="stylesheet" href="../CSS/230608_font_style.css" />
+  </head>
+
+  <body>
+    <h1>글자 장식, 글자 스타일, 글자 변형</h1>
+    <hr />
+
+    <h2 class="deco underline line-color">글자 장식 - 밑줄</h2>
+    <h2 class="deco overline line-color">글자 장식 - 윗줄</h2>
+    <h2 class="deco line-through line-color">글자 장식 - 가운데 줄</h2>
+    <h2 class="deco line-through2 line-color">글자 장식 - 가운데 두 줄</h2>
+
+    <!-- 
+    < del 태그 >
+    - line-through 속성과 동일한 기능을 하지만 text-decoration-style,
+      text-decoration-color 등과 같은 속성 적용은 불가.
+    -->
+    <h2 class="deco line-color"><del>글자 장식 - del 태그</del></h2>
+    <hr />
+
+    <h2 class="fontStyle italic">글자 스타일 - italic</h2>
+    <h2 class="fontStyle oblique">글자 스타일 - oblique</h2>
+    <h2><em>글자 스타일 - em</em></h2>
+    <hr />
+
+    <h2 class="transform upper">text transform uppercase</h2>
+    <h2 class="transform lower">TEXT TRANSFORM lowercase</h2>
+    <h2 class="transform capitalize">text transform uppercase</h2>
+    <h2 class="font-variant_smallCaps">text transform uppercase</h2>
+  </body>
+</html>
