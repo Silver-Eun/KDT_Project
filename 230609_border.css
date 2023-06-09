@@ -1,0 +1,117 @@
+p {
+    margin: 0;
+}
+
+.box1 {
+    background: bisque;
+    display: inline-block;
+    width: 300px;
+    text-align: justify;
+    word-break: break-all;
+    /* border-style: solid;
+    border-width:10px;
+    border-color:aqua;
+     */
+    border: solid 10px aqua;
+    /* 
+      border-style, border-width 는 필수.
+   */
+}
+
+.box2 {
+    background: bisque;
+    display: inline-block;
+    width: 300px;
+    text-align: justify;
+    word-break: break-all;
+
+/* 
+< 모든 박스 구성 요소에 동일한 형태로 적용 >
+- value 1개 : 상하좌우
+- value 2개 : 상하  좌우
+- value 3개 : 상   좌우  하
+- value 4개 : 시계방향(상우하좌)
+*/
+    border-style: solid;
+    /* border-style: solid dashed; */
+    /* border-style: solid dashed double; */
+    /* border-style: dotted double solid dashed; */
+
+    /* border-width: 10px 20px; */
+    /* border-color: blue yellow green red; */
+
+    /* border-top-width: 20px; */
+    /* border-right: dotted 10px red; */
+    /* border-bottom-color:green; */
+}
+
+.box3 {
+    background: url(../image/jeep_logo.png) center/200px no-repeat;
+    display: inline-block;
+    width: 200px;
+    height: 150px;
+    border: solid 5px red;
+
+/* 
+< radius >
+- 보더의 모서리 끝단에서 부터 기울기가 생성될 위치까지의 거리.
+*/
+    /* border-top-left-radius: 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 50px; */
+
+/* 
+< radius 지정 형식 >
+- value 1개 : 좌상우상좌하우하
+- value 2개 : 좌상,우하   우상,좌하(X자 형식)
+- value 3개 : 좌상   우상,좌하    우하
+- value 4개 : 시계방향(상우하좌)
+*/
+    /* border-radius: 30px; */
+    /* border-radius: 30px 10px; */
+    /* border-radius: 10px 50px 30px; */
+    /* border-radius: 10px 20px 30px 50px; */
+}
+
+.box4 {
+    background: url(../image/jeep_logo.png) center/200px no-repeat;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: solid 5px red;
+
+    /* 
+      % 단위를 지정하는 것이 좀 더 정밀한 원을 생성 가능.
+   */
+    /* border-radius: 100px; */
+    /* border-radius: 50%; */
+}
+
+.box5 {
+    background: url(../image/jeep_logo.png) center/200px no-repeat;
+    display: inline-block;
+    width: 300px;
+    height: 200px;
+    border: solid 5px red;
+    border-radius: 100% 100% 50% 50%;
+}
+
+.box6 {
+    background: url(../image/jeep_logo.png) center/200px no-repeat;
+    display: inline-block;
+    width: 300px;
+    height: 200px;
+    border: solid 5px red;
+
+    /* 
+      각 모서리에 대한 X, Y 방향에 대한 개별 기울기 지정 가능.
+   */
+    /* border-top-right-radius: 50% 100%; */
+        
+    /* 
+      전체 모서리에 대한 "/" 구분자를 이용하여  X, Y 방향 기울기를
+      동시 지정 가능.
+   */
+    border-radius: 20%/40%;
+}
