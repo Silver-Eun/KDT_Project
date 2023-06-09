@@ -1,0 +1,77 @@
+.parentBox {
+    background-color: antiquewhite;
+    width: 400px;
+    height: 300px;
+}
+
+.parentBox div {
+    width: 100px;
+    height: 100px;
+}
+
+.childBox1 {
+    background-color: blue;
+}
+
+.childBox2 {
+    background-color: red;
+}
+
+.childBox3 {
+    background-color: yellow;
+}
+
+.parentBox:hover .childBox1 {
+    margin-left: 100px;
+}
+
+.parentBox:hover .childBox2 {
+    margin-left: -100px;
+}
+
+/* .parentBox:hover  */
+.childBox3 {
+    margin-left: 200px;
+    margin-top: -200px;
+}
+
+/* 
+마진은 요소의 본래 위치에 대한 거리가 아닌 요소들간의
+상대적 거리를 의미하며, html 문서상에서의 인라인 블럭
+요소간의 개행과 기본 line-height 로 인한 수평, 수직에서의
+미세한 단차가 발생될 수 있음에 주의.
+
+< 2. 마진을 이용한 요소의 중첩 - 자식요소가 인라인 블럭인 경우 >
+
+1) childBox1 : margin-left: 100px;
+  - 부모(parentBox)로 부터의 왼쪽 거리.
+
+2) childBox2 : margin-left: -100px;
+  - childBox1 의 왼쪽 마진이 음수값으로 지정됨으로써 childBox1 으로
+    부터 childBox2 의 거리가 점차 가까워짐으로써 중첩되는 것을 확인
+   가능.
+
+3) childBox3 : margin-left: 300px; margin-top: -200px;
+  - childBox3 의 왼쪽 마진이 300px 로 지정되어 childBox2 와의 왼쪽
+    거리가 300px 을 유지해야 하지만, 해당 수평 영역에서의 남은 영역이
+   부족함에 따라 개행. 따라서 childBox3 는 개행된 위치로 부터 왼쪽
+   으로 300px 거리를 생성.
+   또한 margin-top 을 음수로 지정함으로써 개행전 상단 요소로 부터
+   childBox3 가 가까워져 수직 상단으로 이동하는 것을 확인 가능.
+   단, 이때 특정 음수 시점을 벗어나면 더 이상 수직 상단으로 이동하지
+   않는 것을 확인 가능. 이는 블럭요소와 달리 인라인 블럭요소는   기본적인
+   인라인 텍스트 성질로 인해 텍스트의 높이가 가지는 영역을 마진으로
+   유지한 상태에서 이동이 가능한데, 수직에 대한 특정 시점을 벗어나면
+   기본적으로 차지하는 텍스트의 마진과 요소가 떨어질 수 없으므로 그
+   이상의 음수 마진을 허용하지 않음.
+   따라서 childBox3 에 임의 컨텐트를 넣은 후 수직 음수 마진을 적용하면
+   왼쪽 상단부터 표현되는 문서의 특성상 왼쪽 수평 마진을 유지한 상태로
+   더 이상 수직 음수 마진이 적용되지 않는 것을 확인 가능.
+*/
+.childBox4 {
+    background-color: green;
+}
+
+div:nth-of-type(2) div {
+    display: inline-block;
+}
