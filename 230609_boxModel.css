@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+}
+
+p {
+    display: inline-block;
+    text-align: justify;
+    word-break: break-all;
+    width: 300px;
+    height: 50px;
+    background: bisque;
+
+}
+
+/* 
+      요소의 너비 : width(300) + padding(20*2) + border(20*2) = 380px
+      요소의 높이 : height(50) + padding(20*2) + border(20*2) = 130px
+  */
+.box1 {
+    padding: 20px;
+    border: 20px solid red;
+    margin: 20px;
+}
+
+/* 
+background-color 가 지정되는 디폴트 영역의 범위가 보더까지 임을 확인 가능.
+단, background-image 가 지정되는 디폴트 영역의 범위는 패딩까지만 적용됨에 주의.
+  */
+.box2 {
+    padding: 20px;
+    border: 20px solid #f000;
+    margin: 20px;
+}
+
+/* 
+요소의 너비 : width(300) + padding(20*2) = 340px
+요소의 높이 : height(50) + padding(20*2) =  90px
+  */
+.box3 {
+    padding: 20px;
+    margin: 20px;
+}
+
+/* 
+요소의 너비 : width(300) = 300px
+요소의 높이 : height(50) =  50px
+  */
+.box4 {
+    margin: 30px;
+}
+
+/* 
+요소의 너비 : width(300) + padding(20*2) + border(20*2) = 380px
+요소의 높이 : height(50) + padding(20*2) + border(20*2) = 130px
+  
+※ 아웃라인이 보더의 바깥 마진 영역을 덮어서 표시되어 요소의 크기에
+   영향을 주지 않음을 확인 가능.
+  */
+.box5 {
+    padding: 20px;
+    border: 20px solid red;
+    outline: 10px solid blue;
+    margin: 20px;
+}
+
+/* 
+< outline-offset >
+- outline 의 디폴트 시작 지점(0)을 outline-offset 속성을 이용하여 조정 가능.
+  */
+.box6 {
+    padding: 20px;
+    border: 20px solid red;
+    outline: 10px solid blue;
+    outline-offset: -10px;
+    margin: 20px;
+}
