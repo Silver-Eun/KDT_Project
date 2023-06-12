@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시멘틱(Semantic) 섹셔닝(Sectioning)</title>
+
+    <link rel="stylesheet" href="../CSS/230609_semantic_prac.css" />
+    <!-- <link rel="stylesheet" href="../CSS/230609_semantic_prac_answer.css" /> -->
+  </head>
+  <!-- 
+  < 문제 >
+
+1) header, main, footer 프레임 구성.
+- header, main, footer 의 너비는 1024px 을 기준으로 80% 가 되도록 하고
+  항상 화면 수평 중앙에 배치되도록 설계.
+- 수직은 화면을 기준으로 각각 2 : 6 : 2 비율이 유지되도록 설계.
+
+
+2) header 설계.
+- 로고와 메뉴는 백그라운드 이미지를 적용하고 항상 header 의 중앙에
+    배치되도록 구현.
+- header 내에 요소들은 line-height 속성이 아닌 마진을 이용하여 수직 정렬.
+
+3) main 설계.
+- section(좌상), article(좌하) 과 aside(우) 의 너비는 7 : 3 비율 적용
+- section(좌상)과 article(좌하) 의 높이는 각각 6 : 4 비율 적용.
+ -->
+
+  <body>
+    <header>
+      <h1 class="starbucks_logo">
+        <a href="#">starbucks</a>
+      </h1>
+
+      <nav>
+        <ul>
+          <li>
+            <h2>
+              <a href="#">cofee</a>
+            </h2>
+          </li>
+          <li>
+            <h2>
+              <a href="#">menu</a>
+            </h2>
+          </li>
+          <li>
+            <h2>
+              <a href="#">store</a>
+            </h2>
+          </li>
+          <li>
+            <h2>
+              <a href="#">what's new</a>
+            </h2>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div id="section_article">
+        <section>
+          <h2>news</h2>
+        </section>
+        <article>
+          <h2>info</h2>
+        </article>
+      </div>
+      <aside>
+        <h2>login</h2>
+      </aside>
+    </main>
+
+    <footer>
+      <h3>contact us</h3>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* html */
+
+header, main, footer {
+    width: calc(1024px*0.8);
+    margin: auto; /* 영역 가운데 정렬 */
+    text-align: center; /* 글자 가운데 정렬 */
+}
+
+footer {
+    height: 20vh;
+    background-color: antiquewhite
+}
+
+main {
+    height: 60vh;
+}
+
+header h1, header h1 a, header nav, header nav li, header nav li a, #section_article, aside {
+    display: inline-block;
+}
+
+/* header */
+
+header h1 {
+    margin: calc((20vh - 150px)/2) 20px;
+}
+
+header a {
+    text-indent: -9999em;
+}
+
+header h1 a {
+    width: 150px;
+    height: 150px;
+    background: url(../image/starbucks_logo.jpg) 0/100% no-repeat;
+}
+
+header nav li {
+    margin-left: 20px;
+}
+
+header nav {
+    margin: calc((20vh - 38px)/2) 0;
+    vertical-align: top;
+}
+
+header nav li a {
+    width: 108px;
+    height: 38px;
+    background: url(../image/menu.jpg) -3px -3px;
+}
+
+header nav li:nth-child(2) a {
+    background-position-x: calc(-3px - 109px);
+}
+
+header nav li:nth-child(3) a {
+    background-position-x: calc(-3px - 109px*2 - 1px);
+}
+
+header nav li:nth-child(4) a {
+    background-position-x: calc(-3px - 109px*3 - 2px);
+}
+
+header nav li a:hover {
+    background-position-y: calc(-3px - 39px);
+}
+/* main */
+#section_article {
+    width: 70%;
+    height: 100%;
+}
+
+#section_article section {
+    height: 60%;
+    background-color: silver;
+    line-height: calc(60vh*0.6);
+}
+
+#section_article article {
+    height: 40%;
+    background-color: cadetblue;
+    line-height: calc(60vh*0.4);
+}
+
+main aside {
+    width: 30%;
+    height: 100%;
+    line-height: 60vh;
+    background-color: burlywood;
+    margin-left: -6px;
+    vertical-align: top;
+}
+
+/* footer */
+footer h3 {
+    line-height: 20vh;
+}
