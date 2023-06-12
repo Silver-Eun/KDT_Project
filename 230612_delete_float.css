@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+}
+
+div {
+    border: solid 1px red;
+    padding: 10px;
+}
+
+img {
+    width: 150px;
+    height: 100px;
+}
+
+p {
+    text-align: justify;
+    word-break: break-all;
+}
+
+/* ==================================================== */
+
+.float_left {
+    float: left;
+}
+
+.float_right {
+    float: right;
+}
+
+/* ==================================================== */
+
+/* 
+< float 의 해지 >
+- 비 float 요소에 대하여 clear 속성을 float이 걸린 방향으로 지정함으로써
+  해당 시점부터 비 float 요소가 float 요소를 둘러싸는 특성을 해지 가능.
+  단, clear 해지 가능한 비 float 요소는 반드시 블럭요소만 가능함에 주의.
+  따라서 가상 요소 선택자를 이용함으로써 의미없는 html 코드를 추가하지 않고도 
+  비 float 요소의 앞 또는 뒤에 CSS 차원에서 빈 코드를 추가하여 해지 가능.
+*/
+.clear_left:hover img+p {
+    clear: left;
+}
+
+.clear_right:hover img+p::after {
+    content: "";
+    display: block;
+    clear: right;
+}
+
+.clear_both:hover img+p::after {
+    content: "";
+    display: block;
+    clear:both;
+}
+
+/* ==================================================== */
+
+div {
+    border: none;
+    padding: 0;
+}
+
+.container {
+    background-color: antiquewhite;
+    width: 500px;
+}
+
+.container div {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border: solid 1px red;
+    text-align: center;
+    line-height: 100px;
+    float: right;
+}
+
+/* 
+   부모 요소의 높이가 결정되어 있지 않고 부모 요소 내에 float
+   요소만 존재하는 경우 부모는 float 요소의 높이를 인지하지 못함
+   으로써 배경이 적용되지 않는 문제점 발생.
+   따라서 가상의 비 float 요소에 대한 float 해지를 통해 부모가
+   float 요소의 높이를 인식하게 함으로써 배경 적용이 가능.
+    단, 이는 부모 요소가 블럭요소인 경우에만 해당되며, 부모요소가
+    인라인 블럭요소인 경우에는 clear 를 안해도 float 이 지정된
+    자식의 높이를 인지하여 배경이 적용.
+*/
+.container:hover::after {
+   content: "";
+   display: block;
+   clear:right;
+}
+
+/* .container:hover {
+    display: inline-block;
+} */
