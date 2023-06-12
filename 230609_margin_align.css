@@ -1,0 +1,45 @@
+.parentBox {
+    background-color: antiquewhite;
+    width: 400px;
+    height: 300px;
+    border: solid 1px;
+}
+
+.childBox {
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+}
+
+/* ============================================================= */
+
+.p1box {
+    text-align: center;
+    line-height: 300px;
+}
+
+.p1box div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ============================================================= */
+
+.p2box div {
+
+/* 
+블럭요소의 수평 중앙 정렬은 좌우 마진에 대하여 auto 값 적용.
+*/
+    /* margin: 0 auto; */
+    margin: auto;
+}
+
+.p2box:hover div {
+
+/* 
+블럭요소의 수직 중앙 정렬은 auto 값 적용이 되지 않아
+부모요소의 높이에 대하여 자식요소의 높이를 뺀 나머지를
+상/하 이등분하여 분배함으로써 수직 중앙 정렬 가능.
+*/
+    margin: 100px auto;
+}
