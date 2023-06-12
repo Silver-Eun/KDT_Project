@@ -1,0 +1,40 @@
+p {
+    margin: 0;
+}
+
+.parentBox {
+    background-color: antiquewhite;
+    width: 400px;
+    border: solid 5px red;
+    text-align: justify;
+    word-break: break-all;
+    margin: auto;
+}
+
+.p2box {
+    padding: 20px;
+}
+
+.p3box {
+    width: 360px;
+    padding: 20px;
+}
+
+.p4box p {
+    padding: 20px;
+}
+
+/* 
+< box-sizing >
+- content-box : width 와 height 의 영역을 컨텐트 영역까지로 지정. ( default )
+- border-box : width 와 height 의 영역을 보더 영역까지로 지정.
+*/
+.p5box {
+    box-sizing: content-box;
+    padding: 20px;
+}
+
+.pbox:hover {
+    box-sizing: border-box;
+    width: 410px;
+}

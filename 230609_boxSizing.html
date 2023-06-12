@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>box-sizing</title>
+
+    <link rel="stylesheet" href="../CSS/230609_boxSizing.css" />
+  </head>
+
+  <body>
+    <h1>box-sizing</h1>
+    <hr />
+
+    <!-- 
+    높이는 내부 컨텐트에 의해 자동으로 결정되도록 하되
+    부모요소의 너비는 border를 합친 410px 을 유지.
+    -->
+    <h2>1. width(400px) + border(5px * 2) = 410px</h2>
+    <div class="parentBox p1box">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore,
+        repudiandae consequatur hic cupiditate asperiores esse, distinctio
+        architecto illum aliquam, vero impedit sint doloribus voluptate odit
+        magni numquam eius dolorum!
+      </p>
+    </div>
+    <hr />
+
+    <!-- 부모요소에 padding을 지정함으로써 부모요소에 할당하려는 너비를 초과. -->
+    <h2>2. width(400px) + padding(20px * 2) + border(5px * 2) = 450px</h2>
+    <div class="parentBox p2box">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore,
+        repudiandae consequatur hic cupiditate asperiores esse, distinctio
+        architecto illum aliquam, vero impedit sint doloribus voluptate odit
+        magni numquam eius dolorum!
+      </p>
+    </div>
+    <hr />
+
+    <!--
+    padding을 뺀 너비를 부모요소에 재할당하여 너비를 유지.
+    이는 패딩을 조정할 때마다 부모요소의 너비도 매번 조정해야하는 문제점.
+    -->
+    <h2>3. width(360px) + padding(20px * 2) + border(5px * 2) = 410px</h2>
+    <div class="parentBox p3box">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore,
+        repudiandae consequatur hic cupiditate asperiores esse, distinctio
+        architecto illum aliquam, vero impedit sint doloribus voluptate odit
+        magni numquam eius dolorum!
+      </p>
+    </div>
+    <hr />
+
+    <!--
+    부모요소의 padding이 아닌 자식요소의 padding을 조정.
+    이는 부모요소가 아닌 자식요소에 padding을 지정함으로써 원하는 레이아웃이
+    아닌 결과를 초래할 수 있으며, 자식요소가 하나인 경우에는 문제가 되지
+    않지만 자식요소가 여러개 존재하는 경우에는 개별 자식요소에 대한 모든
+    padding을 별도로 지정해야 하는 문제점 발생 가능.
+    -->
+    <h2>4. width(400px) + border(5px * 2) = 410px</h2>
+    <div class="parentBox p4box">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore,
+        repudiandae consequatur hic cupiditate asperiores esse, distinctio
+        architecto illum aliquam, vero impedit sint doloribus voluptate odit
+        magni numquam eius dolorum!
+      </p>
+    </div>
+    <hr />
+
+    <!--
+    호버하면 content-box 를 border-box 로 변경함으로써 지정된 부모요소의
+    width 를 컨텐트 영역이 아닌 보더 영역까지를 포함하여 산출.
+  -->
+    <h2>
+      content-box - width(400px) + padding(20px * 2) + border(5px * 2) = 450px
+    </h2>
+    <h2>
+      border-box - content(360px) + padding(20px * 2) + border(5px * 2) = 410px
+    </h2>
+    <div class="parentBox p5box">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore,
+        repudiandae consequatur hic cupiditate asperiores esse, distinctio
+        architecto illum aliquam, vero impedit sint doloribus voluptate odit
+        magni numquam eius dolorum!
+      </p>
+    </div>
+    <hr />
+  </body>
+</html>
