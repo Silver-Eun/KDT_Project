@@ -1,0 +1,211 @@
+body {
+    margin: 30px;
+    padding: 20px;
+    border: 2px dashed;
+}
+
+body>div {
+    background-color: blue;
+}
+
+div div {
+    font-size: 20pt;
+    padding: 5px;
+    border: 1px red solid;
+}
+
+.first {
+    background-color: yellow;
+}
+
+.second {
+    background-color: turquoise;
+    color: red;
+}
+
+.third,
+.second_child {
+    background-color: violet;
+    color: bisque;
+}
+
+/*
+< 쌓임맥락(Stacking context)) >
+- 가상의 z 축을 사용한 HTML 요소를 3 차원으로 개념화시킴으로써 포지션
+  속성이 static 이 아니면서 z-index 속성 값이 auto(0)가 아닌 요소에 적용.
+
+===================================================================================
+
+< z-index >
+- 포지션 속성(relative, absolute, fixed)에 종속적인 속성으로 디폴트 값은 auto(0).
+  속성에 적용되는 값은 단위가 없는 상대적인 정수값으로 z 축에 대한 상대적 위치를
+  결정하며 음수값 적용이 가능.
+  z 축이 동일한 값들 간에는 요소가 생성된 순서에 따라 새로운 쌓임맥락이 생성되어,
+  생성순서가 늦을수록 상대적으로 높은 z 축 위치를 점유.
+  속성 값이 높은 요소가 속성 값이 낮은 요소보다 항상 위에 배치되며 다음 4 가지
+  요인에 주의.
+
+1) 포지션 속성이 지정되지 않거나 static 인 경우에는 z-index 속성 값을 지정하여도
+   auto(0) 값 적용.
+
+2) 자식요소의 z 값은 항상 부모요소 내에서만 상대적 값이 인정되어 부모요소가 다른
+   형제요소보다  z 값이 낮다면 자식요소의 z 값이 부모요소의 형제인 요소의 z 값보다
+   아무리 더 높아도 부모요소에 대한 상대적 위치만 인정될뿐, 부모의 형제요소 보다는
+   항상 낮은 위치에 배치.
+
+3) auto(0) 값은 해당 요소에 대한 z 축값이 0 값으로 적용되는 것은 맞지만 그에 대한
+   자식요소가 존재하는 경우,  자식 요소의 z 축 값을 부모요소 내에서만 인정되는
+   종속적인 값으로 인정하는 것이 아니라 부모요소와 대등한 형제관계 요소처럼 상향
+   평가함으로써 부모요소와 형제관계에 있는 다른 요소와 대등한 z 축 평가를 진행.
+   따라서 부모요소의 z 값이 auto(0) 이고 그에 대한 자식 요소가 부모의 다른 형제
+   요소 보다 더 높은 z 값을 가진 경우, 자식 요소가 부모의 다른 형제요소 보다 위에
+   배치 가능.
+
+4) 부모요소가 auto(0) 가 아니고 z-index 값이 자식 요소의 z 값보다 아무리 높아도
+   부모요소는 자식요소보다 더 높은 위치 점유 불가.
+   단, "3)" 과 같이 부모요소가 auto(0) 값을 가지고 자식요소의 z 값이 음수인 경우
+   에는 z 축 값에 따른 상대적 위치로 높이가 결정되어 자식요소가 부모요소보다 낮은
+   위치에 배치 가능.
+   하지만 부모요소에 transform 속성이 지정된 경우에는 부모요소가 auto 값을 가지고
+   자식요소의 z 값이 음수더라도 부모요소가 자식요소의 위에 배치될 수 없음에 유의.
+*/
+
+/*
+static 속성을 가진 요소들간 배경과 컨텐트는 각각 별도의 쌓임맥락이 형성되고
+컨텐트는 항상 배경보다 위에 배치되어 항상 요소들의 배경 위에서 컨텐트간
+새로운 쌓임맥락이 적용.
+*/
+.case1 div {
+    margin-top: -30px;
+}
+
+/*
+static 속성이 아닌 포지션 속성을 가진 요소에 대해서는 z 축 값을 지정하지 않아도(auto)
+배경과 컨텐트가 별도의 쌓임맥락을 형성하는 것이 아닌,  배경뿐만아니라 내부 컨텐트를 포함한
+전체에 대해서 새로운 쌓임맥락이 적용되는것을 확인 가능.
+*/
+.case2 .first {
+    position: relative;
+}
+
+.case2 .second {
+    position: relative;
+    top: -20px;
+}
+
+.case2 .third {
+    position: relative;
+    top: -40px;
+}
+
+/*
+static 속성이 아닌 요소는 static 속성인 요소보다는 항상 쌓임맥락이 우위를 점하여
+새로운 쌓임맥락이 적용되지 않음.
+*/
+.case3 .first {
+    position: relative;
+    top: 10px;
+}
+
+.case3 .third {
+    position: relative;
+    top: -10px;
+}
+
+/*
+z-index 속성 지정에 따라 새로운 쌓임맥락에 관계없이 z 축 값에 따라 상대적
+위치가 결정되는 것을 확인 가능.
+*/
+.case4 .first {
+    position: relative;
+    /* top: 30px; */
+    z-index: 3;
+}
+
+.case4 .second {
+    position: relative;
+    top: -20px;
+    z-index: 2;
+}
+
+.case4 .third {
+    position: relative;
+    bottom: 50px;
+    top: -40px;
+    z-index: 1;
+}
+
+/*
+자식요소의 z 축값이 아무리 높아도 부모요소의 z 축값이 형제관계에 있는
+다른 요소의 z 축 값보다 낮다면, 자식요소는 부모요소와 형제관계에 있는
+다른 요소보다 쌓임맥락이 항상 낮은 위치에 존재하게 되며,
+단지 z 축에 따른 부모요소내 같은 형제 요소들과의 쌓임맥락만 인정.
+*/
+.case5 .first {
+    position: relative;
+    bottom: -20px;
+    z-index: 3;
+}
+
+.case5 .second {
+    position: relative;
+    left: 30px;
+    z-index: 2;
+}
+
+.case5 .second_child {
+    position: relative;
+    top: -40px;
+    left: 30px;
+    z-index: 100;
+}
+
+/*
+부모요소의 z-index 값이 auto 가 아니고 부모요소의 z 축 값이 자식요소의 z 축 값보다
+아무리 높아도 부모요소는 자식요소보다 높은 위치에 존재할 수 없음.
+*/
+.case6 .first {
+    position: relative;
+    bottom: -30px;
+    z-index: 3;
+}
+
+.case6 .second {
+    position: relative;
+    left: 20px;
+    z-index: 5;
+}
+
+.case6 .second_child {
+    position: relative;
+    top: -20px;
+    z-index: 1;
+}
+
+/*
+부모요소의 z 축 값이 auto(0) 인 경우에는 자식요소의 상대적 위치가 부모에
+종속되는 것이 아니라, 부모와 대등한 쌓임맥락으로 승격되어 부모요소와
+관계에 있는 다른 요소와 대등한 관계에서 상대적 위치를 결정.
+따라서 부모요소의 z 축 값이 auto(0) 이고 자식요소가 음수값을 가지는 경우에는
+부모요소가 자식요소보다 높은 위치에 배치되는 것을 확인 가능.
+*/
+.case7 .first {
+    position: relative;
+    z-index: 2;
+}
+
+.case7 .second {
+    position: relative;
+    left: 20px;
+    top: -20px;
+    z-index: auto;
+    /* z-index: 1; */
+}
+
+.case7 .second_child {
+    position: relative;
+    top: -40px;
+    right: -30px;
+    z-index: 3;
+    /* z-index: -1; */
+}

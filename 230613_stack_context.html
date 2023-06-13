@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쌓임맥락(Stacking context)</title>
+
+    <link rel="stylesheet" href="../CSS/230613_stack_context.css" />
+  </head>
+
+  <body>
+    <h1>쌓임맥락(Stacking context)</h1>
+    <hr />
+
+    <h2>CASE 1</h2>
+    <div class="case1">
+      <div class="first">1 - 첫 번째 요소--------</div>
+      <div class="second">1 - 두 번째 요소-----</div>
+      <div class="third">1 - 세 번째 요소--</div>
+    </div>
+    <hr />
+
+    <h2>CASE 2</h2>
+    <div class="case2">
+      <div class="first">2 - 첫 번째 요소--------</div>
+      <div class="second">2 - 두 번째 요소-----</div>
+      <div class="third">2 - 세 번째 요소--</div>
+    </div>
+    <hr />
+
+    <h2>CASE 3</h2>
+    <div class="case3">
+      <div class="first">3 - 첫 번째 요소--------</div>
+      <div class="second">3 - 두 번째 요소-----</div>
+      <div class="third">3 - 세 번째 요소--</div>
+    </div>
+    <hr />
+
+    <h2>CASE 4</h2>
+    <div class="case4">
+      <div class="first">4 - 첫 번째 요소--------</div>
+      <div class="second">4 - 두 번째 요소-----</div>
+      <div class="third">4 - 세 번째 요소--</div>
+    </div>
+    <hr />
+
+    <h2>CASE 5</h2>
+    <div class="case5">
+      <div class="first">5 - 첫 번째 요소--------</div>
+      <div class="second">
+        5 - 두 번째 요소-----
+        <div class="second_child">5 - 두 번째의 자식요소--</div>
+      </div>
+    </div>
+    <hr />
+
+    <h2>CASE 6</h2>
+    <div class="case6">
+      <div class="first">6 - 첫 번째 요소--------</div>
+      <div class="second">
+        6 - 두 번째 요소-----
+        <div class="second_child">6 - 두 번째의 자식요소--</div>
+      </div>
+    </div>
+
+    <h2>CASE 7</h2>
+    <div class="case7">
+      <div class="first">7 - 첫 번째 요소--------</div>
+      <div class="second">
+        7 - 두 번째 요소-----
+        <div class="second_child">7 - 두 번째의 자식요소--</div>
+      </div>
+    </div>
+  </body>
+</html>
