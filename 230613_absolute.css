@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid red;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 100px;
+
+/* 
+< absolute >
+- fixed 와 동일하게 문맥에서의 영역을 차지하지 않아 부모요소에서 높이를
+  인지하지 못하고 inline-block 요소처럼 content 크기만큼만을 디스플레이 영역
+  으로 표시되며 최초 디스플레이 시작 지점을 기준으로 offset의 기준 시작 지점이
+  달라지는 등의 모든 position 특성이 동일.
+  하지만 viewpot 영역을 기준으로 고정되는 것이 아닌, 기준이 되는 부모 요소를
+  기준으로 요소의 위치가 결정.
+
+※ 기준이 되는 부모 요소를 기준으로 그 위치가 결정되므로 스크롤바가 생성시에는
+  그 위치가 변경되거나 화면상에 보이지 않을 수 있음에 주의.
+*/
+
+    position: absolute;
+}
+
+.b1 {
+    top: 100px;
+    left: 100px;
+}
+
+.b2 {
+    left: 200px;
+    bottom: 100px;
+}
+
+.b3 {
+    left: 300px;
+    bottom:100px;
+}
+
+.b4 {
+    top: 100px;
+    right: 300px;
+}
+
+body {
+    /* margin:10px; */
+}
