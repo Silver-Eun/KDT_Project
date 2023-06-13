@@ -1,0 +1,48 @@
+.background {
+    background: url(../image/bg3.jpg) no-repeat 0/300px 450px;
+    width: 300px;
+    height: 450px;
+    text-align: center;
+    line-height: 450px;
+    font-size: 100px;
+    color: darkorange;
+
+    display: inline-block;
+    opacity: .5;
+}
+
+
+/* ============================================================== */
+
+.container {
+
+/* 
+container가 인라인 블럭요소 처럼 크기가 결정되어야만
+span 을 배경의 중앙에 배치가 가능하므로 relative가 아닌,
+absolute나 fixed로 지정.
+*/
+ position: absolute;
+}
+
+.absolute {
+    position: absolute;
+    color: aqua;
+
+    font-size: 100px;
+
+    left: calc((100% - 100px)/2);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 
+absolute 나 fixed 는 인라인 블럭요소 처럼 컨텐트 만큼의 크기를
+가지는 것뿐, 실제 인라인 블럭요소와 동일하지는 않음에 주의.
+예시에서의 container는 absolute나 fixed를 지정하였더라도
+본래 블럭요소의 위치를 그대로 보존함에 따라 인라인 블럭요소로
+변경하여 위치를 변경.
+*/
+.container {
+    display: inline-block;
+    margin-left: 10px;
+}
