@@ -1,0 +1,128 @@
+.container {
+    background-color: yellow;
+    width: 400px;
+    height: 800px;
+    margin: 10px auto;
+}
+
+.container div {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.box1 {
+    background-color: red;
+}
+
+.box2 {
+    background-color: blue;
+}
+
+.box3 {
+    background-color: green;
+}
+
+.box4 {
+    background-color: black;
+}
+
+.box5 {
+    background-color: cadetblue;
+}
+
+.box6 {
+    background-color: brown;
+}
+
+.box7 {
+    background-color: darkgray;
+}
+
+.box8 {
+    background-color: cyan;
+}
+
+/* ===================================================================== */
+
+/* 
+container 를 기준으로 box 요소들을 배치하기 위해 box 요소들을 absolute로
+지정하고 블럭요소인 container 의 수평 정렬을 유지하기 위해 relative로 지정.
+
+container 를 fixed 나 absolute 로 지정하면 요소의 본래 속성인 블럭이 아닌
+인라인 블럭처럼 인식하여 기존 설정으로는 수평 정렬 불가함에 주의.
+*/
+.container {
+    position: relative;
+    /* position: absolute; */
+}
+
+.container div {
+    position: absolute;
+}
+
+/* ===================================================================== */
+/* 1. 요소를 부모의 바깥 경계에 배치하기 */
+.box1 {
+    right:-100px;
+}
+
+.box2 {
+    top:100px;
+    left:100%;
+}
+
+/* ===================================================================== */
+/* 2. 요소를 부모의 바깥 경계에서 10px 띄우고 배치하기 */
+.box3 {
+    top:200px;
+    right: calc(-100px + -10px);
+}
+
+.box4 {
+    top:300px;
+    left: calc(100% + 10px);
+}
+
+/* ===================================================================== */
+/* 3. 크기가 가변적인 요소를 부모의 바깥 경계에 배치하기 */
+
+/*
+클래스 선택자가 태그 선택자보다 우선순위가 높지만 복합선택자 경쟁규칙에 의하여
+상기의 ".container div" 는 ( 클래스 선택자 + 태그 선택자 = 11점 )인 반면,
+".box5" 는 클래스 선택자( 10점 )으로 우선순위 선정 점수가 더낮으므로 ".container .box5" 와 같은 방식으로 우순순위 점수를 높여 적용.
+*/
+.container .box5 {
+    top:400px;
+    width: 50px;
+    /* 요소의 크기가 가변적인 경우 대처 불가. */
+    left: -50px;
+}
+
+.container .box6 {
+    top:500px;
+    width: 80px;
+    /* 요소의 크기가 가변적이어도 별도의 측정이나 계산이 필요치 않음. */
+    right: 100%;
+}
+
+/* ===================================================================== */
+/* 4. 요소 중앙 정렬 */
+/* 수평 중앙 정렬 */
+.box7 {
+    top:600px;
+    left:50%;
+    margin-left:-50px;
+}
+
+/* 수직 중앙 정렬 */
+.box8 {
+    /* 전체크기에서 요소의 크기를 뺀 절반을 지정함으로써 중앙 정렬. */
+/* top: calc((100% - 100px)/2); */
+top: 50%;
+transform: translateY(-50%);
+}
