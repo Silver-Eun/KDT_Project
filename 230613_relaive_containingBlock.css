@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.outer {
+    background-color: antiquewhite;
+    width: 500px;
+    height: 500px;
+    border: solid 1px;
+}
+
+.inner {
+    background-color: silver;
+    width: 300px;
+    height: 300px;
+    margin: 100px auto;
+
+}
+
+.inner div {
+    background-color: aqua;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+/* 
+< relative 요소의 컨테이닝 블럭 >
+1) 위치에 대한 컨테이닝 블럭
+- relative 요소 자신의 본래 위치가 항상 기준.
+2) 크기에 대한 컨테이닝 블럭
+- static 요소와 동일하게 무조건 가장 가까운 부모요소가
+  크기를 결정짓는 컨테이닝 블럭으로 인정.
+*/
+
+    position: relative;
+}
+
+.child1 {
+    top:-50px;
+}
+
+.child2 {
+    right: 50px;
+}
+
+.child3 {
+    bottom:50px;
+}
+
+/* ================================================================================ */
+
+.child4 {
+    bottom: 16%;
+    left: 0%;
+}
+
+.child5 {
+    bottom: 33%;
+    left: 50%;
+}
+
+.child6 {
+    bottom: 33%;
+    left: 100%;
+}
+
+.box2 div div {
+    width: 50%;
+    height: 50px;
+}
