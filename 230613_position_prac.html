@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/230613_position_prac.css" />
+  </head>
+
+  <!-- 
+< 문제 >
+- 화면구현 예시와 같이 겹처진 사각형 박스를 화면 중앙에 배치되도록 하고
+  개별 사각형에 마우스 오버했을 때의 동작도 포함하여 구현하라.
+  ( HTML 문서는 본인이 직접 구성 )
+
+< 조건 >
+- 사각형 박스의 부모는 사각형 박스보다 작아야함.
+- 상단, 왼쪽 사각형은 호버시 맨 위로
+- 오른쪽 사각형은 호버시 맨 아래로
+-->
+
+  <body>
+    <div class="container">
+      <div class="box1">상단 사각형</div>
+      <div class="box2">왼쪽 사각형</div>
+      <div class="box3">오른쪽 사각형</div>
+    </div>
+
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? Lorem ipsum dolor, sit amet consectetur
+      adipisicing elit. Excepturi incidunt, esse perferendis illo iste unde
+      consequuntur fugiat veniam cum earum quidem modi repellendus, quasi, non
+      ratione impedit blanditiis illum architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto? Lorem ipsum dolor,
+      sit amet consectetur adipisicing elit. Excepturi incidunt, esse
+      perferendis illo iste unde consequuntur fugiat veniam cum earum quidem
+      modi repellendus, quasi, non ratione impedit blanditiis illum architecto?
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? Lorem ipsum dolor, sit amet consectetur
+      adipisicing elit. Excepturi incidunt, esse perferendis illo iste unde
+      consequuntur fugiat veniam cum earum quidem modi repellendus, quasi, non
+      ratione impedit blanditiis illum architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto? Lorem ipsum dolor,
+      sit amet consectetur adipisicing elit. Excepturi incidunt, esse
+      perferendis illo iste unde consequuntur fugiat veniam cum earum quidem
+      modi repellendus, quasi, non ratione impedit blanditiis illum architecto?
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? Lorem ipsum dolor, sit amet consectetur
+      adipisicing elit. Excepturi incidunt, esse perferendis illo iste unde
+      consequuntur fugiat veniam cum earum quidem modi repellendus, quasi, non
+      ratione impedit blanditiis illum architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto? Lorem ipsum dolor,
+      sit amet consectetur adipisicing elit. Excepturi incidunt, esse
+      perferendis illo iste unde consequuntur fugiat veniam cum earum quidem
+      modi repellendus, quasi, non ratione impedit blanditiis illum architecto?
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? Lorem ipsum dolor, sit amet consectetur
+      adipisicing elit. Excepturi incidunt, esse perferendis illo iste unde
+      consequuntur fugiat veniam cum earum quidem modi repellendus, quasi, non
+      ratione impedit blanditiis illum architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto? Lorem ipsum dolor,
+      sit amet consectetur adipisicing elit. Excepturi incidunt, esse
+      perferendis illo iste unde consequuntur fugiat veniam cum earum quidem
+      modi repellendus, quasi, non ratione impedit blanditiis illum architecto?
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto? Lorem ipsum dolor,
+      sit amet consectetur adipisicing elit. Excepturi incidunt, esse
+      perferendis illo iste unde consequuntur fugiat veniam cum earum quidem
+      modi repellendus, quasi, non ratione impedit blanditiis illum architecto?
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? Lorem ipsum dolor, sit amet consectetur
+      adipisicing elit. Excepturi incidunt, esse perferendis illo iste unde
+      consequuntur fugiat veniam cum earum quidem modi repellendus, quasi, non
+      ratione impedit blanditiis illum architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto? Lorem ipsum dolor,
+      sit amet consectetur adipisicing elit. Excepturi incidunt, esse
+      perferendis illo iste unde consequuntur fugiat veniam cum earum quidem
+      modi repellendus, quasi, non ratione impedit blanditiis illum architecto?
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
+      incidunt, esse perferendis illo iste unde consequuntur fugiat veniam cum
+      earum quidem modi repellendus, quasi, non ratione impedit blanditiis illum
+      architecto? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+      Excepturi incidunt, esse perferendis illo iste unde consequuntur fugiat
+      veniam cum earum quidem modi repellendus, quasi, non ratione impedit
+      blanditiis illum architecto? Lorem ipsum dolor, sit amet consectetur
+      adipisicing elit. Excepturi incidunt, esse perferendis illo iste unde
+      consequuntur fugiat veniam cum earum quidem modi repellendus, quasi, non
+      ratione impedit blanditiis illum architecto? Lorem ipsum dolor, sit amet
+      consectetur adipisicing elit. Excepturi incidunt, esse perferendis illo
+      iste unde consequuntur fugiat veniam cum earum quidem modi repellendus,
+      quasi, non ratione impedit blanditiis illum architecto?
+    </p>
+  </body>
+</html>

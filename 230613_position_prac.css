@@ -1,0 +1,46 @@
+.container {
+  position: fixed;
+  width: 5vh;
+  height: 5vh;
+  top: calc(50% - (5vh) / 2);
+  left: calc(50% - (5vh) / 2);
+}
+
+.box1,
+.box2,
+.box3 {
+  position: absolute;
+  width: 500%;
+  height: 500%;
+  line-height: 25vh;
+  font-size: 1.2em;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.box1 {
+  background-color: blue;
+  bottom: 0;
+  right: -200%;
+}
+
+.box2 {
+  background-color: chartreuse;
+  color: black;
+  right: 0;
+  z-index: -1;
+}
+
+.box3 {
+  background-color: deeppink;
+}
+
+.box1:hover,
+.box2:hover {
+  z-index: 1;
+}
+
+.box3:hover {
+  z-index: -2;
+}
