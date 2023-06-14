@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.outer {
+  background-color: antiquewhite;
+  width: 500px;
+  height: 500px;
+  border: solid 1px;
+}
+
+.inner {
+  background-color: silver;
+  width: 300px;
+  height: 300px;
+  margin: 100px auto;
+}
+
+.inner div {
+  background-color: aqua;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+
+  /* 
+< absolute 요소의 컨테이닝 블럭이 되기 위한 자격 >
+-  static 이 아닌 포지션 속성을 가진 가장 가까운 부모 또는 조상 요소.
+*/
+  position: absolute;
+}
+
+.child1 {
+  top: 0px;
+  /* right: 0px; */
+}
+
+.child2 {
+  bottom: 100px;
+  right: 0px;
+}
+
+.child3 {
+  bottom: 0px;
+  right: 0;
+}
+
+.inner div {
+  width: 10%;
+  height: 10%;
+}
+
+.outer {
+  position: relative;
+}
+
+.inner {
+  position: relative;
+}
