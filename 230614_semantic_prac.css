@@ -1,0 +1,108 @@
+* {
+  padding: 0;
+}
+
+header {
+  height: 50px;
+}
+
+header,
+main {
+  width: 600px;
+  margin: 0 auto;
+}
+
+nav > ul {
+  position: absolute;
+  background-color: darkslategrey;
+  color: white;
+  text-indent: 20px;
+  margin: 0;
+}
+
+nav > ul > li,
+li > ul {
+  width: 150px;
+  list-style: none;
+}
+
+nav > ul > li {
+  float: left;
+  line-height: 50px;
+}
+
+li > ul {
+  position: absolute;
+  display: none;
+  background-color: cadetblue;
+  font-size: 0.8em;
+}
+
+nav > ul > li:hover ul {
+  display: block;
+}
+
+main p {
+  text-align: justify;
+  word-break: break-all;
+}
+
+/* 다른 방법 */
+/* 
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header,
+main {
+    width: 600px;
+    margin: auto;
+}
+
+header>nav>ul {
+    margin-bottom: 20px;
+    background-color: darkslategray;
+    color: white;
+}
+
+header>nav>ul::after {
+    content: "";
+    display: block;
+    clear: left;
+}
+
+header>nav>ul>li{
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    width: calc(100%/4);
+    
+    position: relative;
+}
+
+header ul ul {
+    background-color: cadetblue;
+    position: absolute;
+    left: 0;
+    width: 100%;
+
+    display: none;
+}
+
+header li {
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+header>nav>ul>li:hover ul {
+    display: block;
+    font-size: .7em;
+}
+
+main p {
+    text-align: justify;
+    word-break: break-all;
+}
+*/
