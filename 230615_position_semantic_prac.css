@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header,
+main,
+footer {
+  width: calc(1024px * 0.8);
+  margin: auto;
+  text-align: center;
+}
+
+header,
+footer {
+  height: 20vh;
+  line-height: 20vh;
+  background-color: antiquewhite;
+}
+
+main {
+  height: 60vh;
+  position: relative;
+}
+
+#section_article {
+  width: 70%;
+  height: 100%;
+}
+
+section {
+  height: 60%;
+}
+
+article {
+  height: 40%;
+}
+
+section h2 {
+  line-height: calc(60vh * 0.6);
+  background-color: silver;
+}
+
+article h2 {
+  line-height: calc(60vh * 0.4);
+  bottom: 0;
+  background-color: cadetblue;
+}
+
+aside,
+aside h2 {
+  position: absolute;
+  height: 100%;
+  line-height: 60vh;
+  top: 0;
+}
+
+aside {
+  width: 30%;
+  left: 70%;
+}
+
+aside h2 {
+  width: 100%;
+  background-color: burlywood;
+}
+
+section:hover h2,
+article:hover h2 {
+  position: relative;
+  left: calc(100% / 7 * 3 / 2);
+  z-index: 1;
+}
+
+section:hover h2 {
+  top: calc(100% / 6 * 4 / 2);
+}
+
+article:hover h2 {
+  bottom: calc(100% / 4 * 6 / 2);
+}
+
+aside:hover h2 {
+  left: 100%;
+}
+
+/* 다른 방법 */
+/* 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header,
+main,
+footer {
+    width: calc(1024px * 0.8);
+    margin: auto;
+    text-align: center;
+}
+
+header,
+footer {
+    background-color: antiquewhite;
+    height: 20vh;
+    line-height: 20vh;
+}
+
+main {
+    height: 60vh;
+}
+
+main,
+main h2 {
+    position: relative;
+}
+
+/* ============================================== */
+/*
+#section_article {
+    width: 70%;
+    height: 100%;
+}
+
+#section_article section {
+    height: 60%;
+}
+
+#section_article section h2 {
+    background-color: silver;
+    line-height: calc(60vh * 0.6);
+}
+
+#section_article article {
+    height: 40%;
+}
+
+#section_article article h2 {
+    background-color: teal;
+    line-height: calc(60vh * 0.4);
+}
+
+main aside {
+    width: 30%;
+    height: 100%;
+    
+    position: absolute;
+    right: 0;
+    top:0;
+}
+
+main aside h2 {
+    background-color: coral;
+    line-height: 60vh;
+}
+
+#section_article section:hover h2,
+#section_article article:hover h2 {
+    left:calc(100% / 7 * 3 / 2);
+    z-index: 1;
+}
+
+#section_article section:hover h2 {
+    top:calc(100% / 6 * 4 / 2);
+}
+
+#section_article article:hover h2 {
+    bottom:calc(100% / 4 * 6 / 2);
+}
+
+main aside:hover h2 {
+    left: 100%;
+}
+*/
