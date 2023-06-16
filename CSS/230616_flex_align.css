@@ -1,0 +1,114 @@
+.item1 {
+  background-color: red;
+}
+
+.item2 {
+  background-color: blue;
+}
+
+.item3 {
+  background-color: green;
+}
+
+.flex div {
+  color: white;
+}
+
+/* ======================================================================== */
+
+.flex {
+  width: 500px;
+  height: 100px;
+  border: 1px solid;
+  display: flex;
+}
+
+/* ======================================================================== */
+/* 1. align-items */
+
+.container1 div {
+  width: 100%;
+}
+
+.container1 div:not(:first-child) {
+  height: 50px;
+}
+
+/* 
+< align-items >
+- 주축에 위치한 항목들의 교차축 방향에 대한 항목들의 정렬 방식을
+  플렉스 컨테이너에서 지정.
+*/
+.container1:hover {
+  /* 
+< stretch >
+- aling-items 속성 미지정시의 디폴트 값으로 교차축의 크기가 지정되지
+  않은 항목을 컨테이너 크기에 맞도록 늘이는 특성.
+*/
+  /* align-items: stretch; */
+  /* align-items: flex-start; */
+  align-items: flex-end;
+  /* align-items: center; */
+  /* align-items: baseline; */
+}
+
+.container2 {
+  flex-direction: column;
+}
+
+.container2 div:not(:first-child) {
+  width: 200px;
+}
+
+.container2:hover {
+  /* align-items: stretch; */
+  /* align-items: flex-start; */
+  align-items: flex-end;
+  /* align-items: center; */
+  /* align-items: baseline; */
+}
+
+/* ======================================================================== */
+/* 2. align-self */
+
+/* 
+< align-self >
+- 주축에 위치한 항목들의 교차축 방향에 대한 항목의 정렬 방식을 개별 항목에서 직접 지정.
+*/
+.container3 div {
+  width: 100%;
+  height: 50px;
+}
+
+.container3 .item1 {
+  align-self: end;
+}
+
+.container3 .item2 {
+  align-self: center;
+}
+
+.container3:hover .item1 {
+  align-self: start;
+}
+
+.container4 {
+  flex-direction: column;
+}
+
+.container4 div {
+  height: 100%;
+  width: 50px;
+}
+
+.container4 .item2 {
+  align-self: end;
+}
+
+.container4 .item3 {
+  align-self: center;
+}
+
+.container4:hover .item2 {
+  align-self: start;
+}
