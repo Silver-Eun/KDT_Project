@@ -1,0 +1,66 @@
+.item1 {
+  background-color: red;
+}
+
+.item2 {
+  background-color: blue;
+}
+
+.item3 {
+  background-color: green;
+}
+
+.flex div {
+  color: white;
+}
+
+.flex {
+  width: 500px;
+  height: 200px;
+  border: 1px solid;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ======================================================================== */
+/* 1. flex-wrap 에 대한 flex 적용
+wrap 설정으로 인한 다중 주축이 생성되어도 다중 주축에 대한 flex 비율은
+적용되지 않아 다중 주축 개별 비율이 적용됨으로써 의미없는 비율 적용이
+될 수 있음에 주의.
+*/
+
+.container1 div {
+  flex-basis: 100%;
+}
+
+.container1 .item1 {
+  /* flex-shrink: 2; */
+  /* flex-grow: 2; */
+  /* flex:2 100%; */
+}
+
+.container1 .item2,
+.container1 .item3 {
+  /* flex-shrink: 1; */
+  /* flex-grow: 1; */
+  /* flex:1 100%; */
+}
+
+/* ======================================================================== */
+/* 2. flex-wrap 에 대한 퍼센티지 적용
+wrap 설정으로 인한 다중 주축에 대한 비율은 아래와 같이 개별 주축에 대한
+컨텐트의 크기를 직접 퍼센티지로 설정함으로써 적용 가능.
+*/
+.container2 div {
+  flex-basis: 100%;
+}
+
+.container2 .item1 {
+  flex-basis: 100%;
+}
+
+.container2 .item2,
+.container2 .item3 {
+  flex-basis: 50%;
+}
