@@ -1,0 +1,73 @@
+.item1 {
+  background-color: red;
+}
+
+.item2 {
+  background-color: blue;
+}
+
+.item3 {
+  background-color: green;
+}
+
+.flex div {
+  color: white;
+}
+
+/* ======================================================================== */
+
+.flex {
+  width: 500px;
+  height: 100px;
+  border: 1px solid;
+  display: flex;
+}
+
+/* ======================================================================== */
+/* 1. flex-flow */
+
+.container1 div {
+  width: 100%;
+}
+
+/* 
+< flex-flow >
+- flex-direction 과 flex-wrap 을 순서대로 지정하여 동시 설정.
+*/
+.container1 {
+  flex-flow: row wrap;
+}
+
+.container1:hover {
+  flex-flow: row-reverse nowrap;
+}
+
+/* ======================================================================== */
+/* 2. order */
+
+.container2 div {
+  height: 100%;
+}
+
+.container2 {
+  flex-flow: column wrap-reverse;
+}
+
+/* 
+< order >
+- 항목들에 순서를 임의로 지정가능하며 order 값에 대한 오름차순
+  순서로 배치.
+  미지정한 항목은 디폴트 0 값을 가지며 명시적 값을 지정한 항목은
+  오름차순 순서대로 배치.
+  또한, 음수값 지정이 가능하며 동일 순위에 대해서는 문서 순서대로
+  배치.
+  따라서 임의의 하나의 항목에 order 값 0 은 의미없는 지정이되며,
+  음수값 지정은 항목들의 최초 선두로 항목을 이동시키고 양수값
+  지정은 항목들의 가장 마지막 위치에 배치하는 결과.
+*/
+.container2:hover {
+  flex-flow: column wrap;
+}
+.container2:hover .item2 {
+  order: 1;
+}
