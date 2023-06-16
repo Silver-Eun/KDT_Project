@@ -46,8 +46,8 @@
   않은 항목을 컨테이너 크기에 맞도록 늘이는 특성.
 */
   /* align-items: stretch; */
-  /* align-items: flex-start; */
-  align-items: flex-end;
+  /* align-items: start; */
+  align-items: end;
   /* align-items: center; */
   /* align-items: baseline; */
 }
@@ -62,8 +62,8 @@
 
 .container2:hover {
   /* align-items: stretch; */
-  /* align-items: flex-start; */
-  align-items: flex-end;
+  /* align-items: start; */
+  align-items: end;
   /* align-items: center; */
   /* align-items: baseline; */
 }

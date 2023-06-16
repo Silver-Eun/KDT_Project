@@ -85,3 +85,26 @@ wrap 설정으로 인한 다중 주축 생성 시에는 개별 주축에 대한 
   justify-content: space-around;
   /* justify-content: space-evenly; */
 }
+
+.container3 {
+  /* flex-direction: row-reverse; */
+}
+
+/* 
+< start >
+- -reverse 와 같은 플렉스 방향에 관계없이 왼쪽을 start, 오른쪽을 end 로 절대평가.
+
+< flex-start >
+- -reverse 와 같은 플렉스 방향에 의해 start 와 end 가 가변적으로 상대평가.
+  즉, -reverse 미지정 시에서는 왼쪽이 start 오른쪽이 end 가 되지만,
+  -reverse 지정 시에서는 오른쪽이 start 왼쪽이 end 가 되는 특성.
+*/
+.container3.start {
+  /* justify-content: start; */
+  /* justify-content: end; */
+}
+
+.container3.flex-start {
+  /* justify-content: flex-start; */
+  /* justify-content: flex-end; */
+}

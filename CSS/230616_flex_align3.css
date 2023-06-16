@@ -1,0 +1,92 @@
+.item1 {
+  background-color: red;
+}
+
+.item2 {
+  background-color: blue;
+}
+
+.item3 {
+  background-color: green;
+}
+
+.flex div {
+  width: 100%;
+  color: white;
+}
+
+/* ======================================================================== */
+
+.flex {
+  width: 500px;
+  height: 200px;
+  border: 1px solid;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  /* 
+< align-content >
+- wrap 설정으로 다중 주축 생성 시의 주축간의 정렬 및 배치 형태를 결정.
+  justify-content 속성의 값과 거의 동일한 속성 값을 사용하며 동작하는
+  방식도 동일.
+
+  ※ MS 의 VSCODE 에서는 space-evenly 에 대한 자동완성 미지원.
+
+< stretch >
+- 다중 주축에 대하여 플렉스 컨테이너의 크기에 맞추어 자동으로
+  늘어나게 하는 특성.
+*/
+
+  /* align-content: stretch; */
+  /* align-content: flex-start; */
+  align-content: flex-end;
+  /* align-content: center; */
+  /* align-content: space-between; */
+  /* align-content: space-around; */
+  /* align-content: space-evenly; */
+}
+
+/* ======================================================================== */
+
+.flex div {
+  /* width: 25%; */
+  /* height: 50px; */
+}
+
+/* 
+아이템들이 wrap 이 되지 않아도 wrap 을 적용시킴으로써 다중 주축이
+아닌 하나의 주축에서도 align-content 속성 적용이 가능.
+*/
+.flex {
+  /* align-content: stretch; */
+  /* align-content: flex-start; */
+  /* align-content: flex-end; */
+  /* align-content: center; */
+  /* align-content: space-between; */
+  /* align-content: space-around; */
+  /* align-content: space-evenly; */
+}
+
+.container2 {
+  flex-flow: row wrap-reverse;
+}
+
+/* 
+< start >
+- -reverse 와 같은 플렉스 방향에 관계없이 위쪽을 start, 아래쪽을 end 로 절대평가.
+
+< flex-start >
+- -reverse 와 같은 플렉스 방향에 의해 start 와 end 가 가변적으로 상대평가.
+  즉, -reverse 미지정 시에서는 위쪽이 start 아래쪽이 end 가 되지만,
+  -reverse 지정 시에서는 아래쪽이 start 위쪽이 end 가 되는 특성.
+*/
+.container2.start {
+  /* align-content: start; */
+  /* align-content: end; */
+}
+
+.container2.flex-start {
+  /* align-content: flex-start; */
+  /* align-content: flex-end; */
+}
