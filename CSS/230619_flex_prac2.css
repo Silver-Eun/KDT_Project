@@ -1,0 +1,160 @@
+/* .banner {
+  display: flex;
+  width: 700px;
+  height: 150px;
+  box-sizing: border-box;
+  border: 1px solid;
+  margin: 0 auto;
+  position: relative;
+  margin-top: calc((100vh - 150px) / 2);
+  letter-spacing: 40px;
+  text-transform: uppercase;
+}
+
+.banner div,
+.banner::after,
+.banner::before {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+  font-weight: bold;
+  color: darkslategray;
+}
+
+.banner div {
+  z-index: 1;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  background: url(../image/bg5.jpg) no-repeat center;
+  opacity: 0.3;
+}
+
+.banner::after {
+  content: "flexbox";
+  position: absolute;
+  margin-left: -10px;
+  margin-top: -10px;
+  opacity: 0.3;
+} */
+
+/* 다른 방법 */
+
+* {
+  margin: 0;
+}
+
+body,
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  height: 100vh;
+}
+
+.banner {
+  box-sizing: border-box;
+  width: 700px;
+  height: 150px;
+  border: 1px solid;
+  font: bold 4em sans-serif;
+  color: darkslategray;
+  text-transform: uppercase;
+  letter-spacing: 40px;
+
+  position: relative;
+}
+
+.banner div {
+  padding-left: 40px;
+}
+
+.banner::before,
+.banner::after {
+  position: absolute;
+  opacity: 0.3;
+}
+
+.banner::before {
+  content: "";
+  background: url(../image/bg5.jpg) 0 / cover;
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+}
+
+.banner::after {
+  content: "flexbox";
+
+  padding-left: 40px;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+
+/* text-shadow 사용 */
+/* 
+* {
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner {
+      box-sizing: border-box;
+    width: 700px;
+    height: 150px;
+    border: 1px solid;
+    font: bold 4em sans-serif;
+    letter-spacing: 40px;
+    text-transform: uppercase;
+    color: darkslategray;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+/* 
+< text-shadow >
+offset-x | offset-y | blur-radius | color
+- offset-x | offset-y : 필수.
+- blur-radius : 블러 - 희미하게 뭉게어 보이게 하는 속성. (선택)
+                반드시 옵셋 바로 뒤에 설정되어야함.
+- color : 선택. 
+*/
+/* text-shadow: -5px -6px #2f4f4f55; */
+/* text-shadow: 20px 20px; */
+/* text-shadow: 20px 20px #2f4f4f55; */
+/* text-shadow: 20px 20px 4px #2f4f4f55; */
+/* } */
+/* 
+.banner div {
+    padding-left: 40px;
+}
+
+.banner::before {
+    content: '';
+    background: url(../image/bg5.jpg) 0/cover;
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    opacity: .3;
+
+    z-index: -1;
+} */
