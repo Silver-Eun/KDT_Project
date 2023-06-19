@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-flow: column-reverse wrap-reverse;
+  width: 430px;
+  height: 430px;
+  background-color: red;
+  gap: 10px;
+
+  /* justify-content: space-between;
+  align-content: space-between; */
+}
+
+.container div {
+  width: 100px;
+  background-color: blue;
+  color: white;
+  text-align: center;
+  line-height: 100px;
+
+  /* display: flex;
+  justify-content: center;
+  align-content: center; */
+}
