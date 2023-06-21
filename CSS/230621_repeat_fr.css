@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+}
+
+.box1 {
+  background-color: brown;
+}
+
+.box2 {
+  background-color: blueviolet;
+}
+
+.box3 {
+  background-color: blue;
+}
+
+.box4 {
+  background-color: red;
+}
+
+.box5 {
+  background-color: green;
+}
+
+.box6 {
+  background-color: yellowgreen;
+}
+
+.box7 {
+  background-color: black;
+}
+
+.box8 {
+  background-color: coral;
+}
+
+.box9 {
+  background-color: cadetblue;
+}
+
+.box10 {
+  background-color: deeppink;
+}
+
+h2,
+hr {
+  margin: 20px 0;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.grid {
+  display: grid;
+}
+
+.container1 {
+  grid-template: 50px 50px / 200px 200px 200px 200px 200px;
+}
+
+/* 1. repeat 함수
+< repeat 함수 >
+- repeat 함수를 통해 연속적이고 반복적인 값을 축약.
+형식 : repeat( 반복할 행 또는 열의 횟수, 반복할 행 또는 열의 크기 )
+*/
+.container2 {
+  grid-template: repeat(2, 100px) repeat(3, 50px) / repeat(2, 300px);
+}
+.container2:hover {
+  grid-template: repeat(3, 50px) repeat(2, 150px) / repeat(2, 100px);
+}
+
+/* 2. fr(Fraction)
+< fr(Fraction) >
+- Grid 레이아웃에서 아이템들의 행 또는 열방향에 대한 상대적 비율 단위.
+*/
+.container3 {
+  grid-template: repeat(2, 50px) / 3fr repeat(3, 1fr) 2fr;
+}
+.container3:hover {
+  grid-template: repeat(2, 100px) / 2fr repeat(3, 4fr) 1fr;
+}
+
+/* 3. stretch
+Grid 의 아이템들은 부모 컨테이너에 높이를 지정하지 않는 경우 아이템이
+갖는 컨텐트 만큼만 높이를 차지하지만, 부모 컨테이너에 높이를 지정하는 경우
+아이템들에 별도의 높이를 지정하지 않아도 Flex 의 스트레치 특성과 같이
+부모 컨테이너의 높이에 맞추어 늘어나는 특성을 가짐.
+*/
+.container4 {
+  grid-template-columns: repeat(2, 1fr);
+  /* height: 500px; */
+}
+.container4:hover {
+  grid-template-columns: repeat(3, 1fr);
+  height: 500px;
+}
