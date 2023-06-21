@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+}
+
+.box1 {
+  background-color: brown;
+}
+
+.box2 {
+  background-color: blueviolet;
+}
+
+.box3 {
+  background-color: blue;
+}
+
+.box4 {
+  background-color: red;
+}
+
+.box5 {
+  background-color: green;
+}
+
+.box6 {
+  background-color: yellowgreen;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.grid {
+  display: grid;
+}
+
+/* 
+< Grid >
+- Flexbox 의 발전 형태로 테이블과 같이 행과 열을 기준으로 하는 2차원 형태의
+  레이아웃을 설계 가능한 모델.
+
+1. grid-template-columns(rows)
+< grid-template-columns >
+- 개별 열에 대한 너비를 지정.
+
+< grid-template-rows >
+- 개별 행에 대한 높이를 지정.
+※ auto : 너비나 높이를 자동으로 컨텐트의 크기에 맞추거나 남는 공간에 대해서 자동으로 확장.
+*/
+.container1 {
+  grid-template-columns: 100px auto 100px;
+  grid-template-rows: 100px 100px;
+}
+
+.container1:hover {
+  grid-template-columns: 200px 300px;
+  grid-template-rows: 50px 50px 50px;
+}
+
+/* 2. grid-template
+< grid-template >
+- 행과 열에 대한 각각의 높이와 너비를 동시에 지정.
+형식 : grid-template : [ grid-template-rows ] / [ grid-template-columns ]
+*/
+.container2 {
+  grid-template: 100px 50px 50px / auto 100px;
+}
+
+.container2:hover {
+  grid-template: 100px 50px 100px / auto auto;
+}
+
+/* 3. column(rows)-gap, gap
+< column-gap >
+- 열 사이의 간격을 지정.
+
+< row-gap >
+- 행 사이의 간격을 지정.
+
+< gap >
+- 행 사이와 열 사이의 간격을 동시 지정.
+※ normal : column-gap, row-gap, gap 속성의 디폴트 값.
+*/
+.container3 {
+  grid-template-columns: 100px auto 100px;
+  grid-template-rows: 100px 100px;
+
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.container3:hover {
+  gap: normal;
+}
