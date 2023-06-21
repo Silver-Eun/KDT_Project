@@ -1,0 +1,138 @@
+.box1 {
+  background-color: brown;
+}
+
+.box2 {
+  background-color: blueviolet;
+}
+
+.box3 {
+  background-color: blue;
+}
+
+.box4 {
+  background-color: red;
+}
+
+.box5 {
+  background-color: green;
+}
+
+.box6 {
+  background-color: yellowgreen;
+}
+
+.box7 {
+  background-color: black;
+}
+
+.box8 {
+  background-color: coral;
+}
+
+.box9 {
+  background-color: cadetblue;
+}
+
+.box10 {
+  background-color: deeppink;
+}
+
+.grid {
+  display: grid;
+  height: 500px;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.container1 div {
+  /* 
+하기 코드는 모두 동일한 의미의 코드.
+*/
+
+  /* grid-row: 1 / 2; */
+  /* grid-row: 1 / span 1; */
+  /* grid-row: 1 / 1; */
+  /* grid-row: 1; */
+}
+
+.container1 div {
+  /* grid-row: 2 / 3; */
+  /* grid-row: 2 / span 1; */
+  /* grid-row: 2 / 2; */
+  /* grid-row: 2; */
+}
+
+.container1 div {
+  /* grid-row: 3 / 4; */
+  /* grid-row: 3 / span 1; */
+  /* grid-row: 3 / 3; */
+  /* grid-row: 3; */
+}
+
+.container1 div {
+  /* grid-column: 1 / 2; */
+  /* grid-column: 1 / span 1; */
+  /* grid-column: 1 / 1; */
+  /* grid-column: 1; */
+}
+
+.container1 div {
+  /* grid-column: 3 / 4; */
+  /* grid-column: 3 / span 1; */
+  /* grid-column: 3 / 3; */
+  /* grid-column: 3; */
+}
+
+/* ================================================================================= */
+
+.container2 {
+  /*
+< 7 행 3열 구조의 그리드 레이아웃 >
+*/
+  grid-template: 1fr repeat(2, 2fr) repeat(4, 1fr) / repeat(2, 1fr) 2fr;
+}
+
+.container2 div {
+  /* grid-row: 1 / 2; */
+  /* grid-row: 1 / span 1; */
+  /* grid-row: 1 / 1; */
+  /* grid-row: 1; */
+}
+
+.container2 div {
+  /* grid-row: 2 / 3; */
+  /* grid-row: 2 / span 1; */
+  /* grid-row: 2 / 2; */
+  /* grid-row: 2; */
+}
+
+.container2 div {
+  /* grid-row: 3 / 4; */
+  /* grid-row: 3 / span 1; */
+  /* grid-row: 3 / 3; */
+  /* grid-row: 3; */
+}
+
+.container2 div {
+  /* grid-column: 1 / 2; */
+  /* grid-column: 1 / span 1; */
+  /* grid-column: 1 / 1; */
+  /* grid-column: 1; */
+}
+
+.container2 div {
+  /* grid-column: 3 / 4; */
+  /* grid-column: 3 / span 1; */
+  /* grid-column: 3 / 3; */
+  /* grid-column: 3; */
+}
