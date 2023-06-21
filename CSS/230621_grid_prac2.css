@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: lightcyan;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.container > div {
+  display: grid;
+  grid-template: repeat(10, 1fr) / repeat(5, 1fr);
+  gap: 10px;
+}
+
+.container div:nth-child(odd) div:nth-child(odd),
+.container div:nth-child(even) div:nth-child(even) {
+  background-color: cadetblue;
+}
