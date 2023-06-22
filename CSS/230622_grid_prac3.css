@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#grid_container {
+  height: 100vh;
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(3, 1fr);
+}
+
+#grid_container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  color: white;
+}
+
+.logo {
+  background-color: blueviolet;
+  grid-column: 1;
+  grid-row: 1;
+}
+.menu {
+  background-color: yellowgreen;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  z-index: 1;
+}
+.contents {
+  background-color: coral;
+  grid-column: 1 / 3;
+  grid-row: 2 / 5;
+}
+.aside {
+  background-color: cadetblue;
+  grid-column: 3;
+  grid-row: 1 / 5;
+}
+.footer {
+  background-color: deeppink;
+  grid-column: 1 / 4;
+  grid-row: 5;
+}

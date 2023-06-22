@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+}
+
+.logo {
+  background-color: blueviolet;
+}
+
+.menu {
+  background-color: yellowgreen;
+}
+
+.contents {
+  background-color: coral;
+}
+
+.aside {
+  background-color: cadetblue;
+}
+
+.footer {
+  background-color: deeppink;
+}
+
+#grid_container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* ================================================================================= */
+
+#grid_container {
+  height: 100vh;
+  display: grid;
+
+  grid-template-rows: 2fr 8fr 3fr;
+
+  /* 
+< grid 행 또는 열에 대한 라인 번호 네이밍(Naming) >
+- grid-template 관련 속성에 대한 행 또는 열을 구성 시 각각의 개별 구성 행 또는
+  열 사이에 행번호 또는 열번호를 대신하는 명칭을 대괄호[] 안에 명시함으로써
+  좀 더 직관적인 구조를 구성 가능.
+
+  형식    :       [ 사용자정의_명칭 ]
+
+- 사용자정의_명칭 : 하이픈(-) 앞에는 임의 명칭을 사용하면 되지만 하이픈(-) 뒤에는
+                   반드시 start 또는 end 키워드만 지정 가능.
+                   사용자정의_명칭은 다중 구성 가능.
+*/
+
+  grid-template-columns: [col-start] 1fr [menu-start logo-end] 1fr [aside-start contents-end] 1fr [col-end];
+}
+
+.logo {
+  grid-column: col-start / logo-end;
+}
+.menu {
+  /* 
+행 또는 열번호 대신 아래와 같이 네이밍된 행 또는 열번호 명칭을 지정 가능.
+*/
+
+  grid-column: menu-start / col-end;
+}
+
+.contents {
+  grid-column: col-start / contents-end;
+}
+
+.aside {
+  grid-column: aside-start / col-end;
+}
+
+.footer {
+  /* 
+네이밍된 행 또는 열번호의 start 와 end 의 사용자정의 명칭이 동일한 경우에는
+아래와 같이 / 로 start 와 end 를 구분할 필요없이 생략하여 사용자정의 명칭만
+지정 가능.
+*/
+
+  grid-column: col;
+}

@@ -1,0 +1,52 @@
+.box1 {
+  background-color: brown;
+}
+
+.box2 {
+  background-color: blueviolet;
+}
+
+.box3 {
+  background-color: blue;
+}
+
+.box4 {
+  background-color: red;
+}
+
+.box5 {
+  background-color: green;
+}
+
+h2,
+hr {
+  margin: 20px 0;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: bold;
+  color: white;
+}
+
+.grid {
+  display: grid;
+  column-gap: 3px;
+}
+
+.container1 {
+  /* 
+< minmax 함수 >
+- min 이상이면서 max 이하의 크기 범위를 설정.
+형식 : minmax( min, max )
+*/
+
+  grid-template-columns: minmax(50px, 700px) minmax(20px, 300px);
+}
+
+.container2 {
+  grid-template-columns: repeat(5, minmax(10px, 1fr));
+}

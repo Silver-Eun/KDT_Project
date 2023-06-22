@@ -1,0 +1,76 @@
+.box1 {
+  background-color: brown;
+}
+
+.box2 {
+  background-color: blueviolet;
+}
+
+.box3 {
+  background-color: blue;
+}
+
+.box4 {
+  background-color: red;
+}
+
+.box5 {
+  background-color: green;
+}
+
+.box6 {
+  background-color: yellowgreen;
+}
+
+.box7 {
+  background-color: black;
+}
+
+.box8 {
+  background-color: coral;
+}
+
+.box9 {
+  background-color: cadetblue;
+}
+
+.box10 {
+  background-color: deeppink;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.grid {
+  display: grid;
+}
+
+/* 
+< auto-fill, auto-fit 공통 특성 >
+- 아이템의 크기가 고정된 경우 그리드 컨테이너의 행 또는 열 트랙내에서 최대한 공간을
+  채우고 넘치는 아이템은 랩핑(Wrapping)하는 특성.
+*/
+.container1 {
+  grid-template-columns: repeat(auto-fill, 70px);
+}
+
+.container2 {
+  grid-template-columns: repeat(auto-fit, 100px);
+}
+
+/* 
+< auto-fill, auto-fit 특성 차이 >
+- 그리드 컨테이너에 대하여 아이템들이 공간을 채우고 남는 공간이 발생하는 경우
+  auto-fill 은 그대로 그 크기를 유지하지만, auto-fit 은 남는 공간을 채우는 특성 차이.
+*/
+.container3 {
+  grid-template: repeat(2, 50px) / repeat(auto-fill, minmax(60px, 1fr));
+}
+
+.container4 {
+  grid-template: repeat(2, 70px) / repeat(auto-fit, minmax(80px, 1fr));
+}

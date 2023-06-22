@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#grid_container {
+  height: 100vh;
+  display: grid;
+  grid-template: repeat(7, 1fr) / repeat(2, 1fr) repeat(2, 0.5fr);
+}
+
+#grid_container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  color: white;
+}
+
+#grid_container .logo {
+  background-color: blueviolet;
+  grid-area: 1 / 1 / 3 / 1;
+  /* grid-row: span 2; */
+  font-size: 3em;
+  color: red;
+}
+.menu {
+  background-color: yellowgreen;
+  grid-area: 1 / 2 / 4 /3;
+  /* grid-area: 1 / 2 / span 3 / 2; */
+  z-index: 1;
+}
+.login {
+  background-color: blue;
+  grid-area: 1 / 3 / 1 /5;
+  /* grid-column: span 2; */
+}
+.contents {
+  background-color: coral;
+  grid-area: 3 / 1 / 7 / 3;
+  /* grid-area: 3 / 1 / -2 / 3; */
+}
+.aside {
+  background-color: cadetblue;
+  grid-area: 2 / 3 / 7 / 5;
+  /* grid-area: 2 / -3/ -2 / -1; */
+}
+.footer {
+  background-color: deeppink;
+  grid-area: 7 / 1 / 8 / 4;
+  /* grid-column: 1 / -2; */
+}
+.scrollTop {
+  background-color: greenyellow;
+  grid-area: 6 / 4 / 8 / 5;
+  /* grid-area: -3 / -2/ -1 / -1; */
+  z-index: 1;
+}

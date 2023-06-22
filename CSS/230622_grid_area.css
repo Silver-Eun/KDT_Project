@@ -1,0 +1,87 @@
+.box1 {
+  background-color: brown;
+}
+
+.box2 {
+  background-color: blueviolet;
+}
+
+.box3 {
+  background-color: blue;
+}
+
+.box4 {
+  background-color: red;
+}
+
+.box5 {
+  background-color: green;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.grid div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: bold;
+  color: white;
+}
+
+/* ============================================================================ */
+
+.grid {
+  display: grid;
+  width: 500px;
+  height: 500px;
+
+  grid-template: 3fr 1fr 2fr / repeat(3, 1fr);
+
+  /* 
+< grid-template-areas >
+- grid-row, grid-column 과 같이 행라인 번호와 열라인 번호를 대신하여 좀 더
+  직관적인 문자열 형태의 명칭으로 각각의 셀을 행과 열로 나열하여 표현.
+  단, 셀의 명칭은 숫자형식은 불가함에 주의.
+  grid-template-areas 를 이용한 요소간 교차 병합 불가.
+
+< 형식 >
+- 문자열 구분자("") 이용하여 하나의 행을 표현 구분하고, 문자열 내 공백을
+  이용하여 열들을 구분.
+  개행은 코드 표현상의 시각적 편의를 위한 것일뿐, 행들을 구분하는 척도는
+  문자열 구분자("")임에 주의.
+※ .(Period) : 빈 셀을 표현하는 특수문자.
+             - period(피리어드)
+ */
+  grid-template-areas:
+    "a a b"
+    "c d . "
+    "c d e";
+}
+
+.box1 {
+  /* 
+< grid-area >
+- grid-template-areas 에 정의된 개별 셀들의 명칭을 각 아이템에 grid-area
+  속성을 이용하여 할당.
+    */
+  grid-area: a;
+}
+
+.box2 {
+  grid-area: b;
+}
+
+.box3 {
+  grid-area: c;
+}
+
+.box4 {
+  grid-area: d;
+}
+
+.box5 {
+  grid-area: e;
+}
