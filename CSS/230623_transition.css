@@ -1,0 +1,129 @@
+h1 {
+  text-align: center;
+}
+
+.imgContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+h1,
+.imgContainer,
+.imgContainer img {
+  /* 
+transition: property duration delay
+- duration 을 제외한 property 와 delay 는 모두 생략 가능하며
+  이때에는 디폴트로 property 는 all, delay 는 0 이 적용.
+
+  transition: opacity .5s ease-out, width .7s ease-out;
+*/
+
+  transition: all 0.7s 0s;
+}
+
+/* 뷰포트의 너비가 512px 이하에서 구현할 CSS 정의  */
+h1 {
+  font-size: 1em;
+}
+
+.imgContainer {
+  width: 12.25em;
+  height: 12.25em;
+}
+
+.imgContainer img {
+  width: 50%;
+  height: 50%;
+}
+
+/* ====================================================================== */
+
+/* 
+< Media Query >
+- and 와 쉼표(,) 또는 not 연산자를 조합하여 미디어 장치와 조건규칙에 대한 조합이 가능.
+※ 연산자 적용시 반드시 띄어쓰기에 주의.
+
+기본형식    :    @media 장치유형 and ( 규칙 또는 조건 )  { 반영할 CSS }
+
+
+뷰포트의 너비가 512px 이상이면서 832px 이하에서 구현할 CSS 정의  */
+@media screen and (min-width: 32em) and (max-width: 52em) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .imgContainer {
+    width: 25em;
+    height: 25em;
+  }
+}
+
+/*  뷰포트의 너비가 832px 이상에서 구현할 CSS 정의  */
+@media screen and (min-width: 52em) and (max-width: 60em) {
+  h1 {
+    font-size: 3em;
+  }
+
+  .imgContainer {
+    flex-wrap: wrap;
+    width: 50em;
+    height: 12.5em;
+  }
+
+  .imgContainer img {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 60em) and (max-width: 70em) {
+  h1 {
+    font-size: 4em;
+  }
+
+  .imgContainer {
+    flex-wrap: wrap;
+    width: 60em;
+    height: 14em;
+  }
+
+  .imgContainer img {
+    width: 50%;
+    height: 120%;
+  }
+}
+
+@media screen and (min-width: 70em) and (max-width: 80em) {
+  h1 {
+    font-size: 5em;
+  }
+
+  .imgContainer {
+    flex-wrap: wrap;
+    width: 70em;
+    height: 15em;
+  }
+
+  .imgContainer img {
+    width: 50%;
+    height: 150%;
+  }
+}
+
+@media screen and (min-width: 80em) {
+  h1 {
+    font-size: 6em;
+  }
+
+  .imgContainer {
+    flex-wrap: wrap;
+    width: 80em;
+    height: 17em;
+  }
+
+  .imgContainer img {
+    width: 50%;
+    height: 200%;
+  }
+}
