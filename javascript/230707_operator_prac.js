@@ -17,3 +17,16 @@ if (!isNaN(n1) && !isNaN(n2)) {
 } else {
     alert('두수 중 하나는 숫자가 아닙니다.');
 }
+/*  */
+/* let tot;
+
+n1 = +prompt('정수1');
+n2 = +prompt('정수2');
+
+tot = n1 + n2;
+
+if (isNaN(tot)) {
+  alert('두수 중 하나는 숫자가 아닙니다.');
+} else {
+  alert(`${ n1 } + ${ n2 } = ${tot}`);
+} */
