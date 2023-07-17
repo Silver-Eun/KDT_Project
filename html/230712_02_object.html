@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>myObject 만들기</title>
+
+    <script>
+      function send() {
+        // 객체 정의
+        let student = {
+          name: document.getElementById("name").value,
+          age: document.getElementById("age").value,
+          jo: document.getElementById("jo").value,
+          career: document.getElementById("career").value,
+          info1: document.getElementById("info1").value,
+          info2: document.getElementById("info2").value,
+
+          infoPrint: function () {
+            return `저의 이름은 ${this.name}<br>
+                    나이는 ${this.age}<br> 
+                    ${this.jo}조의 조원<br>
+                    경력은${this.career} 였습니다<br>
+                    희망사항은${this.info1}니다<br>
+                    건의사항은${this.info2}니다`;
+          },
+        };
+        //div에 출력
+        document.getElementById("result").innerHTML = student.infoPrint();
+      }
+    </script>
+  </head>
+
+  <body>
+    <h2>** Student 객체 만들기 **</h2>
+    <table width="80%">
+      <tr height="40">
+        <th bgcolor="aqua">name</th>
+        <td><input type="text" id="name" /></td>
+      </tr>
+      <tr height="40">
+        <th bgcolor="aqua">age</th>
+        <td><input type="text" id="age" /></td>
+      </tr>
+      <tr height="40">
+        <th bgcolor="aqua">jo</th>
+        <td><input type="text" id="jo" /></td>
+      </tr>
+      <tr height="40">
+        <th bgcolor="aqua">경력</th>
+        <td><input type="text" id="career" /></td>
+      </tr>
+      <tr height="40">
+        <th bgcolor="aqua">희망사항</th>
+        <td><input type="text" id="info1" /></td>
+      </tr>
+      <tr height="40">
+        <th bgcolor="aqua">건의사항</th>
+        <td><input type="text" id="info2" /></td>
+      </tr>
+      <tr height="40">
+        <td colspan="2">
+          <button align="center" onclick="send()">전송</button>
+        </td>
+      </tr>
+    </table>
+    <hr />
+
+    <h3>** Info **</h3>
+
+    <div id="result"></div>
+  </body>
+</html>

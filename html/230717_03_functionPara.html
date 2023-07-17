@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>** function : default Parameters **</title>
+    <script>
+      function test(name, activity) {
+        console.log(`${name}씨는 ${activity}를 좋아합니다.`);
+      } //test
+      test("홍길동", "태권도");
+      test(); // undefined씨는 undefined를 좋아합니다.
+
+      function testDefault(name = "김길동", activity = "수영") {
+        console.log(`${name}씨는 ${activity}를 좋아합니다.`);
+      } //test
+      testDefault("김소라", "커피만들기");
+      testDefault((name = "김소라"), (activity = "커피만들기"));
+      testDefault();
+
+      // Test2. 화살표 함수와 this
+      let gang = {
+        resorts: ["강릉", "속초", "동해", "설악산"],
+        print: function (delay = 1000) {
+          console.log("** print Test1) => " + this.resorts.join(","));
+          // => this 는 현재객체 gang 을 인식: ** print Test1) => 강릉,속초,동해,설악산
+          setTimeout(
+            function () {
+              console.log("** print Test2) => " + this.resorts.join(","));
+              // => 일반함수는 this 값을 새로 바인딩하고, 이경우에는 window 객체를 가리킴
+              //     Uncaught TypeError: Cannot read properties of undefined (reading 'join')
+              // }, delay); => bind 사용전 Code
+
+              // => 이를 해결해 주는것이 함수의 bind 메서드
+            }.bind(this),
+            delay
+          ); // bind 사용후 Code : 객체 gang 을 this 에 bind
+        }, //print
+      }; //gang
+      gang.print();
+
+      // => 화살표 함수 : callback 함수는 화살표함수로 가능
+      let jeju = {
+        resorts: ["제주", "서귀포", "유채꽃밭", "한라산"],
+        print: function (delay = 1000) {
+          console.log("** print Test1) => " + this.resorts.join(","));
+          // => this 는 현재객체 jeju
+          setTimeout(
+            // this는 jeju 객체를 가리킴
+            () => console.log("** print Test2) => " + this.resorts.join(",")),
+            delay
+          );
+        }, //print
+      }; //gang
+      jeju.print();
+    </script>
+  </head>
+  <body>
+    <h2>** 1. default Parameters</h2>
+    <pre>
+        => 함수 정의시에 default Parameters를 정의하면,
+        매개(Parameters)변수없이 호출시에 default Parameter의 값이 적용됨.
+        => console에서 확인
+        <h2>** 2. 화살표 함수(Arrow Function)</h2>
+        => 제한사항   
+        - this나 super에 대한 바인딩이 없음
+        - methods(객체의 속성) 로 사용될 수 없음.
+        - 생성자(Constructor) 함수로 사용할 수 없음.
+        
+        => 예시
+        // 매개변수가 없는 경우 : 괄호 생략 불가능
+        let foo = () => console.log('bar');
+        // let foo = function() { console.log('bar'); }
+        foo(); // bar
+        
+        // 매개변수가 하나인 경우 : 괄호 생략 가능
+        let foo = x => x;
+        foo('bar'); // bar
+        
+        // 매개변수가 여러개인 경우 : 괄호 생략 불가능
+        // body의 실행문이 한문장이면 { } 생략 가능
+        let foo = (a, b) => a + b; // 간단하게 한줄로 표현할 땐 "{}", return 없이 값이 반환
+        foo(1, 2); // 3
+        
+        let foo = (a, b) => { return a + b }; // { }를 사용하면 return 생략 불가능
+        foo(1, 2); // 3
+        
+        let foo = (a, b) => { a + b }; // { }를 사용했는데 return이 없을 때 
+        foo(1, 2); // undefined
+        
+        let foo = (a, b) => { // 여러줄 썼을 때
+            let c = 3;
+            return a + b + c;
+        }
+        foo(1, 2, 3) // 6
+        /*
+        간단하게 한줄로 표현할 땐 "{}", return 없이 값이 반환됩니다.
+        "{}"를 사용하면 값을 반환할 때 return을 사용해야합니다.
+        "{}"를 사용하고 return이 없으면 undefied를 반환합니다.
+        "{}"을 사용할 때는 여러줄을 썼을 때 사용합니다.
+        */
+        
+        // 객체를 반환할 때
+        let foo = () => ( { a: 1, b: 2, c: 3 } );
+        foo(); // { a: 1, b: 2, c: 3 };
+        콜백 함수에서도 사용할 수 있습니다.
+    </pre>
+  </body>
+</html>

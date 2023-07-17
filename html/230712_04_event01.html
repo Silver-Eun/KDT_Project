@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>**Event01 basic**</title>
+    <script>
+      //2.인라인 + 스크립트
+      function scriptTest(e) {
+        alert("test2.인라인+스크립트, e.type=" + e.type + ", e.target=" + e.target + ",e.defaultPrevented=" + e.defaultPrevented);
+      } //scriptTest
+
+      //3.고전적방식과 this , 이벤트 객체 활용(마우스 위치 값, target)
+      onload = function () {
+        let t = document.getElementById("trad");
+        t.onclick = function (e) {
+          alert("test3.고전적방식");
+          //** this : 이벤트핸들러 안에서 this는 이벤트가 발생된 객체를 의미
+          this.style.background = "yellow";
+          console.log(`** e.pageX=${e.pageX}, e,pageY=${e.pageY}**`);
+          console.log(`** e.clientX=${e.clientX}, e,clientY=${e.clientY}**`);
+          e.target.innerHTML = "이벤트 타겟 test 완료";
+        }; //t의onclick
+
+        //4.기본이벤트 제거(Remove)
+        //=> 이벤트 핸들러의 첫매개변수는 이벤트 객체를 전달
+        //단, 선언적 함수를 이벤틀트 핸들러로 사용하는 경우에는 호출할때 매개변수를 전달해야함(test2 참고)
+        let a = document.getElementById("remove");
+        a.onclick = function (e) {
+          e.preventDefault(); //위치에 따른 e.defaultPrevented 값 확인
+          alert("Test4. 기본 이벤트 제거 (Remove), e.type=" + e.type + ", e.target=" + e.target + ",e.defaultPrevented=" + e.defaultPrevented);
+          return false;
+          //이벤트 핸들러가 false를 리턴할 때 남은 이벤트를 무효화
+          //=> 이벤트 객체의 preventDefault() 메서드 : 기본이벤트 제거
+          //=> e.defaultPrevented 속성 : false(제거안됨) / true(제거됨)
+          //return true : 진행 / false: 무효화
+          //a 태그의 기본 이벤트를 제거
+          //(e) : 자바스크립트에서 이벤트 처리 함수라고 하는 넓은 범위의 일부이다.
+          //이벤트가 발생하면 이벤트 객체가 생성되고 그 이벤트 객체가 e라는 매개변수에 할당이 된다
+        }; //a의 onclick
+      }; //onload
+    </script>
+  </head>
+
+  <body>
+    <pre>
+        <h3>
+            => 이벤트속성, 이벤트리스너  : onclick
+            -> on 을 제외한부분을 이벤트이름, 이벤트타입 이라함.
+            =>  이벤트핸들러
+            -> 이벤트속성에 대응되는 함수   
+            -> onclick="start()"
+            => 이벤트모델
+            -> dom객체 (Tag)의 이벤트리스너 와 이벤트핸들러 를 연결하는 방법
+            -> 1)인라인  2)인라인+스크립트  3)고전적(Traditional) 방식
+        </h3>
+    
+    <hr>
+    **실습
+    1.인라인
+    <button onclick="alert('test1.인라인')">EventModel1_inLine</button>
+    2.인라인 + 스크립트
+    <button onclick="scriptTest(event)">EventModel2_inLineScript</button>
+    3.고전적방식과 this
+    <button id="trad">EventModel3_Traditional</button>
+    4. 기본이벤트 제거(remove)
+    <a href="http://naver.com" id="remove">Event_Remove Test</a>
+    </pre>
+  </body>
+</html>

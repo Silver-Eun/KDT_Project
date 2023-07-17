@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>** Constructor와 인스턴스 **</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel">
+      // 1. student 객체 생성자함수 생성
+      function student(name, age) {
+        this.name = name;
+        this.age = age;
+        this.infoPrint = function () {
+          return `저의 이름은 ${this.name}, 나이는 ${this.age}입니다`;
+        };
+      }
+
+      // 2. student 객체 인스턴스 4개 생성
+      const team1 = new student("배정현", 37);
+      const team2 = new student("김소라", 29);
+      const team3 = new student("은희상", 27);
+      const team4 = new student("최승호", 26);
+      console.log(team1.infoPrint());
+      console.log(team2.infoPrint());
+      console.log(team3.infoPrint());
+      console.log(team4.infoPrint());
+
+      // 3. 인스턴스를 배열에 담고 출력
+      // 3.1) 배열 정의
+      let ss = new Array(4);
+      // 3.2) 배열 초기화
+      ss[0] = team1;
+      ss[1] = team2;
+      ss[2] = team3;
+      ss[3] = team4;
+      // 3.3) 출력
+      let avg = 0;
+
+      for (let i = 0; i < ss.length; i++) {
+        console.log(ss[i].infoPrint());
+        avg += ss[i].age;
+      }
+      console.log(`팀원들의 나이 합은 ${avg}, 평균은 ${avg / ss.length}`);
+
+      // eachFor(간편한_for) : of 적용
+      for (let s of ss) {
+        console.log(s.infoPrint());
+      }
+    </script>
+  </head>
+  <body>
+    <h2>** Constructor와 인스턴스 **</h2>
+    <pre>
+      => ex11에서 생성한 것과 같은 student 객체를 속성은 name, age,
+      메서드를 infoPrint를 포함한 prototype(생성자함수)으로 생성하고
+      조원들의 인스턴스를 생성해서 console로 출력
+    </pre>
+  </body>
+</html>

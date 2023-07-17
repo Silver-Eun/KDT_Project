@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>**join From **</title>
+    <style>
+      .emessage {
+        color: red;
+        font-size: x-small;
+        font-style: italic;
+      }
+    </style>
+    <script src="../javascript/230713_incheck.js"></script>
+    <script>
+      //입력값의 무결성 점검
+      //1. 점검이 필요한 모든 항목들에 대한 focusout 이벤트 핸들러 적용
+      //     => 개별 항목 점검확인하는 boolean type 변수 선언 (스위치변수)
+      //     => 개별 항목 점검  function() 작성
+      //2. submit 진행전에 점검 확인
+      //     => 모든 항목의 점검이 완료된 경우에만 submit 진행
+      //     => function inCheck() 로 확인
+      //     => submit 버튼의 onclick 리스너에 등록
+      //          (submit 의 디폴트 이벤트 고려)
+      //**화살표 함수
+      //=> 익명함수를 간단하게 표기하는 것
+      //function(){....} 를 () => {....} 표기
+
+      //전역변수 정의 : 개별항목 점검 확인하는 (boolean type) 변수
+      let iCheck = false;
+      let pCheck = false;
+      let p2Check = false;
+      let nCheck = false;
+      let aCheck = false;
+      let bCheck = false;
+      let oCheck = false;
+
+      // let iCheck = true;
+      // let pCheck = true;
+      // let p2Check = true;
+      // let nCheck = true;
+      // let aCheck = true;
+      // let bCheck = true;
+      // let oCheck = true;
+      //모든 값을 true로 바꾸면 밑에 설정한 alert이 실행됨
+
+      //1. 모든항목 focusout
+      onload = function () {
+        //1.id
+        //=> 엔터키를 눌렀을때 tab처럼 포커스 이동하기
+        // -> keydown 이벤트 리스너 이용, 이벤트객체를 이용해서 입력된 key값을 인식
+        // -> key값 확인 : 모든 문자의 ascii 코드값을 참조(enter = 13, space = 32, esc = 27)
+        //https://ko.wikipedia.org/wiki/ASCII 아스키코드값
+        let id = document.getElementById("id");
+
+        // id.addEventListener('keydown', (e) => {
+        //     if (e.which == 13) { //which : 키값 확인
+        //         e.preventDefault();// 밑에 submit 이벤트 무효화
+        //         document.getElementById('password').focus();
+        //     }
+        // });//keydown이벤트 리스너
+        document.getElementById("id").addEventListener("keydown", (e) => {
+          if (e.which == 13) {
+            e.preventDefault();
+            // => form 에 submit 이 있는경우
+            // => enter 누르면 자동 submit 발생되므로 이를 제거함
+            document.getElementById("password").focus();
+          }
+        }); //keydown
+        document.getElementById("id").addEventListener("focusout", () => {
+          iCheck = idCheck();
+        });
+        //2.password
+        document.getElementById("password").addEventListener("focusout", () => {
+          pCheck = pwCheck();
+        });
+        //3.password2
+        document.getElementById("password2").addEventListener("focusout", () => {
+          p2Check = pw2Check();
+        });
+        //name
+        document.getElementById("name").addEventListener("focusout", () => {
+          nCheck = nmCheck();
+        });
+        //age
+        document.getElementById("age").addEventListener("focusout", () => {
+          aCheck = agCheck();
+        });
+        //birthday
+        document.getElementById("birthday").addEventListener("focusout", () => {
+          bCheck = bdCheck();
+        });
+        //point
+        document.getElementById("point").addEventListener("focusout", () => {
+          oCheck = poCheck();
+        });
+
+        // id.addEventListener('focusout', () => {
+        //     if (id.value.length < 4 || id.value.length > 10) {
+        //         document.getElementById('imessage').innerHTML = 'id는 4~10 글자 입니다';
+        //         iCheck = false;
+        //     }
+        //     else {
+        //         document.getElementById('imessage').innerHTML = '';
+        //         iCheck = true;
+        //     }
+        // });
+      }; //onload
+
+      //2. submit 진행전에 점검확인
+      function inCheck() {
+        if (iCheck == false) {
+          document.getElementById("imessage").innerHTML = "필수입력 id";
+        }
+        if (pCheck == false) {
+          document.getElementById("pmessage").innerHTML = "필수입력 password";
+        }
+        if (p2Check == false) {
+          document.getElementById("p2message").innerHTML = "필수입력 password 확인";
+        }
+        if (nCheck == false) {
+          document.getElementById("nmessage").innerHTML = "필수입력 이름";
+        }
+        if (aCheck == false) {
+          document.getElementById("amessage").innerHTML = "필수입력 나이";
+        }
+        if (bCheck == false) {
+          document.getElementById("bmessage").innerHTML = "필수입력 생년월일";
+        }
+        if (oCheck == false) {
+          document.getElementById("omessage").innerHTML = "필수입력 포인트";
+        }
+
+        if (iCheck && pCheck && p2Check && nCheck && aCheck && bCheck && oCheck) {
+          //submit 진행
+          if (confirm("정말 가입하십니까?(Yes : 확인 / No : 취소)")) {
+            return true;
+          } else {
+            alert("가입이 취소 되었습니다");
+            return false;
+          }
+        } else {
+          //submit 진행 X
+          return false;
+        }
+      } //inCheck
+    </script>
+  </head>
+
+  <body>
+    <h2>HTML Forms</h2>
+
+    <form action="green/join" method="post">
+      <!--get/ post 차이 : 보안성
+        Get 은 서버에서 어떤 데이터를 가져와서 보여줄때 사용합니다. 어떤 값이나 내용, 
+        상태등을 바꾸지 않는 경우에 사용을 하는것
+        Post 는 서버상의 데이터 값이나 상태를 바꾸기 위해서 사용 -->
+      <table width="100%">
+        <tr height="40">
+          <th bgcolor="aqua">ID</th>
+          <td>
+            <input type="text" id="id" name="id" placeholder="영문, 숫자 10자 이내" /><br />
+            <span id="imessage" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">password</th>
+          <td>
+            <input type="password" id="password" name="password" placeholder="특수문자 반드시 포함" /><br />
+            <span id="pmessage" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">password 확인</th>
+          <td>
+            <input type="password" id="password2" placeholder="password 확인" /><br />
+            <span id="p2message" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">name</th>
+          <td>
+            <input type="text" id="name" /><br />
+            <span id="nmessage" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">age</th>
+          <td>
+            <input type="text" id="age" /><br />
+            <span id="amessage" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">Birthday</th>
+          <td>
+            <input type="date" id="birthday" /><br />
+            <span id="bmessage" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">Jo</th>
+          <td>
+            <select id="jo">
+              <option value="1">1조 : 119</option>
+              <option value="2">2조 : 여우</option>
+              <option value="3">3조 : i4</option>
+              <option value="4">4조 : 최고</option>
+              <option value="5">5조 : 오조</option>
+            </select>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">point</th>
+          <td>
+            <input type="text" id="point" /><br />
+            <span id="omessage" class="emessage"></span>
+          </td>
+        </tr>
+        <tr height="40">
+          <th bgcolor="aqua">Info</th>
+          <td><input type="text" id="info" placeholder="팀 프로젝트소개" /></td>
+        </tr>
+        <tr height="40" align="center">
+          <td colspan="2">
+            <input type="submit" value="가입" onclick="return inCheck()" /> &nbsp;&nbsp;
+            <!-- 기본이벤트 제거 : return, false -->
+            <input type="reset" value="취소" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

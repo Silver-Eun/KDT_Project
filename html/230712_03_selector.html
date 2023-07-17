@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>**Selector**</title>
+    <script>
+      onload = function () {
+        //1.id
+        document.getElementById("header").style.color = "green";
+        //2. tag
+        //=> h2태그중에 첫번째 태그 하나만 인식
+        let t = document.querySelector("h2"); //첫번재 태그만 밑 스타일이 적용
+        t = document.querySelector("h2:nth-child(3)"); // h2의 child3번(3번째 child)이 밑 스타일이 적용
+        t.style.color = "red";
+        t.style.background = "black";
+        //3. tag all
+        //=> 모든 h4를 선택해서 배열로 리턴
+        let a = document.querySelectorAll("h4"); //배열이기 때문에 a.style.~로 쓸 수 없음
+        for (let i = 0; i < a.length; i++) {
+          a[i].style.color = "blue";
+          a[i].style.background = "yellow";
+        }
+        //4. body에서 짝수번째 child만 color를 green으로
+        let b = document.querySelectorAll("body>*:nth-child(2n)");
+        for (let i = 0; i < b.length; i++) {
+          b[i].style.color = "green";
+          b[i].style.background = "pink";
+          //컨텐츠 변경하기 : 기울임꼴, colorChange, index번호(i=0)
+          b[i].innerHTML = "<i>colorChange i=" + i + "</i>";
+        }
+      }; //onload function의 종료
+    </script>
+  </head>
+
+  <body>
+    <pre>
+        <h3>**Selector: id, tag, tag all**
+            1. id 
+            => document.getElementById('id');
+            <span id="header">getElementById</span>
+            2. tag
+            => document.querySelector
+            => 여러개의 쿼리중에 첫번째 태그 한개만 인식
+            3. tag all
+            => document.querySelectorAll
+            => 모두 선택해서 배열로 리턴
+        </h3>
+    </pre>
+    <h2>tag 선택자1 ; child2</h2>
+    <h2>tag 선택자2 ; child3</h2>
+    <h2>tag 선택자3 ; child4</h2>
+    <h4>tagall 선택자1 ; child5</h4>
+    <h4>tagall 선택자2 ; child6</h4>
+    <h4>tag all 선택자3 ; child7, last child</h4>
+  </body>
+</html>
