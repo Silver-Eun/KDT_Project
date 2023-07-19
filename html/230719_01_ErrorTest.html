@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>** Error 연습 **</title>
+    <script>
+      // ** 과제
+      // => 배열 정의 & 초기화
+      // => 반복문, try catch
+      let arr = new Set();
+      let str = [2, 6, 0, 8, 13];
+
+      try {
+        for (let num of str) {
+          let result = num * num;
+          arr.add(result);
+
+          for (let num of arr) {
+            if (result == 0 || result > 100) {
+              throw new Error(`** Error 발생 **`);
+            }
+            console.log(`num => ${num}`);          
+          }
+        }
+      } catch (error) {
+        console.log(`${error}`);
+      }
+
+      // 예시1 : try 내부에 for 구문
+      // -> error 발생시 catch 블럭으로 이동하기 때문에
+      // for 구문이 더이상 실행되지 않음(break)
+/*       let num = [0, 25, 100, 99, 111];
+      try {
+        for (let i = 1; i <= num.length; i++) {
+          // i = 1,2,3,4
+          for (let s of num) {
+            // s = 0, 25, 100, 99, 111
+            console.log(`i = ${i}, s= ${s}`);
+            sum = i *= s; // i = i * s
+            console.log(`i = ${i}, s= ${s} sum = ${sum}`);
+            if (sum == 0 || sum > 100) {
+              throw new Error(`Error 발생`);
+            }
+          }
+        }
+      } catch (error) {
+        console.log(`** Error 발생 => ${error}`);
+      } finally {
+        console.log(`finally block`);
+      } */
+
+      // 예시2
+      // prompt로 입력받아 for 내부에 try 적용
+/*       let numbers = new Array(5);
+      for(let i = 0; i <numbers.length; i++) {
+        numbers[i] = Number(prompt('숫자를 입력하세요.'));
+
+        console.log(`numbers => [${numbers}]`);
+        for(let number of numbers) {
+          try {
+            if(number <= 0 || number > 100) {
+              throw new Error(`0과 같거나 100보다 크다`);
+            } else {
+              console.log(number*number);
+            }
+          } catch (error) {
+            console.log(`** Error 발생 => ${error}`);
+          } 
+        }
+      } */
+
+      // => 예시3 : map 메서드 활용
+/*         let arr1 = [1, 2, 3, 4, 5];
+        let square = arr1.map(function (num) { return (num * num); });
+        try {
+          for (let i of square) {
+            if (i == 0 || i >= 100) {
+              throw new Error("💥💥Error 발생💥💥");
+            }
+          }
+          console.log(`** square = [ ${square} ]`);
+        } catch (err) {
+          console.log(`Error 발생 => ${err}`);
+        } finally {
+          console.log("** finally: 메롱메롱 공부하장");
+        } */
+    </script>
+  </head>
+  <body>
+    <h2>** Error 연습 **</h2>
+    <pre>
+        => 과제
+        배열에 숫자 5개를 담고 차례로 꺼내서 이 숫자의 제곱값을 출력
+        단, 숫자가 0이거나 100보다 크면 Error를 발생시키고
+        오류 메시지를 출력
+    </pre>
+  </body>
+</html>
