@@ -14,12 +14,52 @@
       }, 1000);
       console.log(`Test1) 이전 방식 count1 = ${count1}`);
 
+      // => 연습
+      // => 1초 후에 1부터 100까지 더한 값을 출력
+      let count3 = 0;
+      setTimeout(function () {
+        for (let i = 1; i <= 100; i++) {
+          count3 += i;
+        }
+      }, 1000);
+      console.log(`${count3}`);
+
+      // => 위의 for 구문을 Promise로 구현
+      // => 이행 성공시에 합계(결과) 출력 후 평균 출력
+      let count4 = 0;
+      let promise1 = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          for (let i = 1; i <= 100; i++) {
+            count4 += i;
+          }
+          if (count4 > 100) {
+            resolve(count4);
+          } else {
+            reject(`Error`);
+          }
+        }, 1000);
+      })
+        .then((result) => {
+          console.log(`sum = ${result}`);
+          return result;
+        })
+        .then((result) => {
+          console.log(`avg = ${result / 100}`);
+        })
+        .catch((error) => {
+          console.log(`${error}`);
+        })
+        .finally(() => {
+          console.log(`good`);
+        });
+
       // Test2) Promise 적용
       // => promise 객체 생성 : Pending(대기) 상태
       //   - promise 객체를 생성하면 내부에서 executor 함수를 참조하여
       //   - 매개변수인 resolve, reject를 전달받음
       // => CallBack 익명함수 내에 실행코드 작성
-      //    이 callback 함수의 메개변수
+      //    이 callback 함수의 메개변수 resollve, reject도 callback 함수
+      // => Promise 생성자함수 : Promise(callback 함수(callback 함수, callback 함수)):
       let count2 = 1;
       let promise = new Promise(function (resolve, reject) {
         // => 지연함수를 1초 후에 실행하고, 결과에 따른 이행 callback 함수를 호출
