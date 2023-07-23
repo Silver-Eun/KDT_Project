@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <title>** Loop & Object(객체) **</title>
     <script>
-      //** Object(객체)
-      //=> 속성과 동작을 가짐
-      //=> Type이 다른 여러 자료형을 한번에 정의
-      //=> 이때 정의되는 자료를 속성(=요소, property)
+      // ** Object(객체)
+      // => 속성과 동작을 가짐
+      // => Type이 다른 여러 자료형을 한번에 정의
+      // => 이때 정의되는 자료를 속성(=요소, property)
       //   속성의 값은 기본자료형(문자,정수,실수,boolean) 또는 function 이 가능하다.
 
-      //=> 객체의 속성의 값이 기본자료형인 경우에는 객체의 속성(property) 이라하고,
+      // => 객체의 속성의 값이 기본자료형인 경우에는 객체의 속성(property) 이라하고,
       //   function으로 정의된 경우에는 객체의 메서드(method)라 함.
-      //=> 객체의 속성(property)의 값으로 function 을 정의할때에는 익명으로함 (익명함수)
+      // => 객체의 속성(property)의 값으로 function 을 정의할때에는 익명으로함 (익명함수)
 
-      //* 단어비교 -> ingredient:재료,성분  / component:구성요소
+      // * 단어비교 -> ingredient:재료,성분  / component:구성요소
       // 1) 정의 (리터럴표기법)
       var myObject = {
         name: "건조망고",
@@ -38,7 +38,13 @@
       //	}
 
       // => 속성명으로 접근 : name, size 출력
-      document.write("** myObject name, size => " + myObject.name + ", " + myObject.size + "<br>");
+      document.write(
+        "** myObject name, size => " +
+          myObject.name +
+          ", " +
+          myObject.size +
+          "<br>"
+      );
 
       // 3) 객체의 메서드 활용
       // => function (익명함수) , this
@@ -52,7 +58,9 @@
           // ver01 -> document.write(' 점심으로 '+menu+' 를 맛있게 먹었습니다.<br>');
           // ver02 -> 객체내에서 자신의 속성값 접근 (student.name, this.name 모두가능 )
           //document.write(this.name+' 학생은 점심으로 '+menu+' 를 맛있게 먹었습니다.<br>');
-          document.write(`${this.name} 학생은 점심으로 ${menu}를 맛있게 먹었습니다.<br>`);
+          document.write(
+            `${this.name} 학생은 점심으로 ${menu}를 맛있게 먹었습니다.<br>`
+          );
         },
         study: function (kind) {
           // ver01 -> document.write('그리고 '+kind+' 를 열심히 공부합니다.<br>');
@@ -91,19 +99,19 @@
     <hr align="center" />
     <h3>
       <pre>
-** Object(객체) 선언, 출력, this **
-=> Object(객체): 속성과 동작을 가짐
+        ** Object(객체) 선언, 출력, this **
+        => Object(객체): 속성과 동작을 가짐
 
-1) 객체의 정의 (리터럴표기법)
-2) 객체출력
-	=> 간편출력 for 구문 : of, in
-	=> in : 배열(index Return), 객체(속성명 Return)
-	=> of 는 객체에 적용안됨
-3) 객체의 다양한 특성  (function, this..)	
-	=> 객체의 속성(property)의 값으로 function을 정의할수 있고 이때에는 익명으로함 (익명함수) 
-    => 객체의 속성의 값이 기본자료형인 경우에는 객체의 속성 이라하고, 
-       function으로 정의된 경우에는 객체의 메서드(method)라 함.  
-</pre
+        1) 객체의 정의 (리터럴표기법)
+        2) 객체출력
+        	=> 간편출력 for 구문 : of, in
+        	=> in : 배열(index Return), 객체(속성명 Return)
+        	=> of 는 객체에 적용안됨
+        3) 객체의 다양한 특성  (function, this..)	
+        	=> 객체의 속성(property)의 값으로 function을 정의할수 있고 이때에는 익명으로함 (익명함수) 
+          => 객체의 속성의 값이 기본자료형인 경우에는 객체의 속성 이라하고, 
+             function으로 정의된 경우에는 객체의 메서드(method)라 함.  
+    </pre
       >
     </h3>
   </body>

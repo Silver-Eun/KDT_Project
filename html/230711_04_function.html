@@ -23,8 +23,12 @@
       // *** typeof : Type을 return 해주는 내장함수
       // => 위 두 함수의 typeof의 결과와 함수명만 사용했을때 (소스출력) 의 결과비교
       //    모두 Type 은 function 임.
-      document.write("** typeof(선언적함수) => " + typeof first + " , " + first + "<br>");
-      document.write("** typeof(익명함수) => " + typeof noName + " , " + noName + "<br>");
+      document.write(
+        "** typeof(선언적함수) => " + typeof first + " , " + first + "<br>"
+      );
+      document.write(
+        "** typeof(익명함수) => " + typeof noName + " , " + noName + "<br>"
+      );
 
       // 3. 함수간 우선순위
       // => 이름이 동일한 경우에 해당
@@ -49,7 +53,9 @@
         document.write("** 선언함수3 : CCCCC **<br>");
       }
       noName();
-      document.write("** typeof(우선순위) => " + typeof noName + " , " + noName + "<br>");
+      document.write(
+        "** typeof(우선순위) => " + typeof noName + " , " + noName + "<br>"
+      );
 
       // 4. CallBack 함수
       // => 매개변수로 함수를 사용할 수 있음
@@ -101,12 +107,14 @@
   </head>
   <body>
     <hr />
-    <pre><h3>
-** function **
-1. 선언적 function 의 정의, return, 사용
-2. 익명함수
-3. 함수간 우선순위
-4. CallBack 함수
-</h3></pre>
+    <pre>
+      <h3>
+        ** function **
+        1. 선언적 function 의 정의, return, 사용
+        2. 익명함수
+        3. 함수간 우선순위
+        4. CallBack 함수
+      </h3>
+    </pre>
   </body>
 </html>

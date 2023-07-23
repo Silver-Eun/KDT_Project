@@ -65,8 +65,16 @@
       // => 첫번째 일치하는 문자에만 적용됨
       // => 모든 문자에 적용
       //    정규식 적용 -> /문자/ (문자선택) , g (모든문자에 적용) , i (대.소문자 모두 적용)
-      document.write("문자함수3 s.replaceAll (정규식적용1) : " + s.replace(/!/g, "@") + "<br>");
-      document.write("문자함수3 s.replaceAll (정규식적용2) : " + s.replace(/l/gi, "T") + "<br>");
+      document.write(
+        "문자함수3 s.replaceAll (정규식적용1) : " +
+          s.replace(/!/g, "@") +
+          "<br>"
+      );
+      document.write(
+        "문자함수3 s.replaceAll (정규식적용2) : " +
+          s.replace(/l/gi, "T") +
+          "<br>"
+      );
 
       // => s.concat(c) 와  s+c 의 차이점 -> 일단없음
       document.write("문자함수4 s.concat(c) : " + s.concat(c) + "<br>");
@@ -85,7 +93,9 @@
       //		: 잘라내고 싶은 문자열의 start index와 last index+1 (substring() 과 동일)
       //		: 단, 음수가 전달된 경우 또는 start > end 인경우 처리가 다름 (위 사이트 참고)
       document.write("문자함수5 s.substr(8,3) : " + s.substr(8, 3) + "<br>"); // 8 부터 3개
-      document.write("문자함수5 s.substring(8,11) : " + s.substring(8, 11) + "<br>"); // 8~11 이전 까지 : 3개
+      document.write(
+        "문자함수5 s.substring(8,11) : " + s.substring(8, 11) + "<br>"
+      ); // 8~11 이전 까지 : 3개
       document.write("문자함수5 s.slice(8,11) : " + s.slice(8, 11) + "<br>"); // 8~11 이전 까지 : 3개
 
       // 6. 숫자 함수
@@ -95,8 +105,14 @@
       //	  만약 지역값을 주지 않으면 해당 시스템의 지역값에 따라 표기됨
       //	  - 소수점 이하 제거기능 추가 .split(".")[0]
       var mymoney = 123456789.879;
-      document.write("숫자에 , 넣기 : " + Number(mymoney).toLocaleString("en") + "<br>");
-      document.write("숫자에 , 넣기 : " + Number(mymoney).toLocaleString("en").split(".")[0] + "<br>");
+      document.write(
+        "숫자에 , 넣기 : " + Number(mymoney).toLocaleString("en") + "<br>"
+      );
+      document.write(
+        "숫자에 , 넣기 : " +
+          Number(mymoney).toLocaleString("en").split(".")[0] +
+          "<br>"
+      );
       // => 숫자에서 ',' 제거하기 (문자->숫자)
       //    문자함수의 replace("," , "") 를 이용
       var s = "123,456,789.879";
