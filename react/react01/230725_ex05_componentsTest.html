@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>** React Component02 : function 연습 **</title>
+  </head>
+  <body>
+    <h3>** React Component02 : function 연습 **</h3>
+    <button onclick="continent()">** 대륙 **</button>
+    &nbsp; &nbsp; &nbsp;
+    <button onclick="gdprank()">** GDP 순위 **</button>
+    &nbsp; &nbsp; &nbsp;
+    <button onclick="image()">** 이미지 **</button>
+    <hr />
+    <div id="react-container"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+      // ** 과제
+      // 배열로 Data 를 전달받아 ul, li 로 출력하는 함수형 컴포넌트를 정의하고,
+      // => 배열2개, 버튼2개 (재료, 조리법)를 정의하여 출력하도록 완성하세요
+      // => Data 갯수는 5개이상
+
+      const List = ({ items }) =>
+        React.createElement(
+          "ul",
+          null,
+          items.map((item, i) => React.createElement("li", { key: i }, item))
+        );
+
+      function continent() {
+        let myContinent = [
+          "아시아",
+          "유럽",
+          "아메리카",
+          "아프리카",
+          "남극",
+          "북국",
+        ];
+
+        ReactDOM.render(
+          React.createElement(List, { items: myContinent }, null),
+          document.getElementById("react-container")
+        );
+      }
+
+      function gdprank() {
+        let myrank = [
+          "미국",
+          "중국",
+          "일본",
+          "독일",
+          "인도",
+          "영국",
+          "프랑스",
+          "이탈리아",
+          "캐나다",
+          "브라질",
+          "러시아",
+          "대한민국",
+        ];
+
+        ReactDOM.render(
+          React.createElement(List, { items: myrank }, null),
+          document.getElementById("react-container")
+        );
+      }
+
+      function image() {
+        document.getElementById("react-container").innerHTML =
+          '<img src="../../images/banana.png" width="400px" height="300px">';
+      }
+    </script>
+  </body>
+</html>
