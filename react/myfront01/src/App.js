@@ -19,7 +19,7 @@ function App() {
   
   return (
     <div className="App">
-      <MyHeader person = {person} name = {person.name} age = {person.age} />
+      <MyHeader person = {person} />
       <Body name = {name} country = {'경기도 성남시'} />
       <Footer />
     </div>

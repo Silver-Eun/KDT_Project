@@ -9,14 +9,24 @@
 
 // ** CSS, 스타일 적용하기
 // => 인라인 스타일링 : style={{스타일...}}
-// => 스타일파일 분리 : Body.css(component 파일명과 동일) , import './Body.css'
+// => 스타일파일 분리
+//    Body.css(component 파일명과 동일),
+//    import './Body.css'
 // => css는 경로만 지정
 
 // ** Props, 컴포넌트에 값 전달하기
 // => Props(properties) 객체 : 부모에서 자식으로 값 전달
 // => 그러므로 Body Component에 Props로 값을 전달하기 위해
 //    App Component에서 전달(name 값을 body로 전달)
-// ** Event
+
+// ** React Event (Html 과 차이점)
+// => 이벤트 핸들러 카멜표기
+// => 콜백함수처럼 함수 그자체를 전달
+// => onClick={onClickHandler}
+// => 기본이벤트 제거 ( return false 대신 e.preventDefault() 명시적으로 호출해야함 )
+
+// ** 이벤트객체 활용 실습
+
 // ** State
 
 import "./Body.css";
@@ -32,10 +42,14 @@ function Body(props) {
 
   // ** 부모로부터 전달된 props 확인
   // console.log(`${props}`);
+  // ** 매개변수 구조분해 적용
+  const { name, country } = props;
 
   // ** 이벤트 핸들러
-  function clickTest() {
-    alert('hello');
+  // function clickTest() {...}
+  const clickTest = (e) => {
+    alert('hello => ' + e.target.name);
+    console.log(`e 개체 확인 => ${e.type}`);
   }
 
   // ** 조건문 : jsx에서는 사용 불가능하지만 component에서는 가능
@@ -44,9 +58,10 @@ function Body(props) {
       <div className="body">
         <h1>** Body: JSX Test **</h1>
         <p>props.name = {props.name}, props.country = {props.country}</p>
+        <p>props 구조분해적용 name = {name}, country = {country}</p>
         <p>산술식 : n1 + n2 = {n1 + n2}</p>
         <p>문자식 : s1 + s2 = {s1 + s2}</p>
-        <p>논리식_나중에 : OR = {b1 || b2}, AND = {b2 && b2}</p>
+        <p>논리식_Test : b1 = {b1}, AND = {b2 && b2}, 관계식 = {n1 === n2}</p>
         {/* <p>Object : obj = {obj}  </p>
         => Uncaught Error: Objects are not valid as a React child
       => 단, 객체, 배열명 직접사용은 불허 */}
@@ -58,14 +73,17 @@ function Body(props) {
   } else {
     return (
       <React.Fragment>
+        {/* react import 필요 */}
         <div>
           <h1 style={{ color: "black", backgroundColor: "orange" }}>** Body : JSX Test **</h1>
           <p>if 조건문 Test 중...</p>
           <img src={ img1 } width={"300px"} height={"300px"}  />
-          <button onClick={clickTest}>클릭하세요</button>
-          <img src={ img1 } width={"300px"} height={"300px"}  />
+          <button onClick={clickTest} name="apple">클릭하세요</button>
+          <button onClick={clickTest} name="banana">클릭하세요</button>
+          <img src={img1} width={"300px"} height={"300px"} />
+          <p>** HTML과 비교 : onclick = clickTest</p>
         </div>
-        <div>{"최상위 Tag 규칙 필요시 <div> 또는 <React.Fragment> Tag 로 감싸줌"}</div>
+        <div>{"최상위 Tag 규칙 필요시 <div> 또는 <React.Fragment> Tag로 감싸줌"}, 랜더링 되지 않으므로 div 대신 사용</div>
       </React.Fragment>
     );
   }
