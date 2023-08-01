@@ -8,6 +8,7 @@ export default function Header(props) {
       <h3>props.person.name = {props.person.name}</h3>
       <h3>props.person.age = {props.person.age}</h3>
       {/* <h3>props.person = {props.person}</h3> : 오류 */}
+      <p>가족은 {props.person.family.length}명입니다.</p>
     </header>
   );
 }

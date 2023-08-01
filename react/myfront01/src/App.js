@@ -14,7 +14,8 @@ function App() {
 
   const person = {
     name: 'kim',
-    age: 30
+    age: 30,
+    family:['mom', 'dad', 'brother']
   }
   
   return (

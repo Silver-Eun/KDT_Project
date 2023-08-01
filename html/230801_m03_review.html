@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>** 기초 실력 다지기 **</title>
+    <script>
+      // 1) 순차정렬(Sort)과 반복문
+      // -> Data 구분
+      // 기본자료형(단일값 : 정수, 실수, 문자, boolean..등)
+      // 배열, Map, Set
+
+      // => 기본 알고리즘 : Sort, Search
+      let s1 = 10, s2 = 20, s3 = 30, s4 = 12, s5 = 100;
+      let point = [100, 555, 200, 300, 111];
+
+      // 1) => point 순으로 출력
+      //        100, 555
+      //        100, 200
+      //        100, 300
+      //        100, 111
+
+      //        555, 200
+      //        555, 300
+      //        555, 111
+
+      //        200, 300
+      //        200, 111
+
+      //        300, 111
+
+      for (i = 0; i < point.length; i++) {
+        for (j = i + 1; j < point.length; j++) {
+          console.log(point[i] + ", " + point[j]);
+        }
+      }
+
+      // 2) 정렬(Sort) 하기
+      // => point 배열의 Data를 index 0 부터 차례대로 재배치 하는데,
+      //    이  Data 가 오름차순 인것임.
+      // => 기본배열 반복문 for_i , 비교반복문 for_j
+      // => i Data 와 j Data 를 비교하면서 작은값이 있으면 서로 맞바꿈(치환)
+      for (i = 0; i < point.length; i++) {
+        for (j = i + 1; j < point.length; j++) {
+          if (point[i] > point[j]) {
+            // 오름차순
+            // if(point[i] < point[j]) { // 내림차순
+            // Data
+            let temp = point[i];
+            point[i] = point[j];
+            point[j] = temp;
+          } // if
+        } // for_j
+      } // for_i
+      // => 배열 : in -> index
+      for (let p in point) {
+        console.log(point[p]);
+      }
+      // => 배열 : of -> index
+      for (let p of point) {
+        console.log(p);
+      }
+
+      // => student 객체(name, score)를 생성자함수를 이용해서 구하고
+      // instance 3개 생성하고 배열에 담음
+      // => score순으로 출력(sort, method X)
+      function Student(name, score) {
+        this.name = name;
+        this.score = score;
+      }
+
+      const student1 = new Student("kim", 85);
+      const student2 = new Student("Lee", 92);
+      const student3 = new Student("choi", 78);
+
+      let stuArr = [student1, student2, student3];
+
+      for (i = 0; i < stuArr.length; i++) {
+        for (j = i + 1; j < stuArr.length; j++) {
+          if (stuArr[i].score > stuArr[j].score) {
+            let temp = stuArr[i];
+            stuArr[i] = stuArr[j];
+            stuArr[j] = temp;
+          }
+        }
+      }
+      for (let p of stuArr) {
+        console.log(p);
+      }
+
+      // => students 배열에 map 적용해서 score 배열 만들기
+      // score + index*100을 가진 배열로
+      let score = stuArr.map((student, index) => {
+        return student.score + index * 100;
+      });
+      console.log(score);
+    </script>
+  </head>
+  <body>
+    <h2>** 기초 실력 다지기 **</h2>
+    <pre>
+        1) 순차정렬(Sort)과 반복문
+    </pre>
+  </body>
+</html>
