@@ -36,7 +36,6 @@ const Controller = ({ onChangeState }) => {
         (n) => { onChangeState(n); }
     */
     
-    console.log(`Controller Update`);
     return (
         <div>
             <button onClick={ () => onChangeState(-1)}>-1</button>&nbsp;

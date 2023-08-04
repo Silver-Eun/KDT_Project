@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>** 지연함수 setInterval Test **</title>
+  </head>
+  <body>
+    <h2>** 지연함수 setInterval Test **</h2>
+    => 텍스트가 자동 회전하며, 마우스로 클릭하면 중단<br />
+    <hr />
+    <div>
+      <h3 id="span" style="background-color: yellow">자동 회신 Test</h3>
+    </div>
+    <script>
+      let span = document.getElementById("span");
+
+      // 10번 회전하면 멈춤
+      let count = 0;
+
+      let timer = setInterval("doRotate()", 200); // 0.2초 주기로 실행
+      // => 마우스로 클릭하면 중단
+      span.onclick = () => {
+        clearInterval(timer);
+      };
+
+      function doRotate() {
+        var str = span.innerHTML;
+        var firstChar = str.substr(0, 1);
+        var remains = str.substr(1, str.length - 1);
+        str = remains + firstChar;
+        span.innerHTML = str;
+      }
+    </script>
+  </body>
+</html>

@@ -13,15 +13,15 @@ function App() {
   // => 객체를 정의하고 Header Component로 전달, 출력
 
   const person = {
-    name: 'kim',
+    name: "kim",
     age: 30,
-    family:['mom', 'dad', 'brother']
-  }
-  
+    family: ["mom", "dad", "brother"],
+  };
+
   return (
     <div className="App">
-      <MyHeader person = {person} />
-      <Body name = {name} country = {'경기도 성남시'} />
+      <MyHeader person={person} />
+      <Body name={name} country={"경기도 성남시"} />
       <Footer />
     </div>
   );
@@ -29,7 +29,8 @@ function App() {
 
 export default App;
 
-{/* <header className="App-header">
+{
+  /* <header className="App-header">
   <img src={logo} className="App-logo" alt="logo" />
   <p>
     Edit <code>src/App.js</code> and save to reload.
@@ -42,4 +43,5 @@ export default App;
   >
     Learn React
   </a>
-</header> */}
+</header> */
+}
