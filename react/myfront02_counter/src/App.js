@@ -27,25 +27,36 @@
 // => 4) Mount 제어
 // => 5) Update(리랜더링)시에만 호출하도록 변경
 // => 6) UnMount 제어
+//    6.1) 클린업 이해 (setInterval 활용)
+//    6.2) 클린업을 이용한 언마운트 제어하기
 
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
 import Controller from "./component/Controller";
 import Viewer from "./component/Viewer";
+import Even from "./component/Even";
 
 function App() {
   const [count, setCount] = useState(0); // deStructuring, 비구조할당
-  const onChangeState = (num) => { setCount(count + num); };
-  
+  const onChangeState = (num) => {
+    setCount(count + num);
+  };
+
   // 1) useEffect 적용
   // => state 변수인 count값이 바뀌면 바뀐 값을 콘솔로 출력
   // => count 값 초기화도 감지
-  useEffect(() => { console.log(`** useEffect test1) count => ` + count) }, [count]);
-  
+  useEffect(() => {
+    console.log(`** useEffect test1) count => ` + count);
+  }, [count]);
+
   // 2) State 변수 text 추가후 확인하기.
   const [text, setText] = useState("");
-  const onChangeText = (e) => { setText(e.target.value); };
-  useEffect(() => { console.log(`** useEffect test2) text => ` + count + text) }, [text]);
+  const onChangeText = (e) => {
+    setText(e.target.value);
+  };
+  useEffect(() => {
+    console.log(`** useEffect test2) text => ` + count + text);
+  }, [text]);
   // => [text] : count 값 변경시 출력안됨
   // => [count] : text 값 변경시 출력안됨
   // => [count, text] : text 또는 count 값 변경시 출력
@@ -53,7 +64,9 @@ function App() {
   // 3) 두번째 인수가 없는 useEffect 정의 후 비교
   // => 콜백함수를 실행시켜주는 조건값이 없는 경우
   // => 렌더링 할 때마다 호출
-  useEffect(() => { console.log(`** useEffect test3) 배열없음 count => ` + count) });
+  useEffect(() => {
+    console.log(`** useEffect test3) 배열없음 count => ` + count);
+  });
 
   // 4) Mount 제어
   // => useEffect를 추가하고 두번째인자는 빈 배열을 전달
@@ -61,7 +74,7 @@ function App() {
   //    ( 처음 한번만 실행됨 확인 → 그러므로 Mount 제어에 이용 )
   useEffect(() => {
     // alert('Hello useEffect');
-    console.log(`** useEffect test4) 빈 배열 count => ` + count)
+    console.log(`** useEffect test4) 빈 배열 count => ` + count);
   }, []);
 
   // => 5) Update(리랜더링)시에 호출하도록 변경
@@ -71,9 +84,9 @@ function App() {
   //    Ref 객체로 생성
   //    ( Ref 객체는 DOM요소 참조 뿐만아니라 컴포넌트의 변수로도 활용됨 )
   const didMountRef = useRef(false);
-  
-  useEffect(() => { 
-    if ( !didMountRef.current ) {
+
+  useEffect(() => {
+    if (!didMountRef.current) {
       // 최초 렌더링(마운트) 시점 -> 출력하지 않고 return_callBack함수 종료
       didMountRef.current = true;
       return;
@@ -81,6 +94,22 @@ function App() {
       console.log(`** useEffect test5) Update => ` + count + text);
     }
   });
+  /* const isUpdateRef = useRef(false);
+  //let isUpdateRef = false ;
+  // => boolean Type은 const 정의 불가능 (오류)
+  //    const 로 정의하기위해 useRef 사용 ( )
+  //    변수의 중요성에 따라 const 로 정의
+  useEffect(() => {
+    if (!isUpdateRef.current) {
+      // if ( isUpdateRef.current==false ) {
+      // if ( !isUpdateRef.current )  ->  isUpdateRef.current==false
+      // 최초 랜더링(마운트) 시점 -> 출력하지않고 return_콜백함수종료
+      isUpdateRef.current = true;
+      return;
+    } else {
+      console.log("** useEffect test5) Update => " + count + ", " + text);
+    }
+  }); //useEffect */
   // => 위 3)과 같이 의존성배열을 전달하지 않았으므로 마운트시점에도 콜백함수는 실행되어야 하지만,
   // => 조건문에서 didMountRef의 초기값 false인 마운트(처음 랜더링) 시점에는 if 구문을 실행하므로
   //    콘솔출력을 하지않고 return되며, 이후 Update(리랜더링) 시점에만 출력
@@ -101,6 +130,7 @@ function App() {
   //          (setInterval 은 clearInterval 을 호출해서 종료시켜야 멈춤)
   // => 해결 : useEffect의 클린업 기능
 
+  // 6.1)
   // => 클린업 함수
   //    - useEffect의 콜백함수에서 return하는 함수
   //    - 콜백함수를 재호출하기 전에 실행됨,
@@ -115,12 +145,28 @@ function App() {
   //       clearInterval(intervalId);
   //   }});
 
+  // 6.2) 클린업을 이용한 UnMount 제어하기
+  // => count 값이 짝수면
+  //    "짝수 입니다" 를 출력하는 component(Even.jsx)를 생성
+  // => 이를 이용하여 조건부 랜더링 구현
+  //    ( import, <Even /> 랜더링코드 추가 )
+  // => Even에 useEffect를 추가해서 UnMount 메시지 출력
+
   return (
     <div className="App">
       <h2>* Simple Counter *</h2>
-      <section><input value={text} onChange={onChangeText} /></section>
-      <section><Viewer count={count} /></section>
-      <section><Controller onChangeState={onChangeState} /></section>
+      <section>
+        <input value={text} onChange={onChangeText} />
+      </section>
+      <section>
+        <Viewer count={count} />
+        {count % 2 === 0 && <Even />}
+        {/* && : 앞쪽의 조건식이 참이면 뒤쪽 리턴값 랜더링
+                 ( 거짓이면 아무것도 랜더링하지않음 ) */}
+      </section>
+      <section>
+        <Controller onChangeState={onChangeState} />
+      </section>
     </div>
   );
 }
