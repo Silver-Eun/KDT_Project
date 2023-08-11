@@ -1,0 +1,14 @@
+.App {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.active {
+  background-color: aqua;
+  text-decoration: none;
+}
