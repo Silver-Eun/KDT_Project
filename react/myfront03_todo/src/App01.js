@@ -1,4 +1,4 @@
-// ** TodoList (일정관리 앱)
+// ** TodoList (일정관리 앱1)
 // 1. UI
 // 2. Mock Data 만들기
 // => Mock Data: 모조 Data (개발중 테스트 목적으로 사용하는 Data)
