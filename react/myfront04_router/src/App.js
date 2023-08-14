@@ -1,14 +1,3 @@
-// ** Routing
-// => 경로를 지정하는 과정
-// ** Page Routing
-// => 요청에 따라 적절한 페이지를 반환하는 과정
-// => 이때 웹 페이지를 어디서 만드느냐에 따라
-//    SSR(Server Side Rendering), CSR(Client Side Rendering) 로 나뉘며,
-//    리액트는 SPA(Single Page Application)이며 CSR 방식을 채택하고 있다.
-// => 두 방법 모두 장단점이 있으므로 서비스의 목적에 따라 적절한 방식을 채택한다.
-// => CSR은 처음접속시 Html과 JS 에플리케이션을 함께 제공받기 때문에 처음 접속은 느리지만,
-//    이후 페이지 이동은 브러우저에서 교체하므로 훨씬 빠르다.
-
 // ** Router 적용하기
 // => 마치 Page가 이동하는것처럼 url에 의해
 //    적당한 컴포넌트가 배치 되도록 해줌
@@ -25,7 +14,6 @@
 // 3. 실습
 // 1) BrowserRouter 컴포넌트
 // => Router 적용하려는 최상위 컴포넌트를 감싸는 Rapper 컴포넌트
-// => 브라우저의 주소 변경을 감지하며 컴포넌트가 페이지를 구성하고 이동하는데 필요한 다양한 기능 제공
 // => index.js의 App에 적용
 
 // 2) Routes, Route 컴포넌트
@@ -87,14 +75,10 @@ function App() {
         <li><NavLink to="/contact">Contact</NavLink></li>
       </ul>
       <Routes>
-        {/* => 여러 Route 컴포넌트를 감싸며,
-               현재 주소창에 입력된 url 경로와 동일한 Route 컴포넌트를 페이지에 랜더링 함. 
-            => switch ~ case 구문과유사함.    */}
         <Route path="/" element={<Home />} />
         {/* <Route path="/topics" element={<Topics />} /> */}
         <Route path="/topics/*" element={<Topics />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/*" element={"Not Found"} />
       </Routes>
     </div>
   );
