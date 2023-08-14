@@ -33,13 +33,21 @@
 //   ( 단, 아래코드처럼 useReducer() 를 이용하는경우에는 무관함 )
 
 // ** React.memo
-// => 컴포넌트의 불필요한 리랜더링 방지 (Header 에 적용)
+// => 컴포넌트의 불필요한 리랜더링을 방지해주는 고차 컴포넌트 (Header 에 적용)
+// => 리랜더링의 기준은 부모에서 전달된 Props가 변경된 경우에만 리랜더링됨    
 // => React.memo(메모이제이션 하려는 컴포넌트)
 //    인자로 전달된 컴포넌트를 메모이제이션 된 컴포넌트로 return
+//    이를 Enhanced(강화된, 향상된) Component 라함.
 // => 컴포넌트 선언과 동시에 적용하는것 도 가능
 //    const comp = React.memo(() => {....})
-
 // => 아래의 onUpdate, onDelete 함수를 리랜더링 할때마다 재생성 하지 않도록 적용.
+
+// => 고차 컴포넌트 (HOC: High Order Component)
+//    컴포넌트 기능을 재사용 하기위한 리액트 고급기슬 
+//    인자로 전달된 컴포넌트에 새로운 기능을 추가해 
+//    더욱 강화된 컴포넌트를 return 하는 컴포넌트(함수) 를 말하며
+//    이때 return 되는 강화된 컴포넌트를 Enhanced(강화된, 향상된) Component 라함.   
+// => const enhanced_Component = React.memo(Header)
 //=================================================
 
 // ** TodoList (일정관리 앱3)
@@ -108,7 +116,7 @@ function App() {
   const [todo, dispath] = useReducer(reducer, mockTodo);
   // => useReducer로
   const idRef = useRef(mockTodo.length);
-  // *** => dispatch_상태변화촉발(이벤트 감지)과 reducer()_상태값 변경함수로 나뉘어짐
+  // *** => dispath_상태변화촉발(이벤트 감지)과 reducer()_상태값 변경함수로 나뉘어짐
   // 3.2) 일정추가 (create) 함수 생성
   // => 상대값 변경부분을 reducer()에게 맡기고, 이를 위해
   //    dispatch 호출해서 action(type, data) 값을 전달해줘야함
@@ -125,6 +133,9 @@ function App() {
     idRef.current += 1;
     console.log("** onCreate, todo.length : " + todo.length);
   };
+  // => useCallback 을 적용하지않으므로
+  //    일정을 추가할때 마다 App 컴포넌트 리랜더링 되면서, 내부의 함수도 재생성되면서
+  //    변경된 State 변수값에 접근하여 정확한 길이를 출력함.
 
   // ** useCallback 적용
   // => 비어있는 배열을 두번째 인자로 전달하여 마운트시에만 생성되도록 함.
@@ -163,7 +174,7 @@ function App() {
   console.log("** App Update **");
   return (
     <div className="App">
-      <TestComp />
+      {/* <TestComp /> */}
       <Header />
       <TodoEditor onCreate={onCreate} />
       <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
