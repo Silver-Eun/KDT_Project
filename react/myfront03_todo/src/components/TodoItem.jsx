@@ -1,29 +1,49 @@
-import './TodoItem.css'
+// ** Context 적용
+// => immport: useContext, TodoContext
+// => useContext()로 Data 전달받음
+//    TodoItem 컴포넌트 인자로 전달받은 Props Data 중
+//    Context로 전달받는 Data는 필요 없으므로 삭제
 
-const TodoItem = ({ id, isDone, content, createDate, onUpdate, onDelete }) => {
+import "./TodoItem.css";
+import React, { useContext } from "react";
+import { TodoContext } from "../App";
 
-    const onChangeCheckbox = () => {
-        onUpdate(id);
-    }
+const TodoItem = ({ id, isDone, content, createDate }) => {
+  // ** Context 적용
+  // => 적용후 최적화 기능 점검
+  //    React.memo 이 작동하지 않음을 확인
+  //    이유는 todo와 함수들이 하나의 Context로 묶여있기 때문에
+  //    관련이 없는 컴포넌트에서도 부모가 랜더링 되면 같이 랜더링된다.
+  //    그러므로 Context는 역할별로 분리하는것이 바람직하다.
+  const { onUpdate, onDelete } = useContext(TodoContext);
 
-    // const onClickButton = () => {
-    //     onDelete(id);
-    // }
+  const onChangeCheckbox = () => { onUpdate(id); };
+  // const onClickButton = () => { onDelete(id); }
 
-    return (
-        <div className='TodoItem'>
-            <div>
-                <input type='checkbox' checked={isDone} onChange={onChangeCheckbox} />
-            </div>
-            <div className='title_col'>{content}</div>
-            <div className='date_col'>{new Date(createDate).toLocaleDateString()}</div>
-             {/* 타임스템프 형식을 Date 형식으로 변환하고, 
+  // => 최적화 (React.memo 적용) 전/후 출력 비교
+  console.log(`** TodoItem Update id=${id} **`);
+  return (
+    <div className="TodoItem">
+      <div>
+        <input type="checkbox" checked={isDone} onChange={onChangeCheckbox} />
+      </div>
+      <div className="title_col">{content}</div>
+      <div className="date_col">
+        {new Date(createDate).toLocaleDateString()}
+      </div>
+      {/* 타임스템프 형식을 Date 형식으로 변환하고, 
                  toLocaleDateString() 을 적용하여 문자열로 랜더링 */}
-            <div className='btn_col'>
-                <button onClick={() => {onDelete(id)}}>삭제</button>
-            </div>
-        </div>
-    )
-}
+      <div className="btn_col">
+        <button
+          onClick={() => {
+            onDelete(id);
+          }}
+        >
+          삭제
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default TodoItem
+export default React.memo(TodoItem);

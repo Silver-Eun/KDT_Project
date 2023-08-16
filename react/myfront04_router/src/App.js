@@ -94,7 +94,7 @@ function App() {
         {/* <Route path="/topics" element={<Topics />} /> */}
         <Route path="/topics/*" element={<Topics />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/*" element={"Not Found"} />
+        <Route path="/*" element={"~~ Not Found ~~"} />
       </Routes>
     </div>
   );

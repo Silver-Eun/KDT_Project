@@ -21,14 +21,14 @@
 //    현재 라우터의 위치를 나타내는 location 객체를 return
 //    현재 위치에 관한 정보가 필요할떄 이용됨.
 // => location 객체의 속성 : pathname, search(쿼리문자열) 등
-import { Link, NavLink, Route, Routes, useParams } from "react-router-dom";
+import { NavLink, Route, Routes, useParams } from "react-router-dom";
 
 // 2) 배열로 목록 정의
 const contents = [
-  {id:1, title:'HTML', description:'HTML'},
-  {id:2, title:'JavaScript', description:'JavaScript'},
-  {id:3, title:'React', description:'React'}
-]
+  { id: 1, title: "HTML", description: "HTML" },
+  { id: 2, title: "JavaScript", description: "JavaScript" },
+  { id: 3, title: "React", description: "React" },
+];
 
 // 3) Topic 컴포넌트 추가
 // => 배열 contents 에서 전달된 id 에 해당하는 Data 의 description(서술/기술/묘사/표현) 출력하기
@@ -36,42 +36,42 @@ const contents = [
 function Topic() {
   //const params = useParams(); // { topic_id:1 }
   //console.log(`** params=${params}, params.topic_id=${params.topic_id}`);
-  const {topic_id} = useParams();
+  const { topic_id } = useParams();
 
   // 3.2) filter 적용
   let selected_item = {
-    title: 'Sorry',
-    description: '~~ NotFound ~~'
-  }
-  const find_item = contents.filter( (content) => content.id==topic_id ); //filter
+    title: "Sorry",
+    description: "~~ NotFound ~~",
+  };
+  const find_item = contents.filter((content) => content.id == topic_id); //filter
   selected_item = find_item.length > 0 ? find_item[0] : selected_item;
 
   return (
-      <div>
-          {/* 3.1) 
+    <div>
+      {/* 3.1) 
           <h3>** Topic **</h3>   
           Topic..... */}
 
-          {/* 3.2) filter 적용  => 결과물 출력 */}
-          <h3>** {selected_item.title} **</h3>
-          <h3>{selected_item.description}</h3> 
-      </div>
+      {/* 3.2) filter 적용  => 결과물 출력 */}
+      <h3>** {selected_item.title} **</h3>
+      <h3>{selected_item.description}</h3>
+    </div>
   ); // return
-}; //Topic
+} //Topic
 
 function Topics() {
-  const lis = contents.map((content) => {
+  const lis = contents.map((content) => (
     <li key={content.id}>
-      <NavLink to={"/topics/" + content.id }>{content.title}</NavLink>
-    </li>;
-  });
+      <NavLink to={"/topics/" + content.id}>{content.title}</NavLink>
+    </li>
+  ));
 
   return (
     <div>
       <h2>Topics</h2>
       <ul>
         {/* 2) map 적용 */}
-        { lis }
+        {lis}
       </ul>
       <div>
         <Routes>

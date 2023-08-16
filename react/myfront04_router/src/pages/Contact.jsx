@@ -75,7 +75,7 @@ function SelectEmotion() {
   //  ** useLocation
   const location = useLocation();
   console.log(`** location = ${location}`);
-  console.log(`** location.path = ${location.pathname}`);
+  console.log(`** location.pathname = ${location.pathname}`);
   console.log(`** location.search = ${location.search}`);
 
   // => filter 적용
@@ -105,6 +105,7 @@ export default function Contact() {
       <img alt="감정4" src={getEmotionImgById(4)} />
       <img alt="감정5" src={getEmotionImgById(5)} />
       <p>당신의 기분을 주소창에 쿼리스트링으로 입력해보세요...</p>
+      {/* => http://localhost:3000/contact?id=1&name=Banana */}
       <SelectEmotion />
     </div>
   ); //return
