@@ -46,11 +46,21 @@ public class Ex03_Variable02 {
 	System.out.printf("** s_Underflow2 => sMin = %d, sMin-1= %d \n", sMin, (short)(sMin-1));
 	
 	// 2) 실수형
-	float f = 1234.567f;
-	System.out.println("** 실수형 by 0, 나누기 =>" + (f/0));
-	// Infinity(무한수) -> 오버플로우(Overflow)
-	System.out.println("** 실수형 by 0, 나머지 =>" + (f%0));
-	// NaN(Not a Number) -> 언더플로우(Underflow)
+    // => by zero Test
+    // => 컴파일, 런타임 오류 없음
+    float f = 1234.567f;
+    System.out.println("** 실수형 by 0, 나누기 => "+(f/0));
+    // => Infinity (무한수)
+    //   -> 양의 무한대(positive infinity): 오버플로우(Overflow)
+    //   -> 음의 무한대(negative infinity): 언더플로우(Underflow)
+    
+    // => 실수형에만 있는 특수값(언더플로우)
+    // -> 실수형으로는 표현할수 없는 가장 작은값으로서
+    //    양의 최소값보다 작은값이 되는 경우를 의미하며
+    //    이때 변수의 값은 0이 됨
+    
+    System.out.println("** 실수형 by 0, 나머지 => "+(f%0));
+    // => NaN (Not a Number) -> 특수값
 	
 	// ** 비교
 	// => 정수형, by zero

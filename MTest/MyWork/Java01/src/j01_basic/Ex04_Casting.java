@@ -42,6 +42,12 @@ public class Ex04_Casting {
 		System.out.printf("** 디모션 char1 : c = %s, c의 코드값 = %d\n", c, (int)c);
 		n = c + 10; // 지동형 변환으로 산술연산 적용
 		System.out.printf("** 디모션 char2 : n = %d, n의 케릭터값 = %s\n", n, (char)n);
+		
+		// => 교재, 연습문제 3장 1번
+		long l = 1000l;
+		float ff = 1;
+		// => float 4byte, long 8byte
+		//	  float의 표현 범위가 크기 때문에 자동형변환이 됨
 	}
 
 }
