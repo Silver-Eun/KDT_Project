@@ -2,7 +2,7 @@ package j01_basic;
 //** bit 연산
 //=> 쉬프트 연산, 논리 연산
 
-public class Ex09_Operator2_bit {
+public class Ex09_Operator02_bit {
 
 	public static void main(String[] args) {
 		int x = 10, y = 3; // 1010, 0011
