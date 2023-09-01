@@ -19,7 +19,13 @@ public class Ex01_ArrayBasic {
 
 		// 1. 명시적 선언 (new 연산자 이용)
 		// => 크기를 반드시 지정
-		int[] score = new int[5];
+		// => [] 위치 : 변수뒤에도 가능
+		// int[] score = new int[5];
+		// int score[] = new int[5];
+		int score[]; // 변수명만 정의 : score를 int형 배열로 사용
+		int len = 5;
+		score = new int[len]; 
+		// 크기에 변수를 사용할 수는 있지만 변수가 값을 가지고 있는 경우에만 가능 
 		
 		// 2. 초기화
 		score[0] = 11;
@@ -41,6 +47,29 @@ public class Ex01_ArrayBasic {
 		System.out.println("score 크기 => " + score.length);
 		System.out.println("score의 sum => " + sum);
 		System.out.println("Arrays 활용 => " + Arrays.toString(score));
+		
+		// ** eachFor(쉬운, 간편한 for 구문)
+	    // for each 문 : JDK5.0부터 지원되는 향상된 for 문 
+	    // for (변수타입 변수명 : 배열이름 ) { 실행부 }
+	    // => 배열의 요소의 갯수(배열의 크기) 만큼 반복하며
+	    //    배열 score가 가지고 있는 값을 순차적으로 변수(s)에 전달 
+	    // => 주의사항
+	    //    배열의 값만 순차적으로 사용 가능하며 read만 가능. write 불가능
+	    //    (순차처리, readOnly)
+		sum = 0;
+		for(int s : score) {
+			System.out.print(s + " ");
+			sum += s;
+		}
+		System.out.println("\nscore의 sum2 => " + sum);
+		
+		// 3. 묵시적 정의
+		// => new 연산자 사용하지않고, 선언과 동시에 초기화
+		char[] grade = {'A', 'B', 'C', 'D', 'F'};
+		System.out.println("eachFor grade 출력하기");
+		for(char s : grade) {
+			System.out.printf(s + " ");
+		}
 	} // main
 
 } // class
