@@ -26,7 +26,12 @@ public class Ex01_classNclass {
 		
 		// 2) 사용(use)
 		// => Ex04_classNclass 클래스가 메소드 인자의 형식으로 Ex01_Car를 사용한 경우
-		myCar(car);		
+		myCar(car);
+		
+		// 3) 상속(is-a)
+		// => 후손과 조상이 같은 Type 이 될 수 있다.
+	    // => Ex01_Car 와 SportsCar
+	    // => Ex02_CarTest.java (참고)
 	}
 
 }
