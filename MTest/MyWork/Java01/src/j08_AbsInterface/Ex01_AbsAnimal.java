@@ -87,7 +87,7 @@ public class Ex01_AbsAnimal {
 		c1.breath();
 		c1.sound();
 		
-		// 2.2) Cat
+		// 2.2) Cat Type 으로 생성
 		Cat c2 = new Cat();
 		c2.breath();
 		c2.sound();

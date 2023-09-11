@@ -159,6 +159,19 @@ public class Ex03_AnimalTest {
 		System.out.println("main Animal legs => " + Animal.color);
 		PetAnimal.staticTest();
 		Mammal.staticTest();
+		
+		WildAnimal tiger = new WildAnimal();
+		
+		// 다형성
+		// => 후손은 조상의 Type이 될 수 있다.
+		// => 반대 성립 안됨(조상은 후손 Type이 될 수 없음)
+		Animal a1 = new PetAnimal();
+		Animal a2 = new PetAnimal();
+		// => 비교
+		Animal a3 = new Animal(); // 조상클래스 직접 생성
+		// PetAnimal p1 = new Animal(); 불가능
+		// => 필요시에 같은 Type이 될 수 있는지 확인
+		//    연산자 instanceof 적용
 	}
 
 }

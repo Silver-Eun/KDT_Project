@@ -13,6 +13,6 @@ public interface Ex03_MyInterface {
 	public abstract int getNum();
 	String getName(); // public abstract 생략됨
 	
-	// 생성자
+	// 생성자 : 허용되지 않음
 	// Ex03_MyInterface() {}
 }
