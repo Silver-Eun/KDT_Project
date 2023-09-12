@@ -8,7 +8,7 @@ class Car {
 		System.out.println("drive");
 	}
 
-	void stop() { // 멈추는는 기능
+	void stop() { // 멈추는 기능
 		System.out.println("stop");
 	}
 }

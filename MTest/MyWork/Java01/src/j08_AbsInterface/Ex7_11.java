@@ -8,7 +8,7 @@ class Child3 extends Parent3 implements MyInterface, MyInterface2 {
 
 class Parent3 {
 	public void method2() {
-		System.out.println("method2(0 in Parent3");
+		System.out.println("method2() in Parent3");
 	}
 }
 
