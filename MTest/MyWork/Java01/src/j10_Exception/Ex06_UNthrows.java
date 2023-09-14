@@ -42,7 +42,7 @@ public class Ex06_UNthrows {
 		// => JVM에서 동작할 클래스들의 정보를 묘사하는 일종의 메타 클래스(Meta-Class)
 		// 클래스의 이름, 멤버 필드와 메소드, 클래스 종류 등의 정보
 		// => forName() 메소드에 의해 반환된 Class 클래스의 인스턴스에는 "클래스명"의 정보가 담겨 있음.
-		Class<?> c = Class.forName("j10_Exception.Ex05_IOthrows00");
+		Class<?> c = Class.forName("j10_Exception.Ex05_IOthrows");
 		System.out.println(" Find Class => " + c.getName());
 	}
 
@@ -54,6 +54,7 @@ public class Ex06_UNthrows {
 		// nullPointer();
 		// classCast();
 		
+		// 2) try Test
 		try {
 			// => unChecked call
 			// nullPointer();

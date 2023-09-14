@@ -4,8 +4,8 @@ public class Ex04_MessageNaN {
 
 	public static void main(String[] args) {
 		// ** by Zero ( 나누기 0 )
-	    // => 정수형 연산 : ArithmeticException 
-	    // => 실수형 연산 : Exception 이 일어나지않음
+	    // => 정수형 연산 : ArithmeticException
+	    // => 실수형 연산 : Exception이 일어나지않음
 	    //               Wrapper 클래스의 메서드 활용
 		try {
 			double d1 = 1.5/0.0; // Infinity : 무한수
@@ -21,7 +21,7 @@ public class Ex04_MessageNaN {
 				System.out.printf("실수 by zero Test : d1 = %f, d2 = %f, d1*100 = %f\n",
 						d1, d2, d1*100);
 			
-			// => 정수형 연산
+			// => 정수형 연산 : ArithmeticException
 			System.out.printf("정수 by zero Test : 100/0 = %d\n", 100/0);
 			
 		} catch (Exception e) {

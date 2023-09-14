@@ -18,11 +18,11 @@ public class Ex07_throw {
 		// 1.2) unChecked
 		// throw new Exception();
 		// => Checked Exception이므로 try 블럭
-		try {
-			 throw new Exception("throw Test");			
-		} catch (Exception e) {
-			System.out.println("Exception => " + e.toString());
-		}
+//		try {
+//			 throw new Exception("throw Test");			
+//		} catch (Exception e) {
+//			System.out.println("Exception => " + e.toString());
+//		}
 		
 		// 2) MyException
 		// => 특정상황에 대해 Exception으로 정의할 수 있음
@@ -30,7 +30,7 @@ public class Ex07_throw {
 		try {
 			double result = 1.5/0.0;
 			if (Double.isInfinite(result)) { 				
-				Exception myE = new Exception("의도적 MyException, result => " + result);
+				Exception myE = new Exception("MyException, result => " + result);
 				throw myE;
 			}
 		} catch (Exception e) {
