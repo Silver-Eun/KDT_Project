@@ -21,11 +21,11 @@ import j07_classExtends.Ex01_Car;
 // ** Generic 타입제한 (Wildcards_와일드카드타입 이용으로)
 // => <?>
 //    Unbounded Wildcards (제한없음_모든 클래스나 인터페이스 타입 가능)
-// => <? extends ...>
+// => <? extends 클래스명>
 //    Upper Bounded Wildcards (상위클래스 제한_같거나 하위 타입 가능)
-// => <? super ...>
+// => <? super 클래스명>
 //    Lower Bounded Wildcards (하위클래스 제한_ 같거나 상위타입 가능)
-
+// => 정의할 때 : <T extends 클래스명>, <T super 클래스명>
 //------------------------------------------------------------
 
 // 1. object를 이용한 기존 방식
