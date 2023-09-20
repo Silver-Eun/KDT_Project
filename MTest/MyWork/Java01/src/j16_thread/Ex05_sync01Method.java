@@ -48,10 +48,10 @@ public class Ex05_sync01Method {
 		InThread in3 = new InThread(inc);
 		
 		// ** 동기화 되어 있지 않은 경우
-		// => increment() 메서드의 num++ 이 완료되지 않은 상태에서
+		// => increment() 메소드의 num++이 완료되지 않은 상태에서
 		//    다른 스레드가 값을 사용하게되어 부정확한 결과를 만들게 됨
-		// 1) start 만 한 경우 
-		// => main 이 먼저 종료됨 ,  값 부정확
+		// 1) start만 한 경우 
+		// => main이 먼저 종료됨,  값 부정확
 		in1.start();
 		in2.start();
 		in3.start();
