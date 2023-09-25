@@ -5,13 +5,13 @@
   
 *** 1. 5가지 기본 조건
  
-1) PRIMARY KEY , p
+1) PRIMARY KEY, p
 	: NOT NULL & UNIQUE
-2) FOREIGN KEY , r     // FOREIGN : 대외적인
-3) NOT NULL , c
-4) UNIQUE  , u
+2) FOREIGN KEY, r     // FOREIGN : 대외적인
+3) NOT NULL, c
+4) UNIQUE, u
 	: 중복 불가 (유일성 조건)
-5) CHECK  , c
+5) CHECK, c
 	: 저장 가능한 데이터의 값의 범위나 조건을 지정하여 설정한 값만을 허용
 	( MySQL 7 까지는 적용 안됨 )
 

@@ -1,0 +1,286 @@
+=================================================
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+===========================================
+
+***  참조(외래) 키 설정
+=> Reference (Foreign) Key
+=> Parent & Child Table SQL 구문 처리 순서 중요
+	-> Create, Drop, Truncate, insert, update, delete 등
+=> 실습
+	-> 1. 참조(외래) 키 설정 전  ( Student, Jo )
+	-> 2. 참조(외래) 키 설정 후  ( Student2, Jo2 )
+	-> 3. 참조(외래) 키 설정 + Cascade 적용 : Parent Table 의 처리결과 자동적용 ( Student3 , Jo3 )
+-------------------------------------------------------------------------------------
+*** 실습1. 참조(외래) 키 설정 전
+=> Foreign 키 설정 하지않는 경우
+	- Table 생성 순서 무관
+	- insert 순서 무관 ( Child_Table 먼저 insert )
+
+=> Table 만들기
+	-> student
+	create table student(
+		sno int auto_increment,
+		name varchar(10) not null,
+		age int(3),
+		jno int(1),
+		info varchar(30),
+		point float(5,2) default 100,
+		Primary Key(sno),
+		Check(age>15 and age<100)
+   	);
+
+	-> jo
+	create table jo (
+		jno int(1),
+		jname varchar(10) not null,
+		captain int not null,
+		project varchar(20) not null,
+		slogan varchar(30) not null,
+		Primary Key(jno)
+	);
+
+=> insert ( 각자 본인의 입력문 작성, 조장은 조 입력문도 작성하기 )
+insert into student values (....)
+->모든 컬럼 값을 순서대로 입력할 때만 가능
+insert into student(name, age, jno) values ("은희상", 27, 1, "1조의 학생");
+
+-> jo : captain의 값과 student의 sno는 같은 값을 의미함
+insert into jo(jno,jname,captain,project,slogan) values(1, '119', 7, '펫밀리', '애완동물을 위한 홈페이지');
+insert into jo values(2, '여우', 5, '여우책방', '책으로 마음의 양식을♡');
+insert into jo values(3, "i4", 13, "단Dog", "반려동물 한마리 한마리 모두 소중하다");
+insert into jo values(4,"최고조", 2,"tbtConcept","열정빼면 시체");
+insert into jo values(5, "오조", 14, "Ojoa", "완주 아니면 죽음뿐");
+
+=> student,  jo 확인
+	- select * from student;
+	- select * from jo;
+
+=> Join 예습
+ - student에서 jo_project 같이 출력하기
+ select s.sno, s.name, s.jno, j.project
+ from student s, jo j
+ where s.jno = j.jno;
+ - Join + 정렬(order by jno)
+ select s.sno, s.name, s.jno, j.project
+ from student s, jo j
+ where s.jno = j.jno
+ order by jno;
+ 
+ - 연습(jo Table의 + captain의 name 출력)
+ select j.jno, j.jname, s.name
+ from student s, jo j
+ where  s.sno= j.captain;
+
+=> Table 목록 확인 : show tables;
+
+=> Insert : jo Table에 student에 없는 captain 입력
+	- insert into jo values(9, 'Test조', 99, 'project_name','slogan');
+	  select * from jo ;
+	- 입력가능함 : Data의 무결성 오류 확률이 높아짐
+
+	- student 입력시 jo에 없는 jno 입력
+	insert into student(name, age, jno, info) values ("홍길동", 22, 7, "joTable에 없는 조");
+
+	- 입력가능함 : Data의 무결성 오류 확률이 높아짐
+
+=> Update, Delete
+	- jo Table의 jno 5를 6으로 수정
+	  update jo set jno = 6 where jno = 5;
+
+	- student Table 에서는 jo에서 사용하고 있는 조장번호 Data 의 수정, 삭제 가능함 
+	- Data 의 무결성 오류 확률이 높아짐
+	- 17 번 student 의 sno 를 77로 변경
+	  update student set sno=77 where sno=17;  // jo 에는 student 에 없는 17번 조장이 있게됨.
+
+=> 결론: Data 의 무결성 보장을 위해  참조(외래) 키 설정의 필요성 확인
+
+-------------------------------------------------------------------------------------
+*** 실습2. Foreign (참조, 외래) 키 설정
+=> insert 순서중요 ( Child_Table 먼저 insert -> 오류 ) 
+
+=> Table 만들기 ( create Table, Data는 from student, jo )
+	-> student2 (Table level로 제약조건 설정하기)
+	create table student2(
+		sno int  auto_increment,
+		name varchar(10) not null,
+		age int(3),
+		jno int(1),
+		info varchar(30),
+		point float(5,2) default 100,
+		Primary Key(sno),
+		Check(age>15 and age<100)
+   	);
+
+	-> jo2
+	create table jo2 (
+		jno int(1),
+		jname varchar(10) not null,
+		captain int not null,
+		project varchar(20) not null,
+		slogan varchar(30) not null,
+		Primary Key(jno),
+		Foreign Key(captain) References student2(sno)
+	);
+
+=>  제약 조건 확인
+SELECT constraint_name, constraint_type
+FROM information_schema.table_constraints
+WHERE table_name = 'jo2' ;
+
+	-> Data insert(Parent부터 입력)
+	insert into student2 select * from student;
+	select * from student2;
+	
+	insert into jo2 select * from jo ;
+	(먼저 입력시, student에 없는 captain이 있는 경우
+	ERROR 1452 (23000): Cannot add or update a child row:...)
+	-> 조건을 부여해서 전달되지 않도록
+		insert into jo2 select * from jo where jno <= 5;
+		select * from jo2;
+
+=> 참조관계 확인
+	-> 각자 조장님 삭제해보기 (student2 에서) 
+		DELETE FROM student2 WHERE sno=13; // ERROR 1451 (23000): Cannot delete or update
+		Delete from student2 where sno = 14; // ERROR 1451
+	-> 각자 조장님 sno 수정 해보기 (student2 에서) 
+		update student2 set sno=88 where sno=15; //ERROR 1451 (23000): Cannot
+		update student2 set sno = 700 where sno=17; // ERROR 1451
+	-> 비교, 조장이 아닌경우 삭제해보기 (student2 에서) 
+		delete from student2 where sno=10;  // OK
+	-> 비교, 조장이 아닌경우 sno 수정해보기 (student2 에서) 
+		update student2 set sno=100 where sno=3;
+		// OK
+		update student2 set sno=100 where sno=14;
+		// ERROR 1451 (23000): Cannot delete or update a parent row
+		update student2 set sno=200 where name='은희상';
+		// OK
+		update student2 set sno=200 where name='배정현';
+		// ERROR 1451 (23000): Cannot delete or update a parent row
+
+=> Join Test
+	select j.jno, j.jname, j.captain, s.name
+	from jo2 j, student2 s
+	where j.captain = s.sno;
+
+=> 결론 : 참조관계로 인하여 delete, update가 불편한 경우
+	( 일괄 관리해도 되는 경우에는 일괄적인 관리필요 ->  On Cascade )  
+	
+-------------------------------------------------------------------------------------
+*** 실습3. 참조(외래) 키 설정 + ON Delete Cascade ON Update Cascade
+=> create (Parent Table 먼저) , insert (Child Table 먼저) 
+=> On Cascade
+	- 무결성을 유지하면서 Update 또는 Delete를 일괄관리하도록 해줌
+	- 수정, 삭제시에 Child Data에 동시 적용
+	( Child Data가 존재하는 Parent Data도 수정, 삭제가 가능)
+
+=> Table 만들기 ( create Table3, Data는 from student2, jo2 )
+	-> student3 (Table level로 제약조건 설정하기)
+	create table student3(
+		sno int  auto_increment,
+		name varchar(10) not null,
+		age int(3),
+		jno int(1),
+		info varchar(30),
+		point float(5,2) default 100,
+		Primary Key(sno),
+		Check(age>15 and age<100)
+   	);
+
+	-> jo3
+	create table jo3 (
+		jno int(1),
+		jname varchar(10) not null,
+		captain int not null,
+		project varchar(20) not null,
+		slogan varchar(30) not null,
+		Primary Key(jno),
+		Foreign Key(captain) References student3(sno)
+				On Delete Cascade
+				On Update Cascade
+	);
+
+=>  제약 조건 확인
+SELECT constraint_name, constraint_type
+FROM information_schema.table_constraints
+WHERE table_name = 'jo3' ;
+
+=> Data insert  ( from student2, jo2 )
+	-> insert into student3 select * from student2;
+	-> insert into jo3 select * from jo2;
+	-> select * from student3;
+	    select * from jo3;
+	-> student3에 없는 captain 번호 입력
+		insert into jo3 values(7, "Test", 55, "project", "slogan");
+		// ERROR 1452 (23000): Cannot add or update a child row
+
+=> Update Test (student3에서 조의 조장님의 sno 수정해보기 )
+	-> update student3 set sno=111 where sno=14;  // jo3의 captain 변경 확인
+	-> update student3 set sno=14 where name="오원희";
+
+=> Delete Test (student3에서 조장님 삭제해보기 )
+	-> delete from student3 where sno='7'; // jo3에서도 해당조 삭제 확인
+	-> delete from student3 where name='김이지렁이';
+
+=> Join Test
+	select j.jno, j.jname, j.captain, name
+	from jo3 j, student3 s
+	where j.captain = s.sno;
+
+-------------------------------------------------------------------------------------
+*** 실습4. 참조(외래) 키 설정 + ON Delete Cascade ON Update Cascade
+=> student4_Child의 jno가 jo의 jno를 참조
+=> create (Parent Table 먼저) , insert (Child Table 먼저) 
+=> On Cascade
+
+=> Table 만들기 ( create Table3, Data 는 from student2, jo2 )
+create table jo4(
+	jno int,
+	jname varchar(10) not null,
+	captain int not null,
+	project varchar(20) not null,
+	slogan varchar(30) not null,
+	Primary key(jno)
+);
+
+create table student4(
+	sno int auto_increment,
+	name varchar(10) not null,
+	age int(3),
+	jno int(1),
+	info varchar(30),
+	point float(5,2) default 100,
+	Primary key(sno),
+	check(age > 15 and age < 100),
+	Foreign Key(jno) References jo4(jno)
+				On Delete Cascade
+				On Update Cascade
+);
+
+=>  제약 조건 확인
+SELECT constraint_name, constraint_type
+FROM information_schema.table_constraints
+WHERE table_name = 'jo4';
+
+SELECT constraint_name, constraint_type
+FROM information_schema.table_constraints
+WHERE table_name = 'student4';
+
+=> Data insert ( from studen2, jo2 )
+insert into jo4 select * from jo2;
+insert into student4 select * from student2 where jno <= 5;
+-> jo4에 없는 jno studen4에 입력 test
+insert into student4(name, age, jno, info) values ("홍길동", 88, 8, "Test");
+// ERROR 1452 (23000): Cannot add or update a child row
+
+=> Join Test : student4에서  sno, name, jno, 조장 번호, 프로젝트, 슬로건 출력하기
+select s.sno, s.name, s.jno, j.captain, j.project, j.slogan
+from student4 s, jo4 j
+where s.jno = j.jno;
+
+=> Update Test ( jo4에서 jno 수정해보기, jno 3 -> 6)
+update jo4 set jno=6 where jno=3;
+    
+=> Delete Test ( jo4에서 jno 삭제해보기 )
+delete from jo4 where jno=5;
