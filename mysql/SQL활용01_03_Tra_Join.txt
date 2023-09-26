@@ -29,7 +29,7 @@
 
 	2) START TRANSACTION 적용 
 	-> 처리 결과를 버퍼에 보관,
-	-> commit을 해야 실제 Table 에 반영됨 
+	-> commit을 해야 실제 Table에 반영됨 
 	-> rollback하면 취소됨
 	
 	START TRANSACTION;  // Query OK, ....
@@ -45,7 +45,7 @@
 	select * from student2;
 	-> 실제 Table에 반영 : commit 또는 rollback과 무관하게 반영됨
 	 
-	3) delete 로 연습
+	3) delete로 연습
 	-> start transaction 후에 jo2을 delete All, rollback
 		- start transaction;
 		- delete from jo2;   // OK ...모든 Data  삭제됨
@@ -60,8 +60,8 @@
 
 => Join 기능
 	- 컬럼을 이용해서 다른테이블을 참조 
-	- Foreign Key 를 설정해야만 가능한것은 아님
-	- Foreign Key 설정과 무관하게 참조가능한 컬럼이 있으면 모두 가능함. 
+	- Foreign Key를 설정해야만 가능한것은 아님
+	- Foreign Key 설정과 무관하게 참조 가능한 컬럼이 있으면 모두 가능함 
 
 => 두 개 이상의 테이블로부터 관련 있는 데이터를 읽어올 때 사용
 => 기본 구문
