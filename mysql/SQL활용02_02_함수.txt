@@ -131,7 +131,9 @@
 
 	-> 회원보호 : name 을 "김**" 출력하기 
 	select sno, CONCAT(substr(name,1,1), '**') name, birthday from student;
-
+	
+	-> student에서 '김**' 출력하기
+	select sno, name, replace(name, substr(name,2,2), '**') from student;
 -----------------------------------------------------	
 
 4) 문자3 :  REPLACE(대상문자, oldString, newString)  
