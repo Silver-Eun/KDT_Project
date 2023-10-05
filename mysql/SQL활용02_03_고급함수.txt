@@ -79,16 +79,16 @@
 		End cTest
 	from student;
 
-=> student 에서 point 값 에 따라 grade 구분
+=> student 에서 point 값에 따라 grade 구분
 	-> 200점 초과 500까지 :  'VVIP회원',  
 	    150~200  :  'VIP회원',
 	    150 미만  :  '일반' 
 	    해당안되면 : 'Error' 로  나누고,  point 에는 '점' 을 붙여 출력
 	select sno, name, Concat(point,'점'), 
 		Case 	When point>200 And point<=500 Then 'VVIP'
-					when point>=150 And point <=200 Then 'VIP'
-					When point<150 Then '일반'
-					Else 'Error'
+				When point>=150 And point <=200 Then 'VIP'
+				When point<150 Then '일반'
+				Else 'Error'
 		End Grade
 	from student;
 
@@ -111,21 +111,21 @@
 	-> 비교 :  실수형에 BETWEEN 을 적용하면 사각지대 발생 : 60.1 ~60.99999 까지 제외됨  
 	-> Between 적용
 	select id, name,  Concat(point,' 점') Point,  
-		      Case When point <=250 Then 'Silver'
+		    Case When point <=250 Then 'Silver'
 			When point BETWEEN 251 and 287 Then 'Gold'			
 			When point BETWEEN 288 and 400 Then 'Platinum'
 			Else 'Error' 
-		       End grade
-		       from student;	                                                            
+		End grade
+	from student;	                                                            
 	
 	-> Between 적용하지않음
 	select id, name,  Concat(point,' 점') Point,  
-		      Case When point <=250 Then 'Silver'
+		    Case When point <=250 Then 'Silver'
 			When point > 250 and point <= 287 Then 'Gold'			
 			When point > 287 and point <= 400 Then 'Platinum'
 			Else 'Error' 
-		       End grade
-		       from student;	   
+		End grade
+	from student;	   
 
 ( **  size 는 Oracle 예약어 ,
   **  rank, member(Table명) 는 MySQL 예약어, 앨리어스로 허용하지않음  )
@@ -136,15 +136,14 @@
 		4조 :  age*7000/2 , 5조 : age*1500 ,     6조 : jno*6000
 		select snum, sname, 
 			case when jno = 1 then age * 2000
-            			      when jno = 2 then age * 5000/3
-            			      when jno = 3 then age * jno * 1000
-             		      	when jno = 4 then age * 7000 / 2 
-            			      when jno = 5 then age * 1500
-            			      when jno = 6 then age * 6000
-         		end point
+            	 when jno = 2 then age * 5000/3
+            	 when jno = 3 then age * jno * 1000
+             	 when jno = 4 then age * 7000 / 2 
+            	 when jno = 5 then age * 1500
+            	 when jno = 6 then age * 6000
+         	end point
 		from student;
 
------------------------------------------------------
 =====================================================
 
 *** EXISTS(서브 쿼리) , NOT EXISTS(서브 쿼리)
