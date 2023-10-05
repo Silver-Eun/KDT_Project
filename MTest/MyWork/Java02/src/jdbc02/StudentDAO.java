@@ -9,12 +9,12 @@ import java.util.List;
 
 import jdbc01.DBConnection;
 
-//** DAO(Data Access Object)
-//=> SQL 구문 처리
-//=> CRUD 구현 
+// ** DAO(Data Access Object)
+// => SQL 구문 처리
+// => CRUD 구현 
 //   Create(Insert), Read(selectList, selectOne), Update, Detete
 
-//=> 첫번째 예제 Ex01_~~~ 와 DAO 와 다른점
+//=> 첫번째 예제 Ex01_~~~ 와 DAO와 다른점
 // 	- 요청 처리 결과를 제공
 //	- 즉, 메서드의 역할별로 처리결과를 return 해야함
 //	- 그러므로 특히 select 결과를 전달하기위해 결과를 담는 작업이 필요함  

@@ -1,7 +1,5 @@
 package jdbc02;
 
-import java.util.List;
-
 public class GroupDTO {
 	private int jno;
 	private int count;

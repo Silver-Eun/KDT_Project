@@ -37,8 +37,7 @@ public class Ex01_StudentTest {
 					System.out.print(rs.getInt(4) + " ");
 					System.out.print(rs.getString(5) + " ");
 					System.out.print(rs.getFloat(6) + " ");
-					System.out.print(rs.getString(7) + " ");
-					System.out.print(rs.getString(8) + "\n");
+					System.out.print(rs.getString(7) + "\n");
 				} while (rs.next());
 			} else {
 				System.out.println("** selectList : 출력 Data가 1건도 없음 **");
@@ -151,8 +150,7 @@ public class Ex01_StudentTest {
 					System.out.print(rs.getInt(4) + " ");
 					System.out.print(rs.getString(5) + " ");
 					System.out.print(rs.getFloat(6) + " ");
-					System.out.print(rs.getString(7) + " ");
-					System.out.print(rs.getString(8) + "\n");
+					System.out.print(rs.getString(7) + "\n");
 				} while (rs.next());
 			} else {
 				System.out.println("** selectList : 출력 Data가 1도 없음 **");
