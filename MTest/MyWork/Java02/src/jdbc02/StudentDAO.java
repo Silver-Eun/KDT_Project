@@ -28,9 +28,9 @@ public class StudentDAO {
 	private static String sql;
 
 	// ** selectList
-	public List<StudentVO> selectList() {
+	public List<StudentDTO> selectList() {
 		sql = "select * from student";
-		List<StudentVO> list = new ArrayList<StudentVO>();
+		List<StudentDTO> list = new ArrayList<StudentDTO>();
 		try {
 			st = cn.createStatement();
 			rs = st.executeQuery(sql);
@@ -40,7 +40,7 @@ public class StudentDAO {
 				// - list = rs; 불가능, 1 Row 단위로 옮겨야함
 				// - 1 Row 는 StudentVO Type
 				do {
-					StudentVO vo = new StudentVO();
+					StudentDTO vo = new StudentDTO();
 					vo.setSno(rs.getInt(1));
 					vo.setName(rs.getString(2));
 					vo.setAge(rs.getInt(3));
@@ -61,7 +61,7 @@ public class StudentDAO {
 	}
 
 	// ** selectOne
-	public StudentVO selectOne(StudentVO vo) {
+	public StudentDTO selectOne(StudentDTO vo) {
 		sql = "select * from student where sno=?";
 		try {
 			pst = cn.prepareStatement(sql);
@@ -86,38 +86,128 @@ public class StudentDAO {
 	}
 
 	// ** Group 적용
-		public List<GroupDTO> groupList() {
-			sql = "select jno, count(*), sum(age), avg(age), max(age), min(age) from student Group by jno";
-			List<GroupDTO> list = new ArrayList<>();
-			try {
-				pst = cn.prepareStatement(sql);
-				rs = pst.executeQuery();
-				if (rs.next()) {
-					do {
-						GroupDTO dto = new GroupDTO();
-						dto.setJno(rs.getInt(1));
-						dto.setCount(rs.getInt(2));
-						dto.setSum(rs.getInt(3));
-						dto.setAvg(rs.getDouble(4));
-						dto.setMax(rs.getInt(5));
-						dto.setMin(rs.getInt(6));
-						
-						list.add(dto);
-					} while (rs.next());
-				}
-			} catch (Exception e) {
-				System.out.println("** groupList Exception => " + e.toString());
-				list = null;
+	public List<GroupDTO> groupList() {
+		sql = "select jno, count(*), sum(age), avg(age), max(age), min(age) from student Group by jno";
+		List<GroupDTO> list = new ArrayList<>();
+		try {
+			pst = cn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				do {
+					GroupDTO dto = new GroupDTO();
+					dto.setJno(rs.getInt(1));
+					dto.setCount(rs.getInt(2));
+					dto.setSum(rs.getInt(3));
+					dto.setAvg(rs.getDouble(4));
+					dto.setMax(rs.getInt(5));
+					dto.setMin(rs.getInt(6));
+
+					list.add(dto);
+				} while (rs.next());
 			}
-			return list;
+		} catch (Exception e) {
+			System.out.println("** groupList Exception => " + e.toString());
+			list = null;
 		}
-		
-		// ** insert
-		
-		
-		// ** update
-		
-		
-		// ** delete
+		return list;
+	}
+
+	// ** insert
+	// => name, age, jno, info 입력
+	public int insert(StudentDTO dto) {
+		sql = "insert into student (name, age, jno, info) values (?, ?, ?, ?)";
+		try {
+			pst = cn.prepareStatement(sql);
+			pst.setString(1, dto.getName());
+			pst.setInt(2, dto.getAge());
+			pst.setInt(3, dto.getJno());
+			pst.setString(4, dto.getInfo());
+
+			return pst.executeUpdate(); // 처리 개수
+		} catch (Exception e) {
+			System.out.println("insert Exception => " + e.toString());
+			return 0;
+		}
+	}
+
+	// ** update
+	// => info, point, birthday 수정
+	public int update(StudentDTO dto) {
+		sql = "update student set info=?, point=?, birthday=? where sno=?";
+		try {
+			pst = cn.prepareStatement(sql);
+			pst.setString(1, dto.getInfo());
+			pst.setDouble(2, dto.getPoint());
+			pst.setString(3, dto.getBirthday());
+			pst.setInt(4, dto.getSno());
+
+			return pst.executeUpdate(); // 처리 개수
+		} catch (Exception e) {
+			System.out.println("update Exception => " + e.toString());
+			return 0;
+		}
+	}
+
+	// ** delete
+	public int delete(StudentDTO dto) {
+		sql = "delete from student where sno=?";
+		try {
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, dto.getSno());
+
+			return pst.executeUpdate(); // 처리 개수
+		} catch (Exception e) {
+			System.out.println("delete Exception => " + e.toString());
+			return 0;
+		}
+	}
+
+	// ** Transaction Test
+	// => Connection 객체가 관리
+	// => 기본값은 AutoCommit true임
+	// => setAutoCommit(false) -> commit 또는 rollback
+	// => Test 사항
+	// - 동일자료를 2번 입력 -> 2번째 입력에서 p.key 중복 오류발생
+
+	// 1) Transaction 적용 전
+	// => 동일자료를 2번 입력
+	// - 1번째는 입력완료되고, 2번째 입력에서 p.key 중복 오류발생
+	// - Rollback 불가능
+	// - MySql Command로 1번째 입력 확인 가능
+
+	// 2) Transaction 적용 후
+	// => 동일자료를 2번 입력
+	// - 1번째는 입력완료되고, 2번째 입력에서 p.key 중복 오류발생
+	// - Rollback 가능 -> 둘 다 취소됨
+
+	public void transactionTest() {
+		sql = "insert into student (sno, name, age, jno, info) "
+				+ "values (26, 'Test', 20, 7, 'Transaction Test')";
+		/* Transaction 적용 전
+		try {
+			pst = cn.prepareStatement(sql);
+			pst.executeUpdate(); // 첫번째는 Table에 입력완료
+			pst.executeUpdate(); // 두번째에서 p.key 중복 오류
+		} catch (Exception e) {
+			System.out.println("** Transaction1 Exception => "+e.toString());
+		}*/
+		// Transaction 적용 후
+		try {
+			cn.setAutoCommit(false);
+			pst = cn.prepareStatement(sql);
+			pst.executeUpdate(); // 첫번째는 Buffer에 입력완료
+			pst.executeUpdate(); // 두번째에서 p.key 중복 오류
+			cn.commit();
+		} catch (Exception e) {
+			System.out.println("** Transaction2 Exception => "+e.toString());
+			// => RollBack
+			try {
+				cn.rollback();
+				System.out.println("** Rollback 성공");
+			} catch (Exception e2) {
+				System.out.println("** Rollback Exception => "+e2.toString());
+			}
+		}
+	}
 
 }
