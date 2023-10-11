@@ -12,20 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/check")
 public class Ex03_Check extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public Ex03_Check() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Ex03_Check() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 1) 요청분석
 		// => request Parameter 처리
-		String[] gift=request.getParameterValues("gift");
-		
+		String[] gift = request.getParameterValues("gift");
+
 		// 2) Service 처리
-//		if (mailcheck.equals("Yes")) mailcheck = "수신동의";
-//	    else mailcheck = "수신거절";
-		
 		// 3) 결과 (View) 처리
 		// => 한글처리, 출력 객체 생성 & response에 담기
 		response.setContentType("text/html; charset=UTF-8");
@@ -34,10 +32,11 @@ public class Ex03_Check extends HttpServlet {
 		if (gift == null) {
 			out.print("선택된 항목이 없음");
 		} else {
-			for(String s:gift) {
-				out.print(s+"<br>");
+			for (String s : gift) {
+				out.print(s + "<br>");
 			}
 		}
+		out.print("<br><br><h2><a href='javascript:history.go(-1)'>다시 선택하기</a></h2><br>");
 	}
 
 }

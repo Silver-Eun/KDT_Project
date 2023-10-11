@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +7,23 @@
 <title>** Web01_JSP **</title>
 </head>
 <body>
-<h2>** Hello Dynamic Web_Project **</h2>
-=> 안녕<br>
-<hr>
-<img alt="" src="./images/a2.png" width="400" height="300">
-<hr>
-&nbsp;<a href="/Web01/helloS">HelloServlet</a><br>
-&nbsp;<a href="/Web01/lifecycle">ServletLF</a><br>
+	<h2>** Hello Dynamic Web_Project **</h2>
+	=> 안녕
+	<br>
+	<hr>
+	<img alt="" src="./images/a2.png" width="400" height="300">
+	<hr>
+	&nbsp;
+	<a href="/Web01/helloS">HelloServlet</a>
+	<br> &nbsp;
+	<a href="/Web01/lifecycle">ServletLF</a>
+	<br> &nbsp;
+	<a href="/Web01/flow01">Flow01</a>
+	<br> &nbsp;
+	<a href="/Web01/servletTestForm/flow02_TestForm.jsp">Flow02_jsp</a>
+	<br> &nbsp;
+	<a href="/Web01/sessioni">SessionInfo</a>
+	<br> &nbsp;
+	<a href="/Web01/01set">ScopeTest</a>
 </body>
 </html>
