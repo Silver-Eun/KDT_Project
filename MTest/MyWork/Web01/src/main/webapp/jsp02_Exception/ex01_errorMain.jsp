@@ -18,8 +18,15 @@
 		=> 3) Exception Type 별로: web.xml
 		   -> 2),3) web.xml에 설정하는 경우에는 프로젝트 전체에 적용
 
-		=> 4) 에러처리의 우선순위: 1) -> 3) -> 2)   
+		=> 4) 에러처리의 우선순위: 1) -> 3) -> 2)	
+		=> Test 방법
+			1) 처음실행 -> Parameter country 가 없으므로 1) NullPointerException 발생
+			2) ex01_errorMain.jsp?country=korea country가 문자이므로 
+	   			2) NumberFormatException 발생
+			3) ex01_errorMain.jsp?country=123 country 가 숫자이므로 1), 2) 는 통과
+			   3) ArithmeticException 발생
 		<hr>
+		=> Test 방법
 		1) NullPointerException : Exception Type
 		* Country: <%=request.getParameter("country").toUpperCase()%>
 		   => Parameter에 country 가 없으면 return null
