@@ -24,15 +24,15 @@
 	<a href="/Web01/servletTestForm/flowEx04_LoginForm.jsp">LoginF</a>
 	&nbsp;
 	<a href="/Web01/helloS">HelloServlet</a>
-	<br> &nbsp;
+	&nbsp;
 	<a href="/Web01/lifecycle">ServletLF</a>
 	<br> &nbsp;
 	<a href="/Web01/flow01">Flow01</a>
-	<br> &nbsp;
+	&nbsp;
 	<a href="/Web01/servletTestForm/flow02_TestForm.jsp">Flow02_jsp</a>
 	<br> &nbsp;
 	<a href="/Web01/sessioni">SessionInfo</a>
-	<br> &nbsp;
+	&nbsp;
 	<a href="/Web01/01set">ScopeTest</a>
 	<br> &nbsp;
 	<a href="/Web01/logout">Logout</a>
