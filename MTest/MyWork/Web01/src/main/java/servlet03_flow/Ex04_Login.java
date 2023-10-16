@@ -49,6 +49,7 @@ public class Ex04_Login extends HttpServlet {
 			// => ~~ 님 : index 화면에 항상 이름이 표시되도록
 			// => 그러므로 로그인 정보 보관 ( session에 )
 			request.getSession().setAttribute("loginName", name);
+			request.getSession().setAttribute("loginID", sno);
 			System.out.println("로그인 성공");
 		} else {
 			// => 실패 : loginForm으로 ( 재로그인 유도 )

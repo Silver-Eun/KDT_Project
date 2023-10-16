@@ -7,7 +7,7 @@
 <title>** EL Scope, Attribute **</title>
 <%
 // 1) 동일한 속성(Attribute)명을 모든 영역에 정의
-// => 호출, 우선순위 
+// => 호출, 우선순위
    pageContext.setAttribute("name", "pageContext Value1");
    request.setAttribute("name", "request Value1");
    session.setAttribute("name", "session Value1");

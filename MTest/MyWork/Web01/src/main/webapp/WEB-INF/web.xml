@@ -27,13 +27,13 @@
   </servlet-mapping>
   
   <!-- session Time 설정
-  		=> 분단위 0 또는 음수를 사용하면 무한시간 -->
+  		=> 분단위 0 또는 음수를 사용하면 무한시간
   		
   <session-config>
   	<session-timeout>0</session-timeout>
   </session-config>
   
-  <!--Exception Test1 : 응답상태 코드 -->
+  Exception Test1 : 응답상태 코드
   <error-page>
   	<error-code>404</error-code>
   	<location>/jsp02_Exception/ex02_404Page.jsp</location>
@@ -42,7 +42,7 @@
   	<error-code>500</error-code>
   	<location>/jsp02_Exception/ex02_500Page.jsp</location>
   </error-page>
-  
+   -->
   <!--Exception Test2 : Exception Type -->
   <error-page>
   	<exception-type>java.lang.NullPointerException</exception-type>
