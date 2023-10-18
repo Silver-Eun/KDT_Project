@@ -5,12 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Web_MVC2 Student Join **</title>
+<title>** Web_MVC2 Member Join **</title>
 </head>
 <body>
-	<h2>** Web_MVC2 Student Join **</h2>
-	<form action="/Web01/join" method="get">
+	<h2>** Web_MVC2 Member Join **</h2>
+	<form action="/Web02/join" method="get">
 		<table>
+			<tr height="40">
+				<th bgcolor="pink">I D</th>
+				<td><input type="text" name="id" placeholder="영어, 10글자 이내"
+					size="20"></td>
+			</tr>
+			<tr height="40">
+				<th bgcolor="pink">Password</th>
+				<td><input type="password" name="password" placeholder="영어, 숫자, 특수문자"
+					size="20"></td>
+			</tr>
 			<tr height="40">
 				<th bgcolor="pink">Name</th>
 				<td><input type="text" name="name" placeholder="한글 또는 영어"
@@ -50,6 +60,10 @@
 				<td><input type="date" name="birthday" size="20"></td>
 			</tr>
 			<tr height="40">
+				<th bgcolor="pink">추천인</th>
+				<td><input type="text" name="rid" size="20"></td>
+			</tr>
+			<tr height="40">
 				<th></th>
 				<td>
 					<input type="submit" value="가입">&nbsp;&nbsp;&nbsp;
@@ -64,6 +78,6 @@
 	</c:if>
 	<hr>
 	&nbsp;<a href="javascript:history.go(-1)">이전으로</a> &nbsp;
-	&nbsp;<a href="/Web01/">Home</a> &nbsp;
+	&nbsp;<a href="/Web02/">Home</a> &nbsp;
 </body>
 </html>

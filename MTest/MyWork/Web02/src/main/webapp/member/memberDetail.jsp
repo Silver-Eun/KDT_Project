@@ -5,15 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Web_MVC StudentDetail **</title>
+<title>** Web_MVC2 Member Detail **</title>
 </head>
 <body>
-	<h2>** Web_MVC StudentDetail **</h2>
-	<table>
+	<h2>** Web_MVC2 Member Detail **</h2>
+	<table style="text-align: center;" >
 		<c:if test="${not empty requestScope.apple}">
 			<tr height="40">
-				<th bgcolor="pink">Sno</th>
-				<td>${requestScope.apple.sno}</td>
+				<th bgcolor="pink">Id</th>
+				<td>${requestScope.apple.id}</td>
+			</tr>
+			<tr height="40">
+				<th bgcolor="pink">Password</th>
+				<td>${requestScope.apple.password}</td>
 			</tr>
 			<tr height="40">
 				<th bgcolor="pink">Name</th>
@@ -39,6 +43,10 @@
 				<th bgcolor="pink">Birthday</th>
 				<td>${requestScope.apple.birthday}</td>
 			</tr>
+			<tr height="40">
+				<th bgcolor="pink">추천인</th>
+				<td>${requestScope.apple.rid}</td>
+			</tr>
 		</c:if>
 		<c:if test="${empty requestScope.apple}">
 			<tr height="40">
@@ -46,5 +54,8 @@
 			</tr>
 		</c:if>
 	</table>
+	<hr>
+	&nbsp;<a href="javascript:history.go(-1)">이전으로</a> &nbsp;
+	&nbsp;<a href="/Web02/">Home</a> &nbsp;
 </body>
 </html>

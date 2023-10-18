@@ -20,24 +20,23 @@ public class MVC2_mDelete extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 요청분석 & Service
-		// => 삭제할 대상 (request의 Parameter로 전달됨)
-		int sno = Integer.parseInt(request.getParameter("sno"));
+		// => 삭제할 대상 (request의 Parameter로 전달됨)		
 		MemberService service = new MemberService();
 		MemberDTO dto = new MemberDTO();
-		dto.setSno(sno);
+		dto.setId(request.getParameter("loginId"));
 		
 		// 2. 결과
 		// => 삭제 성공 / 실패 -> list 출력 ("list2"로 Forward)
 		// => message 출력
 		if (service.delete(dto) > 0) {
 			// 성공
-			request.setAttribute("message", sno + "님 삭제성공");
+			request.setAttribute("message", dto.getId() + "님 삭제성공");
 		} else {
 			// 실패
-			request.setAttribute("message", sno + "님 삭제실패");
+			request.setAttribute("message", dto.getId() + "님 삭제실패");
 		}
 		
-		request.getRequestDispatcher("list2").forward(request, response);
+		request.getRequestDispatcher("list").forward(request, response);
 	}
 
 }

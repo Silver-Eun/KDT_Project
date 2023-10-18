@@ -85,7 +85,7 @@ public class MemberDAO {
 	// ** insert
 	// => 모든 컬림 입력
 	public int insert(MemberDTO dto) {
-		sql = "insert into member (name, age, jno, info) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		sql = "insert into member (id, password, name, age, jno, info, point, birthday, rid) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pst = cn.prepareStatement(sql);
 			pst.setString(1, dto.getId());

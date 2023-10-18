@@ -22,12 +22,14 @@
 	<hr>
 	<c:if test="${not empty sessionScope.loginName}">
 		&nbsp;<a href="/Web02/logout">Logout</a>&nbsp;
-		&nbsp;<a href="/Web02/detail">Myinfo</a><br>		
+		&nbsp;<a href="/Web02/detail">MyInfo</a>&nbsp;
+		&nbsp;<a href="/Web02/mdetail.do">MyInfoF</a><br>&nbsp;
 	</c:if>
 	<c:if test="${empty sessionScope.loginName}">
-		&nbsp;<a href="/Web02/member/loginForm.jsp">LoginF</a>
-		&nbsp;<a href="/Web02/member/.jsp">Join</a><br>		
+		&nbsp;<a href="/Web02/member/loginForm.jsp">Login</a>&nbsp;
+		&nbsp;<a href="/Web02/member/memberJoin.jsp">Join</a><br>
 	</c:if>
-	&nbsp;<a href="/Web02/mlist">List2</a>
+	&nbsp;<a href="/Web02/mlist">List2</a>&nbsp;
+	&nbsp;<a href="/Web02/mlist.do">ListF</a>&nbsp;
 </body>
 </html>

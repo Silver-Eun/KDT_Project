@@ -25,7 +25,10 @@
 			<th>Point</th>
 			<th>Birthday</th>
 			<th>Rid</th>
-			<th>Delete</th>
+			<!-- 관리자 기능 추가 -->
+			<c:if test="${sessionScope.loginId == 'silver'}">
+				<th>Delete</th>
+			</c:if>			
 		</tr>
 		<c:if test="${not empty requestScope.banana}">
 			<c:forEach var="s" items="${requestScope.banana}">
@@ -39,7 +42,9 @@
 					<td>${s.point}</td>
 					<td>${s.birthday}</td>
 					<td>${s.rid}</td>
-					<td><a href="/Web02/delete?id=${s.id}">삭제</a></td>
+					<c:if test="${sessionScope.loginId == 'silver'}">
+						<td><a href="/Web02/delete?id=${s.id}">삭제</a></td>
+					</c:if>			
 				</tr>
 			</c:forEach>
 		</c:if>

@@ -40,7 +40,7 @@ public class MVC2_Login extends HttpServlet {
 			// 성공 : index.jsp로
 			// => 로그인 정보 ( id, name ) 보관 ( session에 )
 			request.getSession().setAttribute("loginName", dto.getName());
-			request.getSession().setAttribute("loginID", id);
+			request.getSession().setAttribute("loginId", id);
 			System.out.println("로그인 성공");
 		} else {
 			// => 실패 : loginForm으로 ( 재로그인 유도 )
