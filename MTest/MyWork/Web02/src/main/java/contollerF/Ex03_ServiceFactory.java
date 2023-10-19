@@ -17,34 +17,34 @@ import java.util.Map;
 //=> 클래스 외부에서 인스턴스를 생성할 수 없도록 제한  
 
 //** 방법
-//=> 생성자를 private 으로 내부에서만 사용가능하도록하고
+//=> 생성자를 private으로 내부에서만 사용 가능하도록 하고
 //=> 내부에서 getInstance() 메서드로 생성 제공해줌 
 //=> 외부에서는 getInstance() 메서드를 통해서만 사용
 
 public class Ex03_ServiceFactory {
 
-	//1) Map 정의
+	// 1) Map 정의
 	private Map<String, Ex04_Controller> mappings;
-	
-	//2) 생성자 정의 (싱글톤 패턴)
-	//	-> 생성자를 private 으로 정의
-	//	-> 내부에서 인스턴스 생성
-	//	-> 인스턴스를 제공하는 getter
-	private Ex03_ServiceFactory() { 
+
+	// 2) 생성자 정의 (싱글톤 패턴)
+	// -> 생성자를 private으로 정의
+	// -> 내부에서 인스턴스 생성
+	// -> 인스턴스를 제공하는 getter
+	private Ex03_ServiceFactory() {
 		mappings = new HashMap<String, Ex04_Controller>();
 		mappings.put("/mlist.do", new Ex05_MList());
 		mappings.put("/mdetail.do", new Ex05_MDetail());
-	} //생성자
-	
-	private static Ex03_ServiceFactory instance = new Ex03_ServiceFactory(); 
-	
+	} // 생성자
+
+	private static Ex03_ServiceFactory instance = new Ex03_ServiceFactory();
+
 	public static Ex03_ServiceFactory getInstance() { return instance; }
 //	public static Ex03_ServiceFactory getInstance() { return new Ex03_ServiceFactory(); }
 //  => 싱글톤 적용되지않음 : 메서드 호출시마다 생성됨
-	
-	//3) FrontController 요청한 서비스 컨트롤러 클래스를 제공 
+
+	// 3) FrontController 요청한 서비스 컨트롤러 클래스를 제공
 	public Ex04_Controller getController(String mappingName) {
 		return mappings.get(mappingName);
-	} //getController
-	
-} //class
+	} // getController
+
+} // class
