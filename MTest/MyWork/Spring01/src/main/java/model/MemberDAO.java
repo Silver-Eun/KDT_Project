@@ -7,13 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import domain.MemberDTO;
 
 // ** DAO(Data Access Object)
 // => SQL 구문 처리
 // => CRUD 구현 
 //   Create(Insert), Read(selectList, selectOne), Update, Detete
-
+@Component
 public class MemberDAO {
 	// ** 전역변수 정의
 	private static Connection cn = DBConnection.getConnection();
