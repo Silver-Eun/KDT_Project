@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Web_MVC2 Member Detail **</title>
+<title>** Spring_MVC2 Member Detail **</title>
+<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
 </head>
 <body>
-	<h2>** Web_MVC2 Member Detail **</h2>
+	<h2>** Spring_MVC2 Member Detail **</h2>
 	<table style="text-align: center;" >
 		<c:if test="${not empty requestScope.apple}">
 			<tr height="40">
@@ -56,6 +57,6 @@
 	</table>
 	<hr>
 	&nbsp;<a href="javascript:history.go(-1)">이전으로</a> &nbsp;
-	&nbsp;<a href="/home">Home</a> &nbsp;
+	&nbsp;<a href="/green/home">Home</a> &nbsp;
 </body>
 </html>

@@ -1,0 +1,30 @@
+*** Board 실습 ***
+1. Board Table 생성 & 기본자료 입력
+
+drop table board;
+=> Table Create
+
+create table board (    
+seq int(5) primary key AUTO_Increment,
+id varchar(10) not null,
+title varchar(200) not null,
+content Text(2000),
+regdate  datetime DEFAULT CURRENT_TIMESTAMP,
+cnt int default 0
+);
+
+=> Date 5개 이상 입력
+insert into board(id, title, content) values("banana", "spring", "code");
+insert into board(id, title, content) values("apple", "IOC/DI", "code");
+insert into board(id, title, content) values("coffee", "의존성 주입", "code");
+insert into board(id, title, content) values("green", "Spring의 AOP", "code");
+insert into board(id, title, content) values("admin", "Spring Fun", "code");
+
+select * from board;
+
+2. Spring02 구현1
+=> Java : BoardDTO, BoardDAO, BoardService, BoardController
+=> View : boardList, boardDetail, boardInsert, boardUpdate
+
+3. Spring02 구현2 
+=> 댓글 달기, 페이징
