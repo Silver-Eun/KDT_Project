@@ -3,16 +3,15 @@ package com.ncs.green;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import domain.MemberDTO;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import service.MemberService;
 
@@ -129,12 +128,26 @@ import service.MemberService;
 // -> Logger 사용과의 차이점 : "{}" 지원안됨, 호출명 log 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @Log4j
+@AllArgsConstructor
 @RequestMapping(value = "/member") // "/member"로 시작하는 모든 요청을 처리
 @Controller
 public class MemberController {
 
-	@Autowired
+	//@Autowired
+	// => service 인스턴스를 초기화 해주는 역할
+	//	  MemberService service = new MemberService();
+	//	  String name = "홍길동";
+	// => 모든 값을 초기화하는 생성자 @AllArgsConstructor를 사용하면
+	//    @Autowired를 사용하지 않아도 됨
+	// => 차이점
+	//		-> @Autowired : 멤버들마다 모두 적용해야함(1:1)
+	//		-> @AllArgsConstructor : 클래스에 1개만 적용하면 됨
 	MemberService service;
+	
+	//@Autowired
+	// OtherService1 service1;
+	//@Autowired
+	// OtherService2 service2;
 	
 	// ** Lombok의 Log4j Test
 	@GetMapping(value = "/log4jtest")

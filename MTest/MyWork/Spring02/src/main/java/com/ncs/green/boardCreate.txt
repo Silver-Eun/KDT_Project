@@ -9,7 +9,7 @@ seq int(5) primary key AUTO_Increment,
 id varchar(10) not null,
 title varchar(200) not null,
 content Text(2000),
-regdate  datetime DEFAULT CURRENT_TIMESTAMP,
+regdate datetime DEFAULT CURRENT_TIMESTAMP,
 cnt int default 0
 );
 

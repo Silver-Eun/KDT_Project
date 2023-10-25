@@ -2,42 +2,23 @@ package service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import domain.MemberDTO;
-import model.MemberDAO;
 
-@Service
-public class MemberService {
-	// ** 전역변수 정의
-	//MemberDAO dao = new MemberDAO();
-	@Autowired
-	MemberDAO dao;
+public interface MemberService {
 
 	// ** selectList
-	public List<MemberDTO> selectList() {
-		return dao.selectList();
-	}
+	List<MemberDTO> selectList();
 
 	// ** selectOne
-	public MemberDTO selectOne(MemberDTO vo) {
-		return dao.selectOne(vo);
-	}
-	
+	MemberDTO selectOne(MemberDTO vo);
+
 	// ** insert
-	public int insert(MemberDTO dto) {
-		return dao.insert(dto);
-	}
-	
+	int insert(MemberDTO dto);
+
 	// ** update
-	public int update(MemberDTO dto) {
-		return dao.update(dto);
-	}
-		
+	int update(MemberDTO dto);
+
 	// ** delete
-	public int delete(MemberDTO dto) {
-		return dao.delete(dto);
-	}
-	
+	int delete(MemberDTO dto);
+
 }
