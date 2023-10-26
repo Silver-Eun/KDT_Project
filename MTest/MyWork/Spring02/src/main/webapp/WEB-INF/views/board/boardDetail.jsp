@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Spring_MVC2 Member Detail **</title>
+<title>** Spring_MVC2 Board Detail **</title>
 <link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
 </head>
 <body>
-	<h2>** Spring_MVC2 Member Detail **</h2>
+	<h2>** Spring_MVC2 Board Detail **</h2>
 	<table style="text-align: center;" >
 		<c:if test="${not empty requestScope.apple}">
 			<tr height="40">
@@ -49,8 +49,10 @@
 	</c:if>
 	<hr>
 	<!-- 로그인 한 경우에는 새 글 등록, 답글 등록 -->
-		&nbsp;<a href="boardInsert">새 글 등록</a>&nbsp;	
-	&nbsp;<a href="boardInsert">답글 등록</a>&nbsp;
+	&nbsp;<a href="boardInsert">새 글 등록</a>&nbsp;
+	<!-- 댓글등록을 위해 부모글의 root, step, indent 값이 필요하기 때문에
+    	 서버로 보내주어야 함(쿼리스트링으로 작성) -->
+	&nbsp;<a href="replyInsert?root=${apple.root}&step=${apple.step}&indent${apple.indent}">답글 등록</a>&nbsp;
 	<!-- 로그인id와 글쓴이id가 동일하면 수정, 삭제 가능 -->
 	<c:if test="${sessionScope.loginID == requestScope.apple.id}">
 		&nbsp;<a href="bdetail?jCode=U&seq=${requestScope.apple.seq}">글 수정</a>&nbsp;	

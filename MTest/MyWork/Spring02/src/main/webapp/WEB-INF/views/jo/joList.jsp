@@ -1,56 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>** Spring_MVC2 JoList **</title>
-<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
+	<meta charset="UTF-8">
+	<title>** JoList Spring_MVC2 **</title>
+	<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
 </head>
 <body>
-	<h2>** Spring_MVC2 JoList**</h2>
-	<hr>
-	<c:if test="${not empty requestScope.message}">
-		=> ${requestScope.message}<br>
-		<hr>
+<h2>** JoList Spring_MVC2 **</h2>
+<br>
+<c:if test="${not empty message}">
+	${message}<br>
+</c:if>
+<hr>
+<table width=100%> 
+	<tr bgcolor="Gold" height="30">
+		<th>Jno</th><th>JoName</th><th>CaptainID</th><th>조장이름</th><th>Project</th><th>Slogan</th>
+	</tr>
+	<c:if test="${not empty banana}">
+		<c:forEach  var="jo" items="${banana}" >
+		<tr height="30">
+			<td><a href="jdetail?jno=${jo.jno}">${jo.jno}</a></td>
+			<td>${jo.jname}</td><td>${jo.id}</td> 
+			<td>${jo.cname}</td><td>${jo.project}</td><td>${jo.slogan}</td>
+		</tr>	
+		</c:forEach>
 	</c:if>
-	<table border="1" style="width: 90%; text-align: center">
-		<tr bgcolor="orange">
-			<th>Jno</th>
-			<th>Jname</th>
-			<th>Id</th>
-			<th>Project</th>
-			<th>Slogan</th>
-		</tr>
-		<c:if test="${not empty requestScope.banana}">
-			<c:forEach var="s" items="${requestScope.banana}">
-				<tr>
-					<td>
-						<c:if test="${not empty sessionScope.loginID}">
-							<a href="jdetail?jno=${s.jno}">${s.jno}</a>
-						</c:if>
-						<c:if test="${empty sessionScope.loginID}">
-							${s.jno}
-						</c:if>
-					</td>
-					<td>${s.jname}</td>
-					<td>${s.id}</td>
-					<td>${s.project}</td>
-					<td>${s.slogan}</td>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${empty requestScope.banana}">
-			<tr>
-				<td colspan="5">출력할 Data가 없습니다</td>
-			</tr>
-		</c:if>
-	</table>
-	<hr>
-	<c:if test="${not empty sessionScope.loginID}">
-	&nbsp;<a href="joInsert">새 조 등록</a>&nbsp;
-	</c:if>
-	&nbsp;<a href="/green/home">Home</a>&nbsp;
+</table>
+<hr>
+<hr>
+&nbsp;<a href="joInsert">조등록</a>&nbsp;
+&nbsp;<a href="javascript:history.go(-1)">이전으로</a>&nbsp;
+&nbsp;<a href="/green/home">[Home]</a>
 </body>
 </html>

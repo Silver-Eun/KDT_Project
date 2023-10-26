@@ -14,6 +14,12 @@ public class BoardServiceImpl implements BoardService {
 	//BoardDAO dao = new BoardDAO();
 	@Autowired
 	BoardDAO dao;
+	
+	// ** 답글등록
+	@Override
+	public int rinsert(BoardDTO dto) {
+		return dao.rinsert(dto);
+	}
 
 	// ** selectList
 	@Override

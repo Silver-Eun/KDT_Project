@@ -4,21 +4,22 @@ import java.util.List;
 
 import domain.JoDTO;
 
+
 public interface JoService {
 
 	// ** selectList
 	List<JoDTO> selectList();
 
 	// ** selectOne
-	JoDTO selectOne(JoDTO vo);
+	JoDTO selectOne(JoDTO dto);
 
-	// ** insert
+	// ** Insert
 	int insert(JoDTO dto);
 
-	// ** update
+	// ** Update
 	int update(JoDTO dto);
 
-	// ** delete
+	// ** Delete
 	int delete(JoDTO dto);
 
 }

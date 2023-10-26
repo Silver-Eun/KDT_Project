@@ -6,6 +6,9 @@ import domain.BoardDTO;
 
 public interface BoardService {
 
+	// ** 답글등록
+	int rinsert(BoardDTO dto);
+	
 	// ** selectList
 	List<BoardDTO> selectList();
 
