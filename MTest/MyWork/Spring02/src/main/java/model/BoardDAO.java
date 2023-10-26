@@ -27,7 +27,7 @@ public class BoardDAO {
 	
 	// ** selectList
 	public List<BoardDTO> selectList() {
-		sql="select * from board order by seq desc, step asc";
+		sql="select * from board order by root desc, step asc";
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		try {
 			st=cn.createStatement();
@@ -151,7 +151,7 @@ public class BoardDAO {
 				+ "and seq <> (select * from (select IFNULL(max(seq),0) from board) as temp)";
 		try {
 			pst=cn.prepareStatement(sql);
-			pst.setInt(1, dto.getSeq());
+			pst.setInt(1, dto.getRoot());
 			pst.setInt(2, dto.getStep());
 			return pst.executeUpdate(); // 수정된 Data 갯수 return 
 		} catch (Exception e) {

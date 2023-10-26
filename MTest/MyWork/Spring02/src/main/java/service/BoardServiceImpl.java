@@ -3,12 +3,12 @@ package service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import domain.BoardDTO;
 import model.BoardDAO;
 
-@Service
+@Component
 public class BoardServiceImpl implements BoardService {
 	// ** 전역변수 정의
 	//BoardDAO dao = new BoardDAO();

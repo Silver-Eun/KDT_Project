@@ -13,7 +13,7 @@ public interface BoardService {
 	List<BoardDTO> selectList();
 
 	// ** selectOne
-	BoardDTO selectOne(BoardDTO vo);
+	BoardDTO selectOne(BoardDTO dto);
 
 	// ** insert
 	int insert(BoardDTO dto);
