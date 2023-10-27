@@ -30,7 +30,7 @@
 					<!-- Title
 						=> 로그인 한 경우에만 글내용을 볼 수 있도록 Link 추가
 						=> 댓글 작성 후에는 indent 값에 따른 들여쓰기 기능 -->
-					<td>
+					<td style="text-align: left">
 						<c:if test="${s.indent > 0}">
 							<c:forEach begin="1" end="${s.indent}">
 								<span>&nbsp;&nbsp;</span>

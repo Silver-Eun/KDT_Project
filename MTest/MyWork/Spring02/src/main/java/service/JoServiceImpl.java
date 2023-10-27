@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import domain.JoDTO;
+import mapperInterface.JoMapper;
 import model.JoDAO;
 
 //** interface 자동완성 
@@ -17,32 +18,32 @@ import model.JoDAO;
 public class JoServiceImpl implements JoService {
 	
 	@Autowired
-	JoDAO dao;
+	JoMapper mapper;
 	
 	// ** selectList
 	@Override
 	public List<JoDTO> selectList() {
-		return dao.selectList();
+		return mapper.selectList();
 	}
 	// ** selectOne
 	@Override
 	public JoDTO selectOne(JoDTO dto) {
-		return dao.selectOne(dto);
+		return mapper.selectOne(dto);
 	}
 	// ** Insert
 	@Override
 	public int insert(JoDTO dto) {
-		return dao.insert(dto);
+		return mapper.insert(dto);
 	}
 	// ** Update
 	@Override
 	public int update(JoDTO dto) {
-		return dao.update(dto);
+		return mapper.update(dto);
 	}
 	// ** Delete
 	@Override
 	public int delete(JoDTO dto) {
-		return dao.delete(dto);
+		return mapper.delete(dto);
 	}
 
 } //class
