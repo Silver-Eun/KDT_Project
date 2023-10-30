@@ -8,10 +8,11 @@
 <title>** Spring_MVC2 Member Update **</title>
 <link rel="stylesheet" type="text/css"
 	href="/green/resources/myStyle.css">
+<script src="/green/resources/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<h2>** Spring_MVC2 Member Update **</h2>
-	<form action="mupdate" method="Post">
+	<form action="mupdate" method="Post" enctype="multipart/form-data">
 		<table>
 			<c:if test="${not empty requestScope.apple}">
 				<tr height="40">
@@ -75,6 +76,33 @@
 					<td><input type="text" name="rid"
 						value="${requestScope.apple.rid}" size="20"></td>
 				</tr>
+				<!-- Image Update 추가 
+					=> form Tag : method, enctype 확인
+					=> new Image를 선택하는 경우 -> uploadfilef 사용
+					=> new Image를 선택하지않는 경우 
+					   -> 본래 Image를 사용 -> uploadfile 값이 필요함
+			    -->   
+				<tr height="40">
+					<th bgcolor="khaki">Image</th>
+					<td><img alt="MyImage" src="/green/${requestScope.apple.uploadfile}"
+					width="100" height="120" class="select_img">
+					<input type="hidden" name="uploadfile" value="${requestScope.apple.uploadfile}">
+					<input type="file" name="uploadfilef" id="uploadfilef" size="20"></td>
+				</tr>
+						
+			<script>
+			document.getElementById('uploadfilef').onchange=function(e){
+			   if(this.files && this.files[0]) {
+			      let reader = new FileReader;
+			      reader.readAsDataURL(this.files[0]);
+			      reader.onload = function(e) {
+			            $(".select_img").attr("src", e.target.result)
+			                        .width(70).height(90); 
+			         } // onload_function
+			    } // if   
+			}; //change  -> }); JQ 사용시   
+			</script>   
+			
 				<tr height="40">
 					<th></th>
 					<td><input type="submit" value="수정">&nbsp;&nbsp;&nbsp;

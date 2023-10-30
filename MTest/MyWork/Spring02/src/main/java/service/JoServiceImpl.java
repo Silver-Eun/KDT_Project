@@ -10,9 +10,9 @@ import domain.JoDTO;
 import mapperInterface.JoMapper;
 import model.JoDAO;
 
-//** interface 자동완성 
-//=> Alt + Shift + T  
-//=> 또는 마우스우클릭 PopUp Menu 의  Refactor - Extract Interface...
+// ** interface 자동완성 
+// => Alt + Shift + T  
+// => 또는 마우스우클릭 PopUp Menu의  Refactor - Extract Interface...
 
 @Component
 public class JoServiceImpl implements JoService {

@@ -48,6 +48,11 @@
 				<th bgcolor="pink">추천인</th>
 				<td>${requestScope.apple.rid}</td>
 			</tr>
+			<tr height="40">
+				<th bgcolor="pink">Image</th>
+				<td><img alt="" src="/green/${requestScope.apple.uploadfile}"
+				width="100" height="120"></td>
+			</tr>
 		</c:if>
 		<c:if test="${empty requestScope.apple}">
 			<tr height="40">
