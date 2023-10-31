@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Board Update **</title>
 <link rel="stylesheet" type="text/css"
-	href="/green/resources/myStyle.css">
+	href="/Spring02/resources/myStyle.css">
 </head>
 <body>
 	<h2>** Spring_MVC2 Board Update **</h2>

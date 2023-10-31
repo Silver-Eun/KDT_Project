@@ -9,12 +9,14 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -151,11 +153,43 @@ public class MemberController {
 	//		-> @Autowired : 멤버들마다 모두 적용해야함(1:1)
 	//		-> @AllArgsConstructor : 클래스에 1개만 적용하면 됨
 	MemberService service;
+	PasswordEncoder passwordEncoder;
 	
 	//@Autowired
 	// OtherService1 service1;
 	//@Autowired
 	// OtherService2 service2;
+	
+	// ** File Download ******************************************
+	// => 전달받은 path와 파일명으로 File 객체를 만들어 찾아서 response에 담아주면
+	//    클라이언트의 웹브라우져로 전달됨
+	@GetMapping("/download")
+	public String download(HttpServletRequest request, Model model,
+		@RequestParam("dnfile")	String dnfile) {
+		// => 동일한 표현 : String dnfile = request.getParameter("dnfile");
+		// 1) 파일 & path 확인
+		String realPath = request.getRealPath("/"); //deprecated Method
+		String fileName = dnfile.substring(dnfile.lastIndexOf("/")+1);
+		// => dnfile: resources/uploadImages/robot.png
+		  
+		// => realpath 확인, 개발중인지, 배포했는지에 따라 결정
+		// => 해당화일 File 찾기위함
+		if ( realPath.contains(".eclipse.") )  // 개발중 (배포전: eclipse 개발환경) 
+		realPath="D:\\kdt4_ehs\\MTest\\MyWork\\Spring02\\src\\main\\webapp\\resources\\uploadImages\\";
+		else realPath+="resources\\uploadImages\\";
+		realPath+=fileName;  // ~~~~~\\resources\\uploadImages\\robot.png -> path 완성
+		
+		// 2) 해당 화일 (path+fileName) File Type 으로 객체화
+		File file = new File(realPath);
+		model.addAttribute("downloadFile", file);
+		
+		// 3) response 처리 (response의 body 에 담아줌) 
+		// => Java File 객체의 파일내용 -> File 정보를 response에 전달
+		// => 이것을 처리할 View 해결사가 필요함(DownloadView)
+		//	  이 해결사와 return 값의 연결은 설정파일(servlet~~.xml)에서
+		return "downloadView";
+		// => 주의 : ~~/downloadView.jsp 문서가 존재하면 이것이 먼저 실행될 수 있으므로 주의
+	}
 	
 	// ** Lombok의 Log4j Test
 	@GetMapping(value = "/log4jtest")
@@ -230,7 +264,10 @@ public class MemberController {
 		// => 성공 : id, name은 session에 보관, home으로
 		// => 실패 : 재로그인 유도
 		dto = service.selectOne(dto);
-		if (dto != null && dto.getPassword().equals(password)) {
+		//if (dto != null && dto.getPassword().equals(password)) {
+		// *** PasswordEncoder 적용
+		if ( dto != null && 
+			passwordEncoder.matches(password, dto.getPassword()) ) {
 			session.setAttribute("loginID", dto.getId());
 			session.setAttribute("loginName", dto.getName());
 		} else {
@@ -286,6 +323,10 @@ public class MemberController {
 		// => 실패 : 재가입 유도 (JoinForm으로 member/memberJoin.jsp)
 		String uri = "member/loginForm";
 		
+		// ** PasswordEncoder 적용
+		
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
 		// ** MultipartFile ***********************
 		// => 전달된 UploadFile 정보 전달
 		// => MultipartFile 타입의 uploadfilef의 정보에서 
@@ -301,7 +342,7 @@ public class MemberController {
 		// 1.1) 현재 웹어플리케이션의 실행 위치 확인 : 
 		// => eclipse 개발환경 (배포전)
 		//    D:\MTest\myWork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Spring02\
-		//     C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Spring02\
+		//    C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Spring02\
 		
 		// => 톰캣서버에 배포 후 : 서버내에서의 위치가 됨
 		//    D:\MTest\IDESet\apache-tomcat-9.0.41\webapps\Spring02\
@@ -402,7 +443,7 @@ public class MemberController {
 		if ( uploadfilef!=null && !uploadfilef.isEmpty() ) {
 			// => Image 재선택 MultipartFile 처리
 			String realPath = request.getRealPath("/");
-		
+			
 			// => 개발중인지, 배포했는지에 따라 실제저장위치 결정
 			if ( realPath.contains(".eclipse.") )  // 개발중 (배포전: eclipse 개발환경) 
 				realPath="D:\\kdt4_ehs\\MTest\\MyWork\\Spring02\\src\\main\\webapp\\resources\\uploadImages\\";
@@ -424,6 +465,23 @@ public class MemberController {
 			model.addAttribute("message", "회원정보 수정 실패! 다시 하세요");
 			uri = "member/memberUpdate";
 		}
+		return uri;
+	}
+	
+	// ** Password Update
+	@PostMapping(value = "/pupdateForm")
+	public String pwUpdate (HttpServletRequest request, MemberDTO dto, Model model) {
+		model.addAttribute("apple", dto);
+		
+		String uri = "member/pupdateForm";
+		
+		if (service.update(dto) > 0) {
+			model.addAttribute("message", "비밀번호 수정 성공");
+		} else {
+			model.addAttribute("message", "비밀번호 수정 실패! 다시 하세요");
+			uri = "member/memberUpdate";
+		}
+		
 		return uri;
 	}
 	

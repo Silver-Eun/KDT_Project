@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Reply_Insert **</title>
-<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
+<link rel="stylesheet" type="text/css" href="/Spring02/resources/myStyle.css">
 </head>
 <body>
 	<h2>** Spring_MVC2 Reply_Insert **</h2>

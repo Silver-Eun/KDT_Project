@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>** Spring_MVC2 MemberList **</title>
-<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
+<link rel="stylesheet" type="text/css" href="/Spring02/resources/myStyle.css">
 </head>
 <body>
 	<h2>** Spring_MVC2 MemberList **</h2>
@@ -27,6 +27,7 @@
 			<th>Birthday</th>
 			<th>Rid</th>
 			<th>Image</th>
+			<th>Download</th>
 			<!-- 관리자 기능 추가 -->
 			<c:if test="${sessionScope.loginID == 'admin'}">
 				<th>Delete</th>
@@ -48,7 +49,15 @@
 						<td><a href="mdelete?id=${s.id}">삭제</a></td>
 					</c:if>
 					<!-- image 추가 -->
-					<td><img alt="MyImage" src="/green/${s.uploadfile}" width="50" height="60"></td>	
+					<td><img alt="MyImage" src="/Spring02/${s.uploadfile}" width="50" height="60"></td>	
+					
+					<!-- File Download ** 
+			         => download 요청을 받으면 서버는 해당 파일을 찾아 response에 담아보내면,
+			            웹브라우져가 받아 download 시켜줌 
+			         => 최종적 처리를 웹브라우져가 해주기 때문에 일반적으로 a Tag로 처리함     
+			           ( 즉, 비동기 처리_Ajax를 하지 않음, 비동기 처리에서는 response를 웹브라우져가 받지않기 때문 )
+			      	-->			
+					<td><a href="download?dnfile=${s.uploadfile}">${s.uploadfile}</a></td>
 				</tr>
 			</c:forEach>
 		</c:if>

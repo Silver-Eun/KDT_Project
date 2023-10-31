@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Member Join **</title>
-<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
-<script src="/green/resources/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/Spring02/resources/myStyle.css">
+<script src="/Spring02/resources/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<h2>** Spring_MVC2 Member Join **</h2>
@@ -64,7 +64,7 @@
 					</select>
 				</td>
 			</tr>
-
+			
 			<tr height="40">
 				<th bgcolor="pink">Info</th>
 				<td><input type="text" name="info" placeholder="반드시 입력하세요"
@@ -106,15 +106,22 @@
 			// => type="file" 은 복수개의 파일을 업로드할수 있도록 설계됨
 			//    그러므로 files[] 배열 형태의 속성을 가짐
 			
-			document.getElementById('uploadfilef').onchange=function(e){
+			window.document.getElementById('uploadfilef').onchange=function(e){
 			//$('#uploadfilef').change(function(){
+			// => window.jquery('#uploadfilef').~.~.~
+			//		- JS에서 window 객체는 생략 가능
+			//		- jquery 함수를 $ 기호로 간편하게 사용
 			   if(this.files && this.files[0]) {
 			      let reader = new FileReader;
 			      reader.readAsDataURL(this.files[0]);
 			      reader.onload = function(e) {
 			            $(".select_img").attr("src", e.target.result)
-			                        .width(70).height(90); 
-			         } // onload_function
+			                        .width(70).height(90);
+			            // => jQuery를 사용하지 않는경우 
+						//    class 속성 사용시에는 복수선택이 가능하므로 인덱스 사용해야함 
+			            //document.getElementsByClassName('select_img')[0].src=e.target.result;
+
+			         }
 			    } // if   
 			}; //change  -> }); JQ 사용시   
 			</script>   

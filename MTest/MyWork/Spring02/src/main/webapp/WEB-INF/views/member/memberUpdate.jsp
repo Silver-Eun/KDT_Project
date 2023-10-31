@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Member Update **</title>
 <link rel="stylesheet" type="text/css"
-	href="/green/resources/myStyle.css">
-<script src="/green/resources/jquery-3.2.1.min.js"></script>
+	href="/Spring02/resources/myStyle.css">
+<script src="/Spring02/resources/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<h2>** Spring_MVC2 Member Update **</h2>
@@ -84,7 +84,7 @@
 			    -->   
 				<tr height="40">
 					<th bgcolor="khaki">Image</th>
-					<td><img alt="MyImage" src="/green/${requestScope.apple.uploadfile}"
+					<td><img alt="MyImage" src="/Spring02/${requestScope.apple.uploadfile}"
 					width="100" height="120" class="select_img">
 					<input type="hidden" name="uploadfile" value="${requestScope.apple.uploadfile}">
 					<input type="file" name="uploadfilef" id="uploadfilef" size="20"></td>

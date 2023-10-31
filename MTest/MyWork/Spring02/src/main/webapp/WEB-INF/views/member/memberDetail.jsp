@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Member Detail **</title>
-<link rel="stylesheet" type="text/css" href="/green/resources/myStyle.css">
+<link rel="stylesheet" type="text/css" href="/Spring02/resources/myStyle.css">
 </head>
 <body>
 	<h2>** Spring_MVC2 Member Detail **</h2>
@@ -50,7 +50,7 @@
 			</tr>
 			<tr height="40">
 				<th bgcolor="pink">Image</th>
-				<td><img alt="" src="/green/${requestScope.apple.uploadfile}"
+				<td><img alt="" src="/Spring02/${requestScope.apple.uploadfile}"
 				width="100" height="120"></td>
 			</tr>
 		</c:if>
@@ -62,6 +62,6 @@
 	</table>
 	<hr>
 	&nbsp;<a href="javascript:history.go(-1)">이전으로</a> &nbsp;
-	&nbsp;<a href="/green/home">Home</a> &nbsp;
+	&nbsp;<a href="/green/home">Home</a>&nbsp;
 </body>
 </html>

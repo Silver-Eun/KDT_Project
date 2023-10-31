@@ -6,8 +6,11 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -100,6 +103,35 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	@GetMapping("/bcrypt")
+	public String bcrypt() {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String password = "12345!";
+		
+		// 1) encode
+		// => 동일한 원본(RawData)에 대해 각기 다른 결과(digest)를 생성
+		String digest1 = passwordEncoder.encode(password);
+		String digest2 = passwordEncoder.encode("asdf");
+		String digest3 = passwordEncoder.encode("1q2w3e4r");
+		String digest4 = passwordEncoder.encode("6789@");
+		String digest5 = passwordEncoder.encode("abcd#");
+		
+		System.out.println("** digest1 = " + digest1);
+		System.out.println("** digest2 = " + digest2);
+		System.out.println("** digest3 = " + digest3);
+		System.out.println("** digest4 = " + digest4);
+		System.out.println("** digest5 = " + digest5);
+		
+		// 2) match(rawDate, digest)
+		System.out.println("** digest1 macthes => " + passwordEncoder.matches(password, digest1));
+		System.out.println("** digest2 macthes => " + passwordEncoder.matches(password, digest2));
+		System.out.println("** digest3 macthes => " + passwordEncoder.matches(password, digest3));
+		System.out.println("** digest4 macthes => " + passwordEncoder.matches(password, digest4));
+		System.out.println("** digest5 macthes => " + passwordEncoder.matches(password, digest5));
+		
+		return "redirect:home";
 	}
 	
 }
