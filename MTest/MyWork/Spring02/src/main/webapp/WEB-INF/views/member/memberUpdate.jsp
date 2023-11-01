@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Member Update **</title>
 <link rel="stylesheet" type="text/css"
-	href="/Spring02/resources/myStyle.css">
-<script src="/Spring02/resources/jquery-3.2.1.min.js"></script>
+	href="/Spring02/resources/myLib/myStyle.css">
+<script src="/Spring02/resources/myLib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<h2>** Spring_MVC2 Member Update **</h2>
@@ -123,6 +123,6 @@
 	<hr>
 	&nbsp;
 	<a href="javascript:history.go(-1)">이전으로</a> &nbsp; &nbsp;
-	<a href="/green/home">Home</a>&nbsp;
+	<a href="/Spring02/home">Home</a>&nbsp;
 </body>
 </html>

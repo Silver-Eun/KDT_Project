@@ -2,7 +2,6 @@ package com.ncs.green;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -159,37 +158,6 @@ public class MemberController {
 	// OtherService1 service1;
 	//@Autowired
 	// OtherService2 service2;
-	
-	// ** File Download ******************************************
-	// => 전달받은 path와 파일명으로 File 객체를 만들어 찾아서 response에 담아주면
-	//    클라이언트의 웹브라우져로 전달됨
-	@GetMapping("/download")
-	public String download(HttpServletRequest request, Model model,
-		@RequestParam("dnfile")	String dnfile) {
-		// => 동일한 표현 : String dnfile = request.getParameter("dnfile");
-		// 1) 파일 & path 확인
-		String realPath = request.getRealPath("/"); //deprecated Method
-		String fileName = dnfile.substring(dnfile.lastIndexOf("/")+1);
-		// => dnfile: resources/uploadImages/robot.png
-		  
-		// => realpath 확인, 개발중인지, 배포했는지에 따라 결정
-		// => 해당화일 File 찾기위함
-		if ( realPath.contains(".eclipse.") )  // 개발중 (배포전: eclipse 개발환경) 
-		realPath="D:\\kdt4_ehs\\MTest\\MyWork\\Spring02\\src\\main\\webapp\\resources\\uploadImages\\";
-		else realPath+="resources\\uploadImages\\";
-		realPath+=fileName;  // ~~~~~\\resources\\uploadImages\\robot.png -> path 완성
-		
-		// 2) 해당 화일 (path+fileName) File Type 으로 객체화
-		File file = new File(realPath);
-		model.addAttribute("downloadFile", file);
-		
-		// 3) response 처리 (response의 body 에 담아줌) 
-		// => Java File 객체의 파일내용 -> File 정보를 response에 전달
-		// => 이것을 처리할 View 해결사가 필요함(DownloadView)
-		//	  이 해결사와 return 값의 연결은 설정파일(servlet~~.xml)에서
-		return "downloadView";
-		// => 주의 : ~~/downloadView.jsp 문서가 존재하면 이것이 먼저 실행될 수 있으므로 주의
-	}
 	
 	// ** Lombok의 Log4j Test
 	@GetMapping(value = "/log4jtest")
@@ -421,6 +389,37 @@ public class MemberController {
 		return uri;
 	}
 	
+	// ** File Download
+		// => 전달받은 path와 파일명으로 File 객체를 만들어 찾아서 response에 담아주면
+		//    클라이언트의 웹브라우져로 전달됨
+		@GetMapping("/download")
+		public String download(HttpServletRequest request, Model model,
+			@RequestParam("dnfile")	String dnfile) {
+			// => 동일한 표현 : String dnfile = request.getParameter("dnfile");
+			// 1) 파일 & path 확인
+			String realPath = request.getRealPath("/"); //deprecated Method
+			String fileName = dnfile.substring(dnfile.lastIndexOf("/")+1);
+			// => dnfile: resources/uploadImages/robot.png
+			  
+			// => realpath 확인, 개발중인지, 배포했는지에 따라 결정
+			// => 해당화일 File 찾기위함
+			if ( realPath.contains(".eclipse.") )  // 개발중 (배포전: eclipse 개발환경) 
+			realPath="D:\\kdt4_ehs\\MTest\\MyWork\\Spring02\\src\\main\\webapp\\resources\\uploadImages\\";
+			else realPath+="resources\\uploadImages\\";
+			realPath+=fileName;  // ~~~~~\\resources\\uploadImages\\robot.png -> path 완성
+			
+			// 2) 해당 화일 (path+fileName) File Type 으로 객체화
+			File file = new File(realPath);
+			model.addAttribute("downloadFile", file);
+			
+			// 3) response 처리 (response의 body 에 담아줌) 
+			// => Java File 객체의 파일내용 -> File 정보를 response에 전달
+			// => 이것을 처리할 View 해결사가 필요함(DownloadView)
+			//	  이 해결사와 return 값의 연결은 설정파일(servlet~~.xml)에서
+			return "downloadView";
+			// => 주의 : ~~/downloadView.jsp 문서가 존재하면 이것이 먼저 실행될 수 있으므로 주의
+		}
+	
 	// ** Member Update
 	// => 요청 : home에서 내정보수정 -> 내정보수정 Form 출력
 	// => 수정 후 submit -> 수정 Service
@@ -469,17 +468,41 @@ public class MemberController {
 	}
 	
 	// ** Password Update
-	@PostMapping(value = "/pupdateForm")
-	public String pwUpdate (HttpServletRequest request, MemberDTO dto, Model model) {
-		model.addAttribute("apple", dto);
+	@GetMapping(value = "/pUpdateForm")
+	public void pUpdateForm() {
 		
-		String uri = "member/pupdateForm";
+	}
+	
+	// ** Password Update
+	@PostMapping(value = "/passwordUpdate")
+	public String passwordUpdate(HttpServletRequest request, Model model, MemberDTO dto) {	
+		// ** password Update
+		// => 로그인 확인: session 에서 id get 
+		// => passwordEncode (암호화) 처리 	
+		// => Service
+		// 	-> 성공: 재로그인 유도 -> session 무효화, member/loginForm 으로 
+		//	-> 실패: 재수정 유도 -> pUpdateForm
 		
+		String id = (String)request.getSession().getAttribute("loginID");
+		// ** id 가 존재하지 않는 경우 -> 로그인유도, 메서드종료
+		if (id == null) {
+			model.addAttribute("message", "로그인 정보가 없습니다. 로그인하세요");
+			return "member/loginForm";
+		}
+		
+		// ** id 가 존재하는 경우 수정
+		dto.setId(id);
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		
+		String uri = "member/loginForm";
 		if (service.update(dto) > 0) {
+			// password 수정성공, session 무효화, loginForm 으로
+			request.getSession().invalidate();
 			model.addAttribute("message", "비밀번호 수정 성공");
 		} else {
+			// password 수정실패
 			model.addAttribute("message", "비밀번호 수정 실패! 다시 하세요");
-			uri = "member/memberUpdate";
+			uri = "member/pUpdateForm";
 		}
 		
 		return uri;
@@ -515,5 +538,21 @@ public class MemberController {
 		}
 		
 		return uri;
+	}
+	
+	// ** ID 중복확인
+	@GetMapping("/idDupCheck")
+	public String idDupCheck(MemberDTO dto, Model model) {
+		// 1) newID 확인
+		if (service.selectOne(dto) != null) {
+			// => 존재 : 사용불가
+			model.addAttribute("idUse", "F");
+		} else {
+			// => 없으면 : 사용가능
+			model.addAttribute("idUse", "T");
+			
+		}
+		
+		return "member/idDupCheck";
 	}
 }

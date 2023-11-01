@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>** Spring_MVC2 MemberList **</title>
-<link rel="stylesheet" type="text/css" href="/Spring02/resources/myStyle.css">
+<link rel="stylesheet" type="text/css" href="/Spring02/resources/myLib/myStyle.css">
 </head>
 <body>
 	<h2>** Spring_MVC2 MemberList **</h2>
@@ -68,6 +68,6 @@
 		</c:if>
 	</table>
 	<hr>
-	&nbsp;<a href="/green/home">Home</a>&nbsp;
+	&nbsp;<a href="/Spring02/home">Home</a>&nbsp;
 </body>
 </html>

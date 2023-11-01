@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>** Spring_MVC2 Board Update **</title>
 <link rel="stylesheet" type="text/css"
-	href="/Spring02/resources/myStyle.css">
+	href="/Spring02/resources/myLib/myStyle.css">
 </head>
 <body>
 	<h2>** Spring_MVC2 Board Update **</h2>
@@ -55,6 +55,6 @@
 	<hr>
 	&nbsp;
 	<a href="javascript:history.go(-1)">이전으로</a> &nbsp; &nbsp;
-	<a href="/green/home">Home</a>&nbsp;
+	<a href="/Spring02/home">Home</a>&nbsp;
 </body>
 </html>

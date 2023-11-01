@@ -5,7 +5,7 @@
 <head>
 <title>Home</title>
 <link rel="stylesheet" type="text/css"
-	href="/Spring02/resources/myStyle.css">
+	href="/Spring02/resources/myLib/myStyle.css">
 </head>
 <body>
 	<h1>Hello world!</h1>
@@ -31,7 +31,7 @@
 	&nbsp;<a href="member/logout">Logout</a>&nbsp;
 	&nbsp;<a href="member/mdetail?id=${sessionScope.loginID}">내정보</a>&nbsp;
 	&nbsp;<a href="member/mdetail?jCode=U&id=${sessionScope.loginID}">내정보수정</a>&nbsp;
-	&nbsp;<a href="member/pupdateForm?jCode=U&id=${sessionScope.loginID}">PW수정</a>&nbsp;
+	&nbsp;<a href="member/pUpdateForm">PW수정</a>&nbsp;
 	&nbsp;<a href="member/mdelete?id=${sessionScope.loginID}">탈퇴</a>&nbsp;
 	</c:if>
 	<br> &nbsp;
