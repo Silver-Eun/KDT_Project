@@ -56,6 +56,9 @@ public class Criteria {
 	// => currPage, rowsPerPage를 이용해 계산
 	// => Oracle 검색조건 : between(sno, eno) -> sno부터 eno까지
 	// => MySql 검색조건 :  limit sno, n -> sno 다음부터 n개
+	//	-> SQL 구문 비교
+	//	select seq, id, title from board order by root desc, step asc;
+	//	select seq, id, title from board order by root desc, step asc limit 10, 5;
 	// => 예시) 6부터 5개 필요한경우
 	//		Oracle : ~~ between(6, 10) -> 6,7,8,9,10
 	//		MySql  : ~~ limit 5, 5 -> 5 다음 부터 5개 -> 6,7,8,9,10

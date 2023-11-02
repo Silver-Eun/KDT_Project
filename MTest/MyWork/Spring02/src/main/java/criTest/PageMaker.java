@@ -35,12 +35,12 @@ public class PageMaker {
 	private boolean prev; //이전 PageBlock 으로
 	private boolean next; //다음 PageBlock 으로
 	
-	//Criteria cri;  // ver01
+//	Criteria cri;  // ver01
 	SearchCriteria cri; // ver02
 	
 	// ** 필요값 set
 	// 1) Criteria
-	// public void setCri(Criteria cri) { -> ver01   
+//	 public void setCri(Criteria cri) { // -> ver01   
 	public void setCri(SearchCriteria cri) { //ver02	
 		this.cri=cri;
 	}
@@ -125,7 +125,7 @@ public class PageMaker {
 		// => MultiValueMap 생성
 		MultiValueMap<String, String> checkMap = new LinkedMultiValueMap<String, String>();
 		
-		// => check에 선택값이 있는경우에만
+		// => check에 선택값이 있는 경우에만
 		//    배열 check의 원소들을 checkMap 으로
 		if ( cri.getCheck() !=null && cri.getCheck().length>0 ) {
 			for (String c:cri.getCheck()) {

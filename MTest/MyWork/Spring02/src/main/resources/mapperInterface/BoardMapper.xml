@@ -25,6 +25,66 @@
 4) 조건문, 반복문, sql, include, selectKey 등 		   
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+<!-- ** Board_SearchCri_Paging 
+	=> ver02_MySql
+		-> 검색조건: title 에 Spring 이 포함된 글목록
+		select * from board
+		where title LIKE '%Spring%'
+		order by root desc, step asc
+		limit #{sno}, #{rowsPerPage}
+	=> 해결
+		-> title : cri 의 searchType 컬럼 -> ${searchType}
+		-> '%Spring%' : cri 의 keyword 
+						-> % + #{keyword} + %
+						-> MySql 문법은 불편 : CONCAT('%',#{keyword},'%')
+						-> Mybatis 구문이 편리 
+	=> search SQL 
+		-> % 기호의 문자열 연결 처리
+		-> LIKE 조건문  					
+--> 
+<sql id="search">
+	<!-- 1) CONCAT('%',#{keyword},'%') 처리 -->
+	<if test="keyword!=null">
+		<bind name="keyVal" value="'%'+keyword+'%'"/>
+	</if>
+	<!-- 2) LIKE 조건문 -->
+	<choose>
+		<when test="searchType!=null and searchType!='all'">
+			and ${searchType} LIKE #{keyVal} )
+		</when>	
+		<when test="searchType!=null and searchType=='all' and keyword!=null">
+			and ( title LIKE #{keyVal}
+				  OR id LIKE #{keyVal}
+				  OR content LIKE #{keyVal} ))
+		</when>	
+		<otherwise>)</otherwise>
+	</choose>
+</sql>
+<select id="searchCri" resultType="domain.BoardDTO">
+	select * from board
+		where ( seq>0 <include refid="search"></include>
+		order by root desc, step asc
+		limit #{sno}, #{rowsPerPage}
+</select>
+<select id="searchTotalCount" resultType="int">
+	select count(*) from board
+		where ( seq>0 <include refid="search"></include>
+</select>
+
+<!-- ** Board_Cri_Paging ********************************
+	=> ver01_MySql
+		limit a , b ( a개 제외하고 a+1 부터 b개 )  적용 -->
+<select id="bcriList" resultType="domain.BoardDTO">
+	select * from board 
+	order by root desc, step asc
+	limit #{sno}, #{rowsPerPage}
+</select>
+<select id="criTotalCount" resultType="int">
+	select count(*) from board
+</select>
+
+<!-- ******************************************************* -->
+
 <!-- ** selectList -->
 <select id="selectList" resultType="domain.BoardDTO">
 	select * from board order by root desc, step asc
@@ -96,7 +156,7 @@
 <!-- 직전에 입력된 Data 는 update 에서 제외시켜주기 위해 "selectKey" 가 필요함  -->
 <update id="stepUpdate">
 	<selectKey keyProperty="seq" resultType="int" order="BEFORE">
-		select IFNULL(max(seq),0)+1 from board
+		select IFNULL(max(seq),0) from board
 	</selectKey>
 	update board set step=step+1 
 	where root=#{root} and step>=#{step} and seq!=#{seq} 

@@ -38,6 +38,7 @@
 	&nbsp;<a href="member/memberList">mList</a>&nbsp;
 	&nbsp;<a href="member/log4jtest">롬복log4j</a>&nbsp;
 	&nbsp;<a href="board/boardList">bList</a>&nbsp;
+	&nbsp;<a href="board/bcriList">bcriList</a>&nbsp;
 	&nbsp;<a href="jo/joList">jList</a>&nbsp;<br>
 	&nbsp;<a href="bcrypt">Bcrypt</a>&nbsp;
 	
