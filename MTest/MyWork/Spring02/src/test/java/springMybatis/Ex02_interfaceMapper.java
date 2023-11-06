@@ -83,6 +83,7 @@ public class Ex02_interfaceMapper {
 	// => @select : mapper 없이 일반 쿼리구문을 작성해서 사용할 수 있도록 해줌
 	// => 매개변수에 String id 적용
 	// mapper 메서드의 매개변수는 Type 무관, 그러나 갯수는 반드시 1개
+	@Test
 	public void selectOneID() {
 		System.out.println("** selectOneID => " + mapper.selectOneID("apple"));
 	}
@@ -96,7 +97,6 @@ public class Ex02_interfaceMapper {
 		assertNotNull(dto);
 	}
 
-	@Test
 	// 5) totalCount
 	// => admin을 제외한 전체 member count, 출력 확인
 	// => interface에 메서드만 추가

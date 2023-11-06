@@ -292,7 +292,6 @@ public class MemberController {
 		String uri = "member/loginForm";
 		
 		// ** PasswordEncoder 적용
-		
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		
 		// ** MultipartFile ***********************
@@ -377,12 +376,29 @@ public class MemberController {
 		dto.setUploadfile(file2);
 		// ******************************
 		
+		// ** Transaction_AOP 적용 ********************* 
+		// 1. 준비: pom.xml (dependency) 확인
+		// =>  AspectJ(기본제공), AspectJ Weaver(추가)
+		  
+		// 2. servlet-context.xml AOP 설정
+		  
+		// 3. Rollback Test
+		// 3.1) Aop xml 적용 전 => insert1은 입력되고, insert2에서 500_Dupl..Key 오류 발생
+		// 3.2) Aop xml 적용 후 => insert2에서 오류발생시 모두 Rollback되어 insert1, insert2 모두 입력 안됨 
+		  
+		// 3.1) Transaction 적용 전 : 동일자료 2번 insert
+		// => 첫번째는 입력완료(commit) 되고, 두번째자료 입력시 Key중복 오류발생 (500 발생)
+		// 3.2) Transaction 적용후 : 동일자료 2번 insert
+		// => 첫번째는 입력완료되고, 두번째 자료입력시 Key중복 오류발생하지만,
+		//    rollback되어 둘다 입력 안됨
+		service.insert(dto); // Transaction_Test, insert
+		
 		// 2. Service 처리
 		if (service.insert(dto) > 0) {
 			model.addAttribute("message", "회원가입 성공! 로그인 후 이용하세요");
 		} else {
-			uri ="member/memberJoin";
 			model.addAttribute("message", "회원가입 실패! 다시 하세요");
+			uri ="member/memberJoin";
 		}
 		
 		// 3. View

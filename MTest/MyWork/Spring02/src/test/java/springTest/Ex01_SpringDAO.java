@@ -44,6 +44,7 @@ public class Ex01_SpringDAO {
 	MemberDTO dto;
 
 	// 1) Detail 정확성
+	@Test
 	public void detailTest() {
 		// ** 자동주입 확인
 		System.out.println("** DAO 주입확인 => " + dao);
@@ -57,7 +58,6 @@ public class Ex01_SpringDAO {
 		System.out.println(" dto => " + dto);
 	}
 
-	@Test
 	public void insertTest() {
 		dto.setId("junitSp");
 		dto.setPassword("12345!");
@@ -66,7 +66,7 @@ public class Ex01_SpringDAO {
 		dto.setJno(7);
 		dto.setInfo("Junit Test");
 		dto.setPoint(300.3);
-		dto.setBirthday("1997-05-20");
+		dto.setBirthday("1993-09-10");
 		dto.setRid("banana");
 		dto.setUploadfile("resources/uploadImages/xxx.gif");
 		assertEquals(dao.insert(dto), 1);
