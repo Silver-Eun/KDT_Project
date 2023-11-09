@@ -20,4 +20,9 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
 	}
+	
+	@GetMapping("/axtestform")
+	public String axTestForm() {
+		return "/axTest/axTestForm";
+	}
 }
