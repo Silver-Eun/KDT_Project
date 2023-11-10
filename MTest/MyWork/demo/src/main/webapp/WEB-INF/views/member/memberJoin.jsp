@@ -168,7 +168,7 @@ function inCheck() {
 </head>
 <body>
 <h2>** Spring_MVC2 Member Join **</h2>
-<form action="join" method="Post" enctype="multipart/form-data">
+<form action="join" method="Post" enctype="multipart/form-data" id="myform">
 <table>
 	<tr height="40"><th bgcolor="aqua">I D</th>
 		<td><input type="text" name="id" id="id" placeholder="영어, 10글자이내" size="20">
@@ -199,6 +199,12 @@ function inCheck() {
 				<option value="4">4조: 최고조</option>
 				<option value="5">5조: 오조</option>
 				<option value="7">7조: 관리팀</option>
+				<option value="7">9조: 오타쿠팀</option>
+		</select></td></tr>
+	<tr height="40"><th bgcolor="aqua">여친유무</th>
+		<td><select name="jno" id="jno">
+				<option value="1">없음</option>
+		
 		</select></td></tr>
 	<tr height="40"><th bgcolor="aqua">Info</th>
 		<td><input type="text" name="info" id="info" placeholder="자기소개 & 희망사항" size="20"></td></tr>
@@ -233,8 +239,9 @@ function inCheck() {
 	<tr height="40"><th></th>
 		<td>
 			<input type="submit" id="submitTag" value="가입" onclick="return inCheck()">
-			&nbsp;&nbsp;&nbsp;
-			<input type="reset" value="취소">		
+			&nbsp;&nbsp;
+			<input type="reset" value="취소">&nbsp;&nbsp;
+			<span class="textlink" onclick="rsJoin()">rsJoin</span>	
 		</td>
 	</tr>					
 </table>

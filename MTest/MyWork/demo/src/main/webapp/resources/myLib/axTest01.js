@@ -12,9 +12,10 @@ function rsLoginf() {
       <tr height="40"><td bgcolor="Aqua"><label for="password">Password</label></td>
          <td><input type="password" id="password" name="password"></td>
       </tr>
-      <tr height="40"><td <td></td>
-         <td><span class="textlink" onclick="rsLogin()">rsLogin</span>&nbsp;&nbsp;
+      <tr height="40">
+         <td colspan=2><span class="textlink" onclick="rsLogin()">rsLogin</span>&nbsp;&nbsp;
          	<span class="textlink" onclick="rsLoginJJ()">rsLoginJJ</span>&nbsp;&nbsp;
+         	<span class="textlink" onclick="axiLoginJJ()">axiLoginJJ</span>&nbsp;&nbsp;
          <input type="reset" value="취소"></td>
       </tr>
    </table>
@@ -86,3 +87,37 @@ function rsLoginJJ() {
 		if(err.message == '502') alert('id 또는 pw 오류, 다시하세요');
 	});
 }
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// 2. Axios Login
+// => 라이브러리 추가 (CDN 으로..   axTest01.js 에)
+// => 서버요청은 위 "1.3) rsLoginJJ" 과 동일하게 rsloginjj 
+// => JSON <-> JSON
+// => Request
+//   - data  : JSON Type 기본 (fetch 처럼 JSON.stringify 필요없음) 
+//   - header: {'Content-Type': 'application/json'}  
+// => Response
+//    - then 
+
+function axiLoginJJ(){
+	let url="/rest/rsloginjj";
+	
+	axios({ url:url,
+		    method: 'Post',
+		    headers: {'Content-Type': 'application/json'},
+			data:{ id:document.getElementById('id').value,
+				   password:document.getElementById('password').value
+			}
+	}).then(response => {
+			alert(`** response.data : ${response.data}`);
+			alert(`** response : id=${response.data.id}, name=${response.data.username}`);
+			location.reload();
+	}).catch(err => { 
+			console.error(`** err.response=${err.response},
+		    	              err.response.status=${err.response.status}
+		        	          err.message=${err.message}`);
+		    if( err.response.status =='502') alert("id 또는 pw 오류, 다시하세요.");
+		    else alert("시스템 오류, 잠시 후 다시하세요. => "+err.message);
+	});
+	
+} //axiLoginJJ

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.JoDTO;
 import com.example.demo.domain.MemberDTO;
@@ -168,7 +170,7 @@ public class RTestController {
 		Map<String, UserDTO> map = new HashMap<String, UserDTO>();
 		map.put("one", new UserDTO("mytoken111", "banana", "홍길동", "banana@green.com", "12345!"));
 		map.put("two", new UserDTO("mytoken222", "banana", "홍길동", "banana@green.com", "12345!"));
-		map.put("three", new UserDTO("mytoken333", "banana", "홍길동", "banana@green.com", "12345!"));
+		map.put("삼", new UserDTO("mytoken333", "banana", "홍길동", "banana@green.com", "12345!"));
 		map.put("four", new UserDTO("mytoken444", "banana", "홍길동", "banana@green.com", "12345!"));
 
 		return map;
@@ -187,37 +189,33 @@ public class RTestController {
 	// => 사용법
 	// - Builder Pattern (권장)
 	// - Constructor 사용하는 방식 : 아래 rsdelete 참고
-
+	
 	// ** Parameter를 쿼리스트링으로 전달하는 경우 서버에서 처리방법
 	// 1) params 속성으로 처리
-	// - URL Query_String Param Parsing, "key=value" 형식으로 전달된 파라미터 매핑
-
+	//   - URL Query_String Param Parsing, "key=value" 형식으로 전달된 파라미터 매핑
+	   
 	// 2) @RequestParam으로 처리
-	// - @RequestParam("jno") int jno -> Spring02의 MemberController, /dnload 참고
-	// => params와 @RequestParam 비교해보세요
-
+	//   - @RequestParam("jno") int jno -> Spring02의 MemberController, /dnload 참고
+	// => params 와 @RequestParam  비교 해보세요
+	//     parameter 오류시 400
+	//      - params : Parameter conditions "jno, id" not met for actual request parameters: jno2={11}, id={banana}
+	//      - @RequestParam : Required request parameter 'jno' for method parameter type int is not present
+	//      ( Mapper interface의 @Param 과는 구별 )
+	   
 	// 3) @PathVariable
 	// 4) @RequestBody
-
+	   
 	// ** params 속성
 	// => 값에 상관없이 파라미터에 params 속성으로 정의한 "jno", "id" 이 반드시 있어야 호출됨
-	// 만약 하나라도 전달받지 못하면 "400–잘못된 요청" 오류 발생
-	// => Parameter name 과 매개변수는 이름으로 매핑함. (즉, 같아야함)
-	// => Spring02 의 MemberController의 상단 주석 params 참고
-
-	// 4) ResponseEntity Test
-	// => 실습
-	// 전달된 jno값의 조건에 의하여 502(BAD_GATEWAY) 또는 200(OK) 상태코드와 데이터를 함께 전송하므로
-	// 요청 User가 이 응답결과(body값)의 정상/비정상 여부를 알수있도록 해준다
-	// => 200 Test: http://localhost:8080/rest/incheck?jno=11&id=banana
-	// http://localhost:8080/rest/incheck.json?jno=11&id=banana
-	// => 502 Test: http://localhost:8080/rest/incheck?jno=5&id=banana
+	//      만약 하나라도 전달받지 못하면 "400–잘못된 요청" 오류 발생
+	// => Parameter name과 매개변수는 이름으로 매핑함(즉, 같아야함)
+	// => Spring02의 MemberController의 상단 주석 params 참고
 	@GetMapping(value = "/incheck", params = { "jno", "id" })
 	public ResponseEntity<JoDTO> incheck(int jno, String id) {
 		// 1) 준비
 		ResponseEntity<JoDTO> result = null;
 		JoDTO dto = new JoDTO(jno, "119", id, "팻밀리", "애완동물을 위한 홈페이지", "배정현");
-
+		
 		// 2) Service 처리
 		// => jno의 값이 11 ~ 20에 속하면 성공 / 아니면 오류
 		if (jno > 10 && jno < 21) {
@@ -230,6 +228,31 @@ public class RTestController {
 			log.info("** incheck Test HttpStatus.BAD_GATEWAY => " + HttpStatus.BAD_GATEWAY);
 		}
 
+		return result;
+	}
+	
+	@GetMapping(value = "/incheck2")
+	// http://localhost:8080/rest/incheck2?jno=11&id=banana
+	// public ResponseEntity<JoDTO> incheck2(@RequestParam("jno") int jno,
+	// 										 @RequestParam("id") String id) {
+	// => @RequestParam은 생략 가능
+	// 	  단, 이 경우에는 parameter가 없으면 null로 통과
+	// 	  그러므로 매핑을 엄격하게 하기 위해 @RequestParam, params 등을 사용함
+	public ResponseEntity<?> incheck2(int jno, String id) {
+		// 1) 준비
+		ResponseEntity<MemberDTO> result = null;
+		MemberDTO dto = service.selectOneJno(id, jno);
+		
+		// 2) Service 처리
+	    // => jno의 값이 11 ~ 20에 속하면 성공 / 아니면 오류
+		if (jno > 10 && jno < 21) {
+			result = ResponseEntity.status(HttpStatus.OK).body(dto);
+			log.info("** incheck2 Test HttpStatus.OK => " + HttpStatus.OK);
+		} else {
+			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(dto);
+			log.info("** incheck2 Test HttpStatus.BAD_GATEWAY => " + HttpStatus.BAD_GATEWAY);
+		}
+		
 		return result;
 	}
 
@@ -263,12 +286,19 @@ public class RTestController {
 	}
 	
 	// ** Ajax : 비동기 통신 fetch 요청
+	// 1) Login1 
 	// => Request: JSON, Response: Text
+	// => MediaType 
+	//	  Mapping 시 받는 데이터를 강제를 함으로 오류상황을 줄일 수 있다.
+	//	  이것을 위해 사용하는것중 하나가 MediaType 이며,
+	//    받는 데이터를 제한할때 consumes (위에서는 Json 임을 강제함)
+	//    나가는 데이터를 제한할때 produces (위에서는 String을 Return 함을 강제함) 
+	// => consumes를 설정하면 Request Header에 보내는 Data가 JSON 임을 명시해야함. 
+	// => @RequestBody : Json -> Java 객체로 파싱
 	@PostMapping(value = "/rslogin", 
 				consumes = MediaType.APPLICATION_JSON_VALUE,
 				produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> rslogin(HttpServletRequest request,
-									HttpSession session, @RequestBody MemberDTO dto) {
+	public ResponseEntity<?> rslogin(HttpSession session, @RequestBody MemberDTO dto) {
 		ResponseEntity<String> result = null;
 		// 1) password 보관
 		String password = dto.getPassword();
@@ -321,6 +351,49 @@ public class RTestController {
 		} else {
 			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(null);
 			log.info("** rsloginjj HttpStatus.BAD_GATEWAY => " + HttpStatus.BAD_GATEWAY);			
+		}
+		
+		return result;
+	}
+	
+	// 3) Join
+	// => image 포함, "multipart/form-data" Type으로 요청
+	// => consumes, produces 설정
+	@PostMapping(value="/rsjoin",
+				consumes=MediaType.MULTIPART_FORM_DATA_VALUE, // multipart/form-data와 동일
+				produces=MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<?> rsjoin(MemberDTO dto) throws Exception {
+		ResponseEntity<?> result = null;
+		
+		// ** Join Service
+		// => PasswordEncoder (암호화 적용)
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		  
+		// => MultipartFile  
+		String realPath =  "D:\\kdt4_ehs\\MTest\\MyWork\\demo\\src\\main\\webapp\\resources\\uploadImages\\";
+		String file1, file2="resources/uploadImages/basicman4.png";
+		
+		MultipartFile uploadfilef = dto.getUploadfilef();
+		if (uploadfilef != null && !uploadfilef.isEmpty()) {
+
+			// => 물리적위치 저장 (file1)
+			file1 = realPath + uploadfilef.getOriginalFilename(); // 저장경로 완성
+			uploadfilef.transferTo(new File(file1)); // 해당경로에 저장(붙여넣기)
+
+			// => 저장경로 완성 (file2)
+			file2 = "resources/uploadImages/" + uploadfilef.getOriginalFilename();
+		} // Image 선택한 경우
+
+		// => 완성된 경로를 dto에 set
+		dto.setUploadfile(file2);
+
+		// => Service 처리
+		if (service.insert(dto) > 0) { // Transaction_Test, insert2
+			result = ResponseEntity.status(HttpStatus.OK).body("회원가입 성공!! 로그인후 이용하세요");
+			log.info("** rsjoin HttpStatus.OK => " + HttpStatus.OK);
+		} else {			
+			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("회원가입 실패!! 다시 하세요");
+			log.info("** rsjoin HttpStatus.BAD_GATEWAY => " + HttpStatus.BAD_GATEWAY);
 		}
 		
 		return result;
