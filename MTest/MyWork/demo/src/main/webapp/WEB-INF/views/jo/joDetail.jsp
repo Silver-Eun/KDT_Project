@@ -5,11 +5,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>** Jo Detail Spring_MVC2 **</title>
+	<title>** Jo Detail SpringBoot **</title>
 	<link rel="stylesheet" type="text/css" href="/resources/myLib/myStyle.css">
 </head>
 <body>
-<h2>** Jo Detail Spring_MVC2 **</h2>
+<h2>** Jo Detail SpringBoot **</h2>
 <hr>
 <c:if test="${not empty requestScope.apple}"> 
 	<table>
@@ -63,6 +63,6 @@
 <hr>
 &nbsp;<a href="joList">joList</a>&nbsp;
 &nbsp;<a href="javascript:history.go(-1)">이전으로</a>&nbsp;
-&nbsp;<a href="/home">Home</a>&nbsp;
+&nbsp;<a href="/home">[Home]</a>&nbsp;
 </body>
 </html>

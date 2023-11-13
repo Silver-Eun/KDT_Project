@@ -4,23 +4,23 @@ import java.util.List;
 
 import com.example.demo.domain.JoDTO;
 
+
 public interface JoMapper {
-	
-	// ** joList
-	List<JoDTO> joList(int jno);
-	
-	// ** selectList
-	List<JoDTO> selectList();
 
-	// ** selectOne
-	JoDTO selectOne(JoDTO dto);
+	//1. selectList
+	List<JoDTO> selectList(); //selectList
 
-	// ** Insert
-	int insert(JoDTO dto);
+	//2. selectOne: Detail
+	JoDTO selectOne(JoDTO vo); //selectOne
 
-	// ** Update
-	int update(JoDTO dto);
+	//3. insert
+	int insert(JoDTO vo); //insert
 
-	// ** Delete
-	int delete(JoDTO dto);
+	//4. update
+	// => id (P.Key) 제외한 모든 컬럼수정
+	int update(JoDTO vo); //update
+
+	//5. delete
+	int delete(JoDTO vo); //delete
+
 }

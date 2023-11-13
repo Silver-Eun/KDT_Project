@@ -4,7 +4,7 @@
 <mapper namespace="mapperInterface.MemberMapper">
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-** interface를 통해 ~Mapper 접근
+** interface 를 통해 ~Mapper 접근
 => interface ~Mapper.java 의 패키지명 & 화일명과  
    ~Mapper.xml 의 패키지명 & 화일명 & namespace 값은 같아야됨. 
    
@@ -54,8 +54,8 @@
 	-->
 	<insert id="insert">
 		insert into member 
-		values(#{id}, #{password}, #{name}, #{age}, #{jno}, #{info},
-			   #{point}, #{birthday}, #{rid}, #{uploadfile})
+		values(#{id},#{password},#{name},#{age},#{jno},#{info}
+				,#{point},#{birthday},#{rid},#{uploadfile})
 	</insert>
 	
 	<!-- 4. update 
@@ -67,8 +67,8 @@
 			password=#{password}
 		</if>
 		<if test="password==null">
-			name=#{name}, age=#{age}, jno=#{jno}, info=#{info}, 
-			point=#{point}, birthday=#{birthday}, rid=#{rid}, uploadfile=#{uploadfile}
+			name=#{name}, age=#{age}, jno=#{jno}, info=#{info}, point=#{point}, 
+			birthday=#{birthday}, rid=#{rid}, uploadfile=#{uploadfile} 
 		</if>
 		where id=#{id}
 	</update>

@@ -5,16 +5,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Board CriList Mybatis **</title>
+<title>** SpringBoot Board CriList **</title>
 <link rel="stylesheet" type="text/css" href="/resources/myLib/myStyle.css">
 <script>
+//1. 검색조건 입력 후 버튼클릭
+// => 입력된 값들을 서버로 전송요청: location
 function searchDB() {
 	self.location='bcriList'
 				+'${pageMaker.makeQuery(1)}'
 				+'&searchType='+document.getElementById('searchType').value
 				+'&keyword='+document.getElementById('keyword').value;
-}
+} //searchDB() 
 
+// => 검색조건 입력 후 첫 Page 요청
+//    이때는 서버에 searchType, keyword 가 전달되기 이전이므로 
+//	  searchType, keyword 가 없는 makeQuery 메서드사용
+// => self.location="bcrilist?currPage=?????" : 해당 요청을 서버로 전달 	
+		
+// *** JS 코드 내부에서 el Tag 사용시 주의사항
+// => JS 코드의 스트링 내에서 사용한 el Tag 는 JSP 가 처리해주므로   
+//    사용가능 하지만, 이 스크립트가 외부 문서인 경우에는 처리해주지 않으므로 주의
+//    이 코드를 외부문서로 작성하면 "${pageMaker.makeQuery(1)}" 이 글자 그대로 적용되어 404 발생 
+		
+// ** self.location	
+// 1) location 객체 직접사용 Test : url로 이동, 히스토리에 기록됨
+// 2) location 객체의 메서드
+// => href, replace('...'), reload() 
+
+// 2. searchType 을 '전체' 로 변경하면 keyword는 clear 
 function keywordClear(){
 	if ( document.getElementById('searchType').value=='all' )
 		document.getElementById('keyword').value='';	
@@ -48,6 +66,9 @@ function keywordClear(){
 	<c:if test="${not empty requestScope.banana}">
 		<c:forEach var="s" items="${requestScope.banana}">
 		<tr><td>${s.seq}</td>
+			<!-- Title
+				=> 로그인 한 경우에만 글내용을 볼 수 있도록  Link 추가  
+				=> 댓글 작성후에는 indent 값에 따른 들여쓰기 기능-->
 			<td>
 				<c:if test="${s.indent>0}">
 					<c:forEach begin="1" end="${s.indent}">
@@ -74,8 +95,18 @@ function keywordClear(){
 </table>
 <hr>
 <div align="center">
+<!-- ** Cri_Paging ** 
+	=> ver01: OLD_Version, QueryString 자동생성
+	=> ver02: ver01 + 검색조건 
+
+ 	 1) FirstPage, Prev  -->
 	<c:choose>
 		<c:when test="${pageMaker.prev && pageMaker.spageNo>1}">
+			<%-- OLD_Version
+			<a href="bcriList?currPage=1&rowsPerPage=5">FP</a>&nbsp;
+		  	<a href="bcriList?currPage=${pageMaker.spageNo-1}&rowsPerPage=5">&LT;</a>&nbsp;&nbsp; --%>
+		  	
+		  	<!-- ver02: ver01 + 검색조건 -> searchQuery()메서드 적용   -->
 		  	<a href="bcriList${pageMaker.searchQuery(1)}">FP</a>&nbsp;
 		  	<a href="bcriList${pageMaker.searchQuery(pageMaker.spageNo-1)}">&LT;</a>&nbsp;&nbsp;
 		</c:when>
@@ -90,6 +121,11 @@ function keywordClear(){
 			<font color="Orange" size="5"><b>${i}</b></font>&nbsp;
 		</c:if>
 		<c:if test="${i!=pageMaker.cri.currPage}">
+			<%-- <a href="bcriList?currPage=${i}&rowsPerPage=5">${i}</a>   
+				=> pageMaker의 makeQuery() 메서드 적용 : ver01 	
+					<a href="bcriList${pageMaker.makeQuery(i)}">${i}</a>&nbsp; 
+					
+				=> ver02 --%>
 			<a href="bcriList${pageMaker.searchQuery(i)}">${i}</a>&nbsp;
 		</c:if>
 	</c:forEach>

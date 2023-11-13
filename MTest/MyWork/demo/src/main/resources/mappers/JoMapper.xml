@@ -1,33 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapperInterface.JoMapper">
 
-	<!-- ** selectList -->
+<!-- Join 기능 추가 : 조장이름 출력하기 
+	=> 조 와 조장이름 출력시 조장이 없어도 출력가능
+	=> Outer Join (출력하는쪽 기준)
+	select j.jno, j.id, j.jname, j.note , m.name cname 
+	from memjo j LEFT OUTER JOIN member m
+	ON j.id=m.id 
+-->
+	<!-- 1. selectList 
+	=> 기본 Inner Join : 조장이 없는조는 출력안됨  -->
 	<select id="selectList" resultType="com.example.demo.domain.JoDTO">
-		select j.jno, j.jname, j.id, m.name, j.project, j.slogan
-		from jo j LEFT OUTER JOIN member m ON j.id=m.id 
-	</select>	
+		select j.jno, jname, j.id, project, slogan, m.name cname 
+		from jo j LEFT OUTER JOIN member m 
+		ON j.id=m.id
+	</select>
 	
-	<!-- ** selectOne -->
+	<!-- 2. selectOne: Detail -->
 	<select id="selectOne" resultType="com.example.demo.domain.JoDTO">
 		select * from jo where jno=#{jno}
 	</select>
 	
-	<!-- ** Insert -->
-	<insert id="insert" >
-		insert into jo values(#{jno}, #{jname}, #{id} , #{project}, #{slogan})
+	<!-- 3. insert -->
+	<insert id="insert">
+		insert into jo values(#{jno},#{jname},#{id},#{project},#{slogan})
 	</insert>
 	
-	<!-- ** update -->
+	<!-- 4. update -->
 	<update id="update">
-		update jo set jname=#{jname}, id=#{id}, project=#{project}, slogan=#{slogan}
+		update jo 
+		set jname=#{jname}, id=#{id}, project=#{project}, slogan=#{slogan} 
 		where jno=#{jno}
 	</update>
 	
-	<!-- delete -->
+	<!-- 5. delete -->
 	<delete id="delete">
 		delete from jo where jno=#{jno}
 	</delete>
 
-</mapper>						
+</mapper>

@@ -1,59 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>** Spring_MVC2 Board Update **</title>
-<link rel="stylesheet" type="text/css" href="/resources/myLib/myStyle.css">
+	<meta charset="UTF-8">
+	<title>** Jo Update SpringBoot **</title>
+	<link rel="stylesheet" type="text/css" href="/resources/myLib/myStyle.css">
 </head>
 <body>
-	<h2>** Spring_MVC2 Board Update **</h2>
-	<form action="jupdate" method="Post">
-		<table>
-			<c:if test="${not empty requestScope.apple}">
-				<tr height="40">
-					<th bgcolor="Chocolate">jno</th>
-					<td><input type="text" name="jno"
-						value="${requestScope.apple.jno}" readonly size="20"></td>
-				</tr>
-				<tr height="40">
-					<th bgcolor="Chocolate">Jname</th>
-					<td><input type="text" name="jname"
-						value="${requestScope.apple.jname}" size="20"></td>
-				</tr>
-				<tr height="40">
-					<th bgcolor="orange">I D</th>
-					<td><input type="text" name="id"
-						value="${requestScope.apple.id}" size="20"></td>
-				</tr>
-				<tr height="40">
-					<th bgcolor="orange">Project</th>
-					<td><input type="text" name="project"
-						value="${requestScope.apple.project}" size="20"></td>
-				</tr>
-				<tr height="40">
-					<th bgcolor="orange">Slogan</th>
-					<td><textarea rows="5" cols="50" name="slogan">${requestScope.apple.slogan}</textarea>
-					</td>
-				</tr>
-				<tr height="40">
-					<th></th>
-					<td><input type="submit" value="수정">&nbsp;&nbsp;&nbsp;
-						<input type="reset" value="취소"></td>
-				</tr>
-			</c:if>
-			<c:if test="${empty requestScope.apple}">
-				<tr>
-					<td height="40">수정할 정보가 존재하지 않습니다</td>
-				</tr>
-			</c:if>
-		</table>
-	</form>
-	<hr>
-	&nbsp;
-	<a href="javascript:history.go(-1)">이전으로</a> &nbsp; &nbsp;
-	<a href="/home">Home</a>&nbsp;
+<h2>** Jo Update SpringBoot **</h2>
+<hr>
+<form action="jupdate" method="Post">
+	<table>
+	<tr height="40"><td bgcolor="Linen">Jno</td>
+		<td><input type="text" name="jno" value="${apple.jno}" size="20" readonly></td></tr>
+	<tr height="40"><td bgcolor="Linen">JoName</td>
+		<td><input type="text" name="jname" value="${apple.jname}" size="20"></td></tr>
+	<tr height="40"><td bgcolor="Linen">CaptainID</td>
+		<td><input type="text" name="id" value="${apple.id}" size="20"></td></tr>
+	<tr height="40"><td bgcolor="Linen">Project</td>
+		<td><input type="text" name="project" value="${apple.project}" size="20"></td></tr>
+	<tr height="40"><td bgcolor="Linen">Slogan</td>
+		<td><input type="text" name="slogan" value="${apple.slogan}" size="20"></td></tr>
+	<tr><td></td>
+		<td><input type="submit" value="수정">&nbsp;&nbsp;
+			<input type="reset" value="취소">
+		</td></tr>
+</table>
+</form>	
+<c:if test="${not empty message}">
+<hr>
+${message}<br>
+</c:if>
+<hr>
+<c:if test="${not empty loginID}">
+	&nbsp;&nbsp;<a href="jdelete?jno=${apple.jno}">[조삭제]</a>
+</c:if>
+&nbsp;&nbsp;<a href="joList">joList</a>
+&nbsp;&nbsp;<a href="javascript:history.go(-1)">이전으로</a>
+&nbsp;&nbsp;<a href="/home">[Home]</a>
 </body>
 </html>

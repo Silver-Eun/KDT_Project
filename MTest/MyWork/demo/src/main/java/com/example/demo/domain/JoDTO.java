@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor // 모든 값을 초기화하는 생성자
-@NoArgsConstructor // default 생성자
+@AllArgsConstructor
+@NoArgsConstructor
 public class JoDTO {
 	private int jno;
 	private String jname;
@@ -14,5 +14,6 @@ public class JoDTO {
 	private String project;
 	private String slogan;
 	
-	private String cname;
-}
+	private String cname; // 조장이름, 필요시사용
+	
+} //class

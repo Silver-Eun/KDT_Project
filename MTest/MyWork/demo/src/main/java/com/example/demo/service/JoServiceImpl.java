@@ -3,17 +3,17 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.JoDTO;
 
 import mapperInterface.JoMapper;
 
-// ** interface 자동완성 
-// => Alt + Shift + T  
-// => 또는 마우스우클릭 PopUp Menu의  Refactor - Extract Interface...
+//** interface 자동완성 
+//=> Alt + Shift + T  
+//=> 또는 마우스우클릭 PopUp Menu 의  Refactor - Extract Interface...
 
-@Component
+@Service
 public class JoServiceImpl implements JoService {
 	
 	@Autowired

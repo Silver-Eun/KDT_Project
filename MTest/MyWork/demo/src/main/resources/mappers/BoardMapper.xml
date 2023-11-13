@@ -52,11 +52,11 @@
 		<when test="searchType!=null and searchType!='all'">
 			and ${searchType} LIKE #{keyVal} )
 		</when>	
-		<when test="searchType!=null and searchType=='all' and keyword!=null">
+		<when test="searchType=='all' and keyword!=null">
 			and ( title LIKE #{keyVal}
-				  OR id LIKE #{keyVal}
-				  OR content LIKE #{keyVal} ))
-		</when>	
+			      OR id LIKE #{keyVal} 
+			      OR content LIKE #{keyVal} ) )
+		</when>
 		<otherwise>)</otherwise>
 	</choose>
 </sql>

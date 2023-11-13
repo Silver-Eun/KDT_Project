@@ -5,39 +5,72 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>** Spring_MVC2 Member Join **</title>
+<title>** SpringBoot Member Join **</title>
 <link rel="stylesheet" type="text/css" href="/resources/myLib/myStyle.css">
 <script src="/resources/myLib/jquery-3.2.1.min.js"></script>
 <script src="/resources/myLib/inCheck.js"></script>
-<script>
-function idDupCheck() {
-	if ( iCheck == false ) iCheck = idCheck();
-	else {
-		let url = "idDupCheck?id=" + document.getElementById('id').value;
-		window.open(url, '_blank', 'width=400, height=300, resizable=yes, scrollbars=yes, toolbar=no, menubar=yes');
-	}
-}
+<script> "use strict"
 
+// ** ID 중복확인
+// => UI 개선사항
+// => 중복확인 버튼 추가
+//    처음 : 중복확인버튼_enable / submit_disable
+// => 중복확인 완료후 submit 이 가능하도록
+//    중복확인버튼_disable / submit_enable
+// => 중복확인 기능 : function idDupCheck()
+//    id입력값의 무결성점검 -> id 확인요청 -> 서버로 전송 -> id , selectOne 결과 -> response: 사용가능/불가능 
+// => 서버측 : 컨트롤러에 idDupCheck 요청을 처리하는 매핑메서드, view_Page(팝업창) 작성   
+function idDupCheck() {
+	// 1) 입력값의 무결성 확인
+	if ( iCheck==false ) iCheck=idCheck();
+	else {
+	// 2) 서버로 id 확인요청 -> 결과는 새창으로 
+		let url = "/member/idDupCheck?id="+document.getElementById('id').value;
+		window.open(url,'_blank','width=400,height=300,resizable=yes,scrollbars=yes,toolbar=no,menubar=yes'); 
+	}
+	
+} //idDupCheck
+
+// ** 입력값의 무결성 점검 ***************************
+// 1) 전역변수 정의
+//=> 입력값의 무결성 점검여부를 확인하는 switch 변수
   let iCheck=false; 
   let pCheck=false;
   let p2Check=false;
   let nCheck=false;
   let aCheck=false; // 정수
   let bCheck=false;
-  let oCheck=false;
+  let oCheck=false; // Point 실수확인
+  
+//2) 개별적으로 확인
+//=> 이벤트: focusout, keydown_EnterKey 적용
+//=> 오류가 없으면: switch 변수값을 true로, 메시지삭제 
+//=> 오류가 있다면: switch 변수값을 false로, 메시지출력	
+//=> 순서: Tag인식 -> Tag의 value가져오기 -> 무결성확인
 
 onload=function() {
+	// => window.onload : window는 생략가능
+	// => body 의 Tag 들을 인식가능한 상태일때 실행 되도록하기위함.
+	
+	// => ID
+	// -> keydown_EnterKey 에 포커스이동 적용
+	// -> 제어문자의 ascii 코드 값(참고)
+	//	  esc=27, EnterKey=13, Space_Bar=32
 	document.getElementById('id').focus();
 	document.getElementById('id').addEventListener('keydown', 
 		(e) => { 
 			if ( e.which==13 ) {
 				e.preventDefault();
+				// => form 에 submit 이 있는경우
+				// => enter 누르면 자동 submit 발생되므로 이를 제거함
 				document.getElementById('password').focus();
-			}
+			} //if
 		});
+	// -> 무결성 확인
 	document.getElementById('id').addEventListener('focusout',
 			()=>{ iCheck=idCheck(); }); 
 
+	// => Password
 	document.getElementById('password').addEventListener("keydown",
 			(e)=> {
 				if ( e.which==13 ) {
@@ -140,22 +173,22 @@ onload=function() {
 // => 오류가 없으면 : return true
 // => 오류가 1항목이라도 있으면 : return false 
 function inCheck() {
-	if (iCheck == false) { document.getElementById('iMessage').innerHTML = '필수입력, id를 확인하세요'; }
-	if (pCheck == false) { document.getElementById('pMessage').innerHTML = '필수입력, password를 확인하세요'; }
-	if (p2Check == false) { document.getElementById('p2Message').innerHTML='필수입력, password 재입력을 확인하세요'; }
-	if (nCheck == false) { document.getElementById('nMessage').innerHTML = '필수입력, name을 확인하세요'; }
-	if (aCheck == false) { document.getElementById('aMessage').innerHTML = '필수입력, age를 확인하세요'; }
-	if (oCheck == false) { document.getElementById('oMessage').innerHTML = '필수입력, point를 확인하세요'; }
-	if (bCheck == false) { document.getElementById('bMessage').innerHTML = '필수입력, birthday를 확인하세요'; }
+	if (iCheck==false) { document.getElementById('iMessage').innerHTML=' 필수입력, id 를 확인하세요~~'; }
+	if (pCheck==false) { document.getElementById('pMessage').innerHTML=' 필수입력, password 를 확인하세요~~'; }
+	if (p2Check==false) { document.getElementById('p2Message').innerHTML=' 필수입력, password 재입력을 확인하세요~~'; }
+	if (nCheck==false) { document.getElementById('nMessage').innerHTML=' 필수입력, name 을 확인하세요~~'; }
+	if (aCheck==false) { document.getElementById('aMessage').innerHTML=' 필수입력, age 를 확인하세요~~'; }
+	if (oCheck==false) { document.getElementById('oMessage').innerHTML=' 필수입력, point 를 확인하세요~~'; }
+	if (bCheck==false) { document.getElementById('bMessage').innerHTML=' 필수입력, birthday 를 확인하세요~~'; }
 	
 	if (iCheck && pCheck && p2Check && nCheck 
 			   && aCheck && oCheck && bCheck ) {
 		// => submit 확인
-		if ( confirm("가입하시겠습니까? (Yes:확인 / No:취소)") ) {
+		if ( confirm(" 정말 가입 하십니까? (Yes:확인 / No:취소)") ) {
 			// => submit 진행
 			return true
 		}else {
-			alert("가입이 취소되었습니다");
+			alert("~~  가입이 취소 되었습니다 ~~");
 			return false;
 		} //alert
 	}else {
@@ -167,13 +200,30 @@ function inCheck() {
 
 </head>
 <body>
-<h2>** Spring_MVC2 Member Join **</h2>
+<h2>** SpringBoot Member Join **</h2>
+<!--  ** FileUpLoad Form **
+=> form 과 table Tag 사용시 주의사항 : form 내부에 table 사용해야함
+   -> form 단위작업시 인식안됨
+   -> JQ 의 serialize, FormData 의 append all 등 
+
+=> method="Post" : 255 byte 이상 대용량 전송 가능 하므로
+
+=> <form enctype="속성값">
+   <form> 태그의 데이터 (input 의 value)가 서버로 제출될때 해당 데이터가 인코딩되는 방법을 명시함.  
+ 
+=> enctype="multipart/form-data" : 화일 upload 를 가능하게 해줌 
+	** multipart/form-data는 파일업로드가 있는 입력양식요소에 사용되는 enctype 속성의 값중 하나이고, 
+       multipart는 폼데이터가 여러 부분으로 나뉘어 서버로 전송되는 것을 의미
+       이 폼이 제출될 때 이 형식을 서버에 알려주며, 
+       multipart/form-data로 지정이 되어 있어야 서버에서 정상적으로 데이터를 처리할 수 있다.     
+-->
+
 <form action="join" method="Post" enctype="multipart/form-data" id="myform">
 <table>
 	<tr height="40"><th bgcolor="aqua">I D</th>
 		<td><input type="text" name="id" id="id" placeholder="영어, 10글자이내" size="20">
-		<button type="button" id="idDup" onclick="idDupCheck()">중복확인</button><br>
-		<span id="iMessage" class="eMessage"></span>
+			<button type="button" id="idDup" onclick="idDupCheck()">ID중복확인</button>
+			<br><span id="iMessage" class="eMessage"></span>
 		</td></tr>
 	<tr height="40"><th bgcolor="aqua">Password</th>
 		<td><input type="password" name="password" id="password" placeholder="영어, 숫자, 특수문자" size="20"><br>
@@ -199,12 +249,6 @@ function inCheck() {
 				<option value="4">4조: 최고조</option>
 				<option value="5">5조: 오조</option>
 				<option value="7">7조: 관리팀</option>
-				<option value="7">9조: 오타쿠팀</option>
-		</select></td></tr>
-	<tr height="40"><th bgcolor="aqua">여친유무</th>
-		<td><select name="jno" id="jno">
-				<option value="1">없음</option>
-		
 		</select></td></tr>
 	<tr height="40"><th bgcolor="aqua">Info</th>
 		<td><input type="text" name="info" id="info" placeholder="자기소개 & 희망사항" size="20"></td></tr>
@@ -224,24 +268,47 @@ function inCheck() {
 			<input type="file" name="uploadfilef" id="uploadfilef" size="20"></td>
 	</tr>		
 	<script>
+	// 해당 파일의 서버상의 경로를 src로 지정하는것으로는 클라이언트 영역에서 이미지는 표시될수 없기 때문에
+	// 이를 해결하기 위해 FileReader이라는 Web API를 사용
+	// => 이 를 통해 url data를 얻을 수 있음.
+	//    ( https://developer.mozilla.org/ko/docs/Web/API/FileReader)
+	// ** FileReader
+	// => 웹 애플리케이션이 비동기적으로 데이터를 읽기 위하여,
+	//    읽을 파일을 가리키는File 혹은 Blob 객체를 이용해 파일의 내용을(혹은 raw data버퍼로) 읽고 
+	//    사용자의 컴퓨터에 저장하는 것을 가능하게 해줌.	
+	// => FileReader.readAsDataURL()
+	//	  지정된 Blob의 내용 읽기를 시작하고, 완료되면 result 속성에 파일 데이터를 나타내는 data: URL이 포함됨.
+	// => FileReader.onload 이벤트의 핸들러.
+	//    읽기 동작이 성공적으로 완료 되었을 때마다 발생.
+	// => e.target : 이벤트를 유발시킨 DOM 객체
+	// => type="file" 은 복수개의 파일을 업로드할수 있도록 설계됨
+	//    그러므로 files[] 배열 형태의 속성을 가짐
+	
 	window.document.getElementById('uploadfilef').onchange=function(e){
+	//$('#uploadfilef').change(function(){
+	// => window.jquery('#uploadfilef').~.~.~
+	//    - JS 에서 window 객체는 생략 가능
+	//	  - jquery 함수를 $ 기호로 간편하게 사용	
 		if(this.files && this.files[0]) {
 			let reader = new FileReader;
 			reader.readAsDataURL(this.files[0]);
  			reader.onload = function(e) {
 					$(".select_img").attr("src", e.target.result)
 									.width(70).height(90); 
+					// => jQuery를 사용하지 않는경우 
+					//    class 속성 사용시에는 복수선택이 가능하므로 인덱스 사용해야함 
+	 				//document.getElementsByClassName('select_img')[0].src=e.target.result;
 				} // onload_function
  		} // if	
 	}; //change  -> }); JQ 사용시	
 	</script>		
 				
 	<tr height="40"><th></th>
-		<td>
-			<input type="submit" id="submitTag" value="가입" onclick="return inCheck()">
+		<td><input type="submit" id="submitTag" value="가입" onclick="return inCheck()" disabled>
 			&nbsp;&nbsp;
-			<input type="reset" value="취소">&nbsp;&nbsp;
-			<span class="textlink" onclick="rsJoin()">rsJoin</span>	
+			<input type="reset" value="취소">&nbsp;&nbsp;	
+			<span class="textlink" onclick="rsJoin()">rsJoin</span>&nbsp;&nbsp;	
+			<span class="textlink" onclick="axiJoin()">axiJoin</span>	
 		</td>
 	</tr>					
 </table>

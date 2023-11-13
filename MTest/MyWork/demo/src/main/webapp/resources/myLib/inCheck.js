@@ -51,7 +51,7 @@ function pwCheck() {
   let special = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
   special = /[!-*.@]/gi;  // 특수문자범위 축소
   if (password.length<4 || password.length>10) { 
-    document.getElementById('pMessage').innerHTML='password 는 4~10 글자 입니다.' ;
+    document.getElementById('pMessage').innerHTML='password 는 4~10 글자 입니다 ~~' ;
     return false;
   // => 영문, 숫자, 특수문자 로만 구성 되었는지 확인  
   }else if(password.replace(/[a-z.0-9.!-*.@]/gi,'').length > 0) {  

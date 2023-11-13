@@ -5,11 +5,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>** JoList Spring_MVC2 **</title>
+	<title>** JoList SpringBoot **</title>
 	<link rel="stylesheet" type="text/css" href="/resources/myLib/myStyle.css">
 </head>
 <body>
-<h2>** JoList Spring_MVC2 **</h2>
+<h2>** JoList SpringBoot **</h2>
 <br>
 <c:if test="${not empty message}">
 	${message}<br>
@@ -33,6 +33,6 @@
 <hr>
 &nbsp;<a href="joInsert">조등록</a>&nbsp;
 &nbsp;<a href="javascript:history.go(-1)">이전으로</a>&nbsp;
-&nbsp;<a href="/home">Home</a>&nbsp;
+&nbsp;<a href="/home">[Home]</a>
 </body>
 </html>
