@@ -27,8 +27,7 @@
 	</tr>
 	<c:if test="${not empty requestScope.banana}">
 		<c:forEach var="s" items="${requestScope.banana}">
-		<tr><td><a href="mdetail?id=${s.id}">${s.id}</a></td>
-			
+		<tr><td><span class="textlink" onclick="idbList('${s.id}')">${s.id}</span></td>
 			<td>${s.name}</td><td>${s.age}</td><td>${s.jno}</td>
 			<td>${s.info}</td><td>${s.point}</td><td>${s.birthday}</td><td>${s.rid}</td>
 			<!-- Image 추가 -->

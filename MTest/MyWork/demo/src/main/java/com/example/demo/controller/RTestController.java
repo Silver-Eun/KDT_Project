@@ -20,98 +20,98 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.domain.BoardDTO;
 import com.example.demo.domain.JoDTO;
 import com.example.demo.domain.MemberDTO;
 import com.example.demo.domain.UserDTO;
+import com.example.demo.service.BoardService;
 import com.example.demo.service.JoService;
 import com.example.demo.service.MemberService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-//** @RestController
-//=> 스프링4 부터 추가됨,
-//	 Controller의 모든 매핑메서드 리턴타입을 기존과 다르게 처리함을 명시
-//   viewPage가 아닌 Data를 다양한 Type으로 return 하며,
-//	 이들을 JSON이나 XML로 자동으로 처리함.
-//=> @ResponseBody 애너테이션을 생략해도 
-//   xhr, ajax, fetch, axios(리액트) 등의 비동기 요청에 Data로 응답을 해줄수 있음.
-//=> Return 데이터 Type
-//	- String, Integer 등의 단일값
-//	- 사용자 정의 객체
-//	- Collection
-//	- ResponseEntity<> 타입 : 주로 이용됨
+// ** @RestController
+// => 스프링4부터 추가됨,
+//	  Controller의 모든 매핑메서드 리턴타입을 기존과 다르게 처리함을 명시
+//    viewPage가 아닌 Data를 다양한 Type으로 return 하며,
+//	  이들을 JSON이나 XML로 자동으로 처리함.
+// => @ResponseBody 애너테이션을 생략해도 
+//    xhr, ajax, fetch, axios(리액트) 등의 비동기 요청에 Data로 응답을 해줄수 있음.
+// => Return 데이터 Type
+//	 - String, Integer 등의 단일값
+//	 - 사용자 정의 객체
+//	 - Collection
+//	 - ResponseEntity<> 타입 : 주로 이용됨
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//** status 
-//=> https://ko.wikipedia.org/wiki/HTTP_상태코드
-//1xx (메시지정보): 요청을 받았으며 프로세스를 계속한다
-//2xx (요청성공): 요청을 성공적으로 받았으며 인식했고 수용하였다
-//3xx (리다이렉션): 요청 완료를 위해 추가 작업 조치가 필요하다
-//4xx (클라이언트 오류): 요청의 문법이 잘못되었거나 요청을 처리할 수 없다
-//5xx (서버 오류): 서버가 명백히 유효한 요청에 대해 충족을 실패했다
+// ** status 
+// => https://ko.wikipedia.org/wiki/HTTP_상태코드
+// 1xx (메시지정보): 요청을 받았으며 프로세스를 계속한다
+// 2xx (요청성공): 요청을 성공적으로 받았으며 인식했고 수용하였다
+// 3xx (리다이렉션): 요청 완료를 위해 추가 작업 조치가 필요하다
+// 4xx (클라이언트 오류): 요청의 문법이 잘못되었거나 요청을 처리할 수 없다
+// 5xx (서버 오류): 서버가 명백히 유효한 요청에 대해 충족을 실패했다
 
-//400: Bad request (사용자의 잘못된 요청을 처리할 수 없음)
-//401: Unauthorized (허가_승인 되지 않음, 권한 없음) 
-//403: Forbidden (금지된, 접근금지, 서버에 요청이 전달되었지만, 권한 때문에 거절되었음을 의미)
-// ( 401은 익명의 사용자, 403는 로그인은 하였으나 권한이 없는 사용자, 
-//   HTTP1.1 에서는 이 둘을 명확하게 구분하지 않고 Web API의 속성은 대부분 401을 내보낸다고 하지만,
-//		  401은 익명의 사용자, 403는 로그인은 하였으나 권한이 없는 사용자로 구분 가능하다.
-//   즉 로그인전 접근시에는 401 , 로그인후 접근시는 403 ) 
-//415: 지원되지 않는 미디어 유형 (요청이 요청한 페이지에서 지원하지않는 형식으로 되어있음.)
+// 400: Bad request (사용자의 잘못된 요청을 처리할 수 없음)
+// 401: Unauthorized (허가_승인 되지 않음, 권한 없음) 
+// 403: Forbidden (금지된, 접근금지, 서버에 요청이 전달되었지만, 권한 때문에 거절되었음을 의미)
+//      ( 401은 익명의 사용자, 403는 로그인은 하였으나 권한이 없는 사용자, 
+//      HTTP1.1 에서는 이 둘을 명확하게 구분하지 않고 Web API의 속성은 대부분 401을 내보낸다고 하지만,
+//		401은 익명의 사용자, 403는 로그인은 하였으나 권한이 없는 사용자로 구분 가능하다.
+//      즉 로그인전 접근시에는 401 , 로그인후 접근시는 403 ) 
+// 415: 지원되지 않는 미디어 유형 (요청이 요청한 페이지에서 지원하지않는 형식으로 되어있음.)
 
-//404: Not found (요청한 페이지 없음)
-//405: Method not allowed (허용되지 않는 http method 사용함)
-//500: Internal server error (내부 서버 오류)
-//501: Not implemented (웹 서버가 처리할 수 없음)
-//503: Service unavailable (서비스 제공 불가)
-//504: Gateway timeout (게이트웨이 시간초과)
-//505: HTTP version not supported (해당 http 버전 지원되지 않음)
+// 404: Not found (요청한 페이지 없음)
+// 405: Method not allowed (허용되지 않는 http method 사용함)
+// 500: Internal server error (내부 서버 오류)
+// 501: Not implemented (웹 서버가 처리할 수 없음)
+// 503: Service unavailable (서비스 제공 불가)
+// 504: Gateway timeout (게이트웨이 시간초과)
+// 505: HTTP version not supported (해당 http 버전 지원되지 않음)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//*** JSON 제이슨, (JavaScript Object Notation) **********
-//=> 자바스크립트의 객체표기법으로, 데이터를 전달할때 사용하는 표준형식.
-//	 속성(key) 과 값(value) 이 하나의 쌍을 이룸
-//=> JSON의 파일 확장자는 .json
-//=> 주요 메서드
-//	- JSON.stringify() : JavaScript 값이나 객체를 JSON 문자열로 변환.
-//	- JSON.parse() :  JSON 문자열을 구문 분석하여 JavaScript 값이나 객체를 생성함.
+// *** JSON 제이슨, (JavaScript Object Notation) **********
+// => 자바스크립트의 객체표기법으로, 데이터를 전달할때 사용하는 표준형식.
+//	  속성(key) 과 값(value) 이 하나의 쌍을 이룸
+// => JSON의 파일 확장자는 .json
+// => 주요 메서드
+//	 - JSON.stringify() : JavaScript 값이나 객체를 JSON 문자열로 변환.
+//	 - JSON.parse() :  JSON 문자열을 구문 분석하여 JavaScript 값이나 객체를 생성함.
 		
-//** JAVA의 Data 객체 -> JSON 변환하기
-//** 참고용어 
-//=> 마샬링(Marshalling)
-//	- 메모리상에 형상화된 객체 데이터를 다른 데이터 형태로 변환하는 과정을 말함.
-//	- JAVA 객체를 JSON 포맷으로 변환하는것
-//=> 언마샬링(UnMarshalling)
-//	- 변환된 데이터를 다시 원래의 객체 모양으로 복원하는 작업
-//	- JSON 포맷을 JAVA 객체로 변환하는것
-//=> 직렬화(Serialization)
-//	- 객체 데이터를 일련의 byte stream으로 변환하는 작업
-//	- 반대로 일련의 byte stream을 본래 객체 모양으로 복원하는 작업은 역직렬화(Deserialization) 
-//	- 직렬화와 마샬링은 거의 같은개념이지만, 직렬화 작업이 프로그래밍적으로 보다더 전문화 된것이 마샬링.
-//	( 즉, 직렬화는 마샬링이 포함된 폭넓은 개념 )
+// ** JAVA의 Data 객체 -> JSON 변환하기
+// ** 참고용어 
+// => 마샬링(Marshalling)
+//	 - 메모리상에 형상화된 객체 데이터를 다른 데이터 형태로 변환하는 과정을 말함.
+//	 - JAVA 객체를 JSON 포맷으로 변환하는것
+// => 언마샬링(UnMarshalling)
+//	 - 변환된 데이터를 다시 원래의 객체 모양으로 복원하는 작업
+//	 - JSON 포맷을 JAVA 객체로 변환하는것
+// => 직렬화(Serialization)
+//	 - 객체 데이터를 일련의 byte stream으로 변환하는 작업
+//	 - 반대로 일련의 byte stream을 본래 객체 모양으로 복원하는 작업은 역직렬화(Deserialization) 
+//	 - 직렬화와 마샬링은 거의 같은개념이지만, 직렬화 작업이 프로그래밍적으로 보다더 전문화 된것이 마샬링.
+//	   ( 즉, 직렬화는 마샬링이 포함된 폭넓은 개념 )
 
-//1) GSON
-//	: 자바 객체의 직렬화/역직렬화를 도와주는 라이브러리 (구글에서 만듦)
-//	즉, JAVA객체 -> JSON 또는 JSON -> JAVA객체
+// 1) GSON
+//	 : 자바 객체의 직렬화/역직렬화를 도와주는 라이브러리 (구글에서 만듦)
+//	 즉, JAVA객체 -> JSON 또는 JSON -> JAVA객체
 		
-//2) @ResponseBody (매핑 메서드에 적용)
-//	: 메서드의 리턴값이 View 를 통해 출력되지 않고 HTTP Response Body 에 직접 쓰여지게 됨.
-//	이때 쓰여지기전, 리턴되는 데이터 타입에 따라 종류별 MessageConverter에서 변환이 이뤄진다.
-//	MappingJacksonHttpMessageConverter 를 사용하면 request, response 를 JSON 으로 변환
-//	view (~.jsp) 가 아닌 Data 자체를 전달하기위한 용도
-//	@JsonIgnore : VO 에 적용하면 변환에서 제외
+// 2) @ResponseBody (매핑 메서드에 적용)
+//	 : 메서드의 리턴값이 View 를 통해 출력되지 않고 HTTP Response Body 에 직접 쓰여지게 됨.
+//	 이때 쓰여지기전, 리턴되는 데이터 타입에 따라 종류별 MessageConverter에서 변환이 이뤄진다.
+//	 MappingJacksonHttpMessageConverter 를 사용하면 request, response 를 JSON 으로 변환
+//	 view (~.jsp) 가 아닌 Data 자체를 전달하기위한 용도
+//	 @JsonIgnore : VO 에 적용하면 변환에서 제외
 
-//3) jsonView
-//=> Spring 에서 MappingJackson2JsonView를 사용해서
-//	 ModelAndView를 json 형식으로 반환해 준다.
-//=> 방법
-//	-> pom dependency추가
-//	-> 설정화일 xml 에 bean 등록 
-//	( 안하면 /WEB-INF/views/jsonView.jsp 를 찾게되고  없으니 404 발생 )
-//	-> return할 ModelAndView 생성시 View_Name을 "jsonView"로 설정
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-
+// 3) jsonView
+// => Spring 에서 MappingJackson2JsonView를 사용해서
+//	  ModelAndView를 json 형식으로 반환해 준다.
+// => 방법
+//	 -> pom dependency추가
+//	 -> 설정화일 xml 에 bean 등록 
+//	    ( 안하면 /WEB-INF/views/jsonView.jsp 를 찾게되고  없으니 404 발생 )
+//	 -> return할 ModelAndView 생성시 View_Name을 "jsonView"로 설정
 
 @RestController
 @RequestMapping("/rest")
@@ -122,6 +122,7 @@ public class RTestController {
 	MemberService service;
 	PasswordEncoder passwordEncoder;
 	JoService jservice;
+	BoardService bservice;
 	
 	@GetMapping("/hello")
 	// => 메뉴없이 직접 요청: http://localhost:8088/rest/hello
@@ -423,9 +424,25 @@ public class RTestController {
 			log.info("** axidelete HttpStatus.OK => "+HttpStatus.OK);
 			return new ResponseEntity<String>("** 삭제 성공 **", HttpStatus.OK); 
 		} else {
-			log.info("** axidelete HttpStatus.OK => "+HttpStatus.BAD_GATEWAY);
+			log.info("** axidelete HttpStatus.BAD_GATEWAY => "+HttpStatus.BAD_GATEWAY);
 			return new ResponseEntity<String>("** 삭제 실패, Data_NotFound **", HttpStatus.BAD_GATEWAY); 			
 		}
 	}
 
+//	@GetMapping(value="/idblist/{id}",
+//			produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/idblist/{id}")
+	public ResponseEntity<?> idblist(@PathVariable("id") String id) {
+		ResponseEntity<?> result = null;
+		List<BoardDTO> list = bservice.idBList(id);
+		// => 출력 Data 유/무 구별
+		if(list != null && list.size() > 0) {
+			result = ResponseEntity.status(HttpStatus.OK).body(list);
+			log.info("** idblist HttpStatus.OK => "+HttpStatus.OK);
+		} else {
+			result = ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(list); 			
+			log.info("** idblist HttpStatus.BAD_GATEWAY => "+HttpStatus.BAD_GATEWAY); // 502
+		}
+		return result;
+	}
 } //class

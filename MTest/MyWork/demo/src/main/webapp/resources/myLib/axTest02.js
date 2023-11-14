@@ -104,8 +104,8 @@ function axiDelete(id) {
 		document.getElementById(id).classList.remove('textlink');
 		document.getElementById(id).removeAttribute('onclick');
 	}).catch(err => {
-		if ( err.response.status=='502' ) alert(err.response.data);  				
-		else alert("~~ 시스템 오류, 잠시후 다시하세요 => " + err.message);		
+		if ( err.response.status=='502' ) alert(err.response.data);
+		else alert("~~ 시스템 오류, 잠시후 다시하세요 => " + err.message);
 	});
 }
 

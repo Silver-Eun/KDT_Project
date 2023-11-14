@@ -2,11 +2,16 @@ package mapperInterface;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.example.demo.domain.BoardDTO;
 
 import criTest.SearchCriteria;
 
 public interface BoardMapper {
+	// ** REST API, Axios Test
+	@Select("select * from board where id=#{id} order by root desc, step asc")
+	List<BoardDTO> idBList(String id);
 	
 	// ** Board_SrarchCri_Paging
 	// => Cri + 검색조건
