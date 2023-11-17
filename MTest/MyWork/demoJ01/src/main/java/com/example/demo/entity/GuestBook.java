@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 //   본예제는 Service interface에 default 메서드로 dtoToEntity()와 entityToDto()를 작성.
 //   그러나 List 처리시에 적용 구문이 어려워서 register에서만 적용해봄
 
-//@Table(name="uestbook")
-//=> Entity에 해당하는 테이블을 name 속성을 사용하여 매핑함.
-//	 name 생략시에는 클래스의 이름이 매핑됨
+// @Table(name="uestbook")
+// => Entity에 해당하는 테이블을 name 속성을 사용하여 매핑함.
+//	  name 생략시에는 클래스의 이름이 매핑됨
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
