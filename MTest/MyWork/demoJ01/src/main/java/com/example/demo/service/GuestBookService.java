@@ -3,6 +3,8 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.domain.GuestBookDTO;
+import com.example.demo.domain.PageRequestDTO;
+import com.example.demo.domain.PageResultDTO;
 import com.example.demo.entity.GuestBook;
 
 public interface GuestBookService {
@@ -11,6 +13,9 @@ public interface GuestBookService {
     List<GuestBook> selectList();
     GuestBook selectOne(Long gno);
     void delete(Long gno);
+    
+    // ** JPA Paging & Sorting
+    PageResultDTO<GuestBookDTO, GuestBook> gPageList(PageRequestDTO requestDTO);
     
     // => Entity와 DTO를 용도별로 분리해서 사용하는 경우 필요함
     //	  dtoToEntity()와 entityToDto()
