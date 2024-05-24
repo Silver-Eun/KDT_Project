@@ -11,7 +11,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import static com.example.demo.entity.QMember.member;
 import static com.example.demo.entity.QJo.jo;
-// => import static  
+// => import static
 //	  기본 import 구문은 '패키지 명시 없이 클래스를 사용'하게 해 주는데, 
 //	  import static 구문은 한 단계 더 들어가 '클래스 명시 없이 static변수나 static메서드를 사용'하게 해줌.
 
